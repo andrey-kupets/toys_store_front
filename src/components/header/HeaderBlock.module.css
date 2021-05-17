@@ -6,12 +6,39 @@
 
 .header_wrapper {
     margin: 0 10px 0 10px;
-}
-
-.half_column {
-    height: 4vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
 
+/*.half_column {*/
+/*    height: 8vh;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: space-between;*/
+/*}*/
+
+.logo {
+    height: 7vh;
+    width: 7vw;
+}
+
+.header_input {
+    width: 30vw;
+}
+
+.cart_wishlist_block {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.cart_icon {
+    height: 3vh;
+    width: 3vw;
+}
+
+.wishlist_icon {
+    height: 3vh;
+    width: 3vw;
 }

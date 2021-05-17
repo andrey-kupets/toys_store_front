@@ -7,29 +7,25 @@ export const HeaderBlock = () => {
     return (
         <div className={styles.header}>
             <div className={styles.header_wrapper}>
-                {/*<div className={styles.half_column}>*/}
-                    <Logo/>
-                    <div>Контакты</div>
-                    <div>Вход</div>
-                {/*</div>*/}
-                {/*<div className={styles.half_column}>*/}
+                <Logo/>
+                <div>Контакты</div>
+                <div>
+                    <label htmlFor="">Поиск</label>
+                    <input className={styles.header_input} type="text"/>
+                </div>
+                <div>Вход</div>
+                <div className={styles.cart_wishlist_block}>
                     <div>
-                        <label htmlFor="">Поиск</label>
-                        <input className={styles.header_input} type="text"/>
+                        <button>
+                            <img className={styles.wishlist_icon} src={constants.WISHLIST_1} alt="wishlist"/>
+                        </button>
                     </div>
-                    <div className={styles.cart_wishlist_block}>
-                        <div>
-                            <button>
-                                <img className={styles.wishlist_icon} src={constants.WISHLIST_1} alt="wishlist"/>
-                            </button>
-                        </div>
-                        <div>
-                            <button>
-                                <img className={styles.cart_icon} src={constants.CART_2} alt="cart"/>
-                            </button>
-                        </div>
+                    <div>
+                        <button>
+                            <img className={styles.cart_icon} src={constants.CART_2} alt="cart"/>
+                        </button>
                     </div>
-                {/*</div>*/}
+                </div>
             </div>
         </div>
     )

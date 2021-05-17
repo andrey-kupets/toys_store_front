@@ -1,0 +1,15 @@
+.footer {
+    height: 6vh;
+    background: antiquewhite;
+    color: fuchsia;
+    padding-top: 12px;
+}
+
+.footerWrapper {
+    display: flex;
+    /*align-items: center;*/
+    justify-content: space-between;
+    margin: 0 10px 0 10px;
+}
+
+

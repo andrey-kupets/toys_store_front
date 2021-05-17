@@ -1,0 +1,17 @@
+.header {
+    height: 8vh;
+    background: antiquewhite;
+    color: fuchsia;
+}
+
+.headerWrapper {
+    margin: 0 10px 0 10px;
+}
+
+.half {
+    height: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}

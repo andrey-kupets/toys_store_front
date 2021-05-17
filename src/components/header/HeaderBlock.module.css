@@ -1,14 +1,14 @@
 .header {
-    height: 8vh;
+    /*height: 8vh;*/
     background: antiquewhite;
     color: fuchsia;
 }
 
-.headerWrapper {
+.header_wrapper {
     margin: 0 10px 0 10px;
 }
 
-.half {
+.half_column {
     height: 4vh;
     display: flex;
     align-items: center;

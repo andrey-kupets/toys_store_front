@@ -1,13 +1,12 @@
 .footer {
-    height: 6vh;
     background: antiquewhite;
     color: fuchsia;
-    padding-top: 12px;
 }
 
-.footerWrapper {
+.footer_wrapper {
+    height: 8vh;
     display: flex;
-    /*align-items: center;*/
+    align-items: center;
     justify-content: space-between;
     margin: 0 10px 0 10px;
 }

@@ -19,8 +19,8 @@ export const LeftSideBar = () => {
             <div className={styles.left_sideBar_filter}>
                 <h3>Выбор по цене</h3>
                 <div>
-                    <label htmlFor="">От</label><input type="text"/><br/>
-                    <label htmlFor="">До</label><input type="text"/>
+                    <label className={styles.left_sideBar_label} htmlFor=""><b>От</b></label><input type="text"/><br/>
+                    <label className={styles.left_sideBar_label} htmlFor=""><b>До</b></label><input type="text"/>
                 </div>
             </div>
         </div>

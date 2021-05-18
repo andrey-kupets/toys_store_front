@@ -4,7 +4,7 @@ import styles from './Main.module.css';
 export const LeftSideBar = () => {
     return (
         <div className={styles.left_sideBar}>
-            <div>
+            <div className={styles.left_sideBar_category}>
                 <h2>Категория</h2>
                 <ul>
                     <li><a href="">Игрушки для малышей</a></li>
@@ -16,10 +16,12 @@ export const LeftSideBar = () => {
                     <li><a href="">Настольные игры</a></li>
                 </ul>
             </div>
-            <div>
+            <div className={styles.left_sideBar_filter}>
                 <h3>Выбор по цене</h3>
-                <label htmlFor="">От</label><input type="text"/><br/>
-                <label htmlFor="">До</label><input type="text"/>
+                <div>
+                    <label htmlFor="">От</label><input type="text"/><br/>
+                    <label htmlFor="">До</label><input type="text"/>
+                </div>
             </div>
         </div>
     )

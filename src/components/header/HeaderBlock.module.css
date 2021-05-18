@@ -33,12 +33,9 @@
     justify-content: space-around;
 }
 
-.cart_icon {
+.cart_wishlist_icon {
     height: 3vh;
     width: 3vw;
 }
 
-.wishlist_icon {
-    height: 3vh;
-    width: 3vw;
-}
+

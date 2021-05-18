@@ -5,9 +5,9 @@ export const FooterBlock = () => {
     return (
         <div className={styles.footer}>
             <div className={styles.footer_wrapper}>
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
+                <div>Обратная связь</div>
+                <div>График работы</div>
+                <div>Условия оплаты и доставки</div>
             </div>
         </div>
     )

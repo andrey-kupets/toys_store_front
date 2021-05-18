@@ -17,12 +17,12 @@ export const HeaderBlock = () => {
                 <div className={styles.cart_wishlist_block}>
                     <div>
                         <button>
-                            <img className={styles.wishlist_icon} src={constants.WISHLIST_1} alt="wishlist"/>
+                            <img title={'список желаний'} className={styles.cart_wishlist_icon} src={constants.WISHLIST_1} alt="wishlist"/>
                         </button>
                     </div>
                     <div>
                         <button>
-                            <img className={styles.cart_icon} src={constants.CART_2} alt="cart"/>
+                            <img title={'корзина'} className={styles.cart_wishlist_icon} src={constants.CART_2} alt="cart"/>
                         </button>
                     </div>
                 </div>

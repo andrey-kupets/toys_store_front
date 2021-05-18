@@ -7,13 +7,13 @@ export const LeftSideBar = () => {
             <div className={styles.left_sideBar_category}>
                 <h2>Категория</h2>
                 <ul>
-                    <li><a href="">Игрушки для малышей</a></li>
-                    <li><a href="">Машинки и спецтехника</a></li>
-                    <li><a href="">Коляски и куклы</a></li>
-                    <li><a href="">Творчество</a></li>
-                    <li><a href="">Развивающие игрушки</a></li>
-                    <li><a href="">Мягкие игрушки</a></li>
-                    <li><a href="">Настольные игры</a></li>
+                    <li><a href="1">Игрушки для малышей</a></li>
+                    <li><a href="1">Машинки и спецтехника</a></li>
+                    <li><a href="1">Коляски и куклы</a></li>
+                    <li><a href="1">Творчество</a></li>
+                    <li><a href="1">Развивающие игрушки</a></li>
+                    <li><a href="1">Мягкие игрушки</a></li>
+                    <li><a href="1">Настольные игры</a></li>
                 </ul>
             </div>
             <div className={styles.left_sideBar_filter}>

@@ -1,4 +1,4 @@
-export default () => {
+export const Userservice = () => {
     // const baseUrl = 'http://localhost:5000/users';
     const baseUrl = 'https://jsonplaceholder.typicode.com/users';
     return fetch (baseUrl)

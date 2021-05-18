@@ -1,15 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
 import {HeaderBlock} from "./components/header/HeaderBlock";
 import {MainBlock} from "./components/main/MainBlock";
 import {FooterBlock} from "./components/footer/FooterBlock";
-import UserService from "./services/UserService";
+import {Userservice} from "./services/UserService";
 import {useEffect} from "react";
 
 function App() {
-    // useEffect(() => {
-    //     UserService().then(r => console.log(r));
-    // }, [])
+    useEffect(() => {
+        Userservice().then(r => console.log(r));
+    }, [])
 
   return (
     <div className="App">

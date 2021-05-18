@@ -8,9 +8,7 @@ export const MainBlock = () => {
         <div className={styles.main}>
             <div className={styles.main_wrapper}>
                 <LeftSideBar className={styles.left_sideBar}/>
-                {/*<div className={styles.left_sideBar}>Left SideBar-Filter</div>*/}
                 <ProductsContainer className={styles.products_container}/>
-                {/*<div>Products Container</div>*/}
             </div>
         </div>
     )

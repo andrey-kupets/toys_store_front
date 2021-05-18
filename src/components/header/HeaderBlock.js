@@ -10,7 +10,7 @@ export const HeaderBlock = () => {
                 <Logo/>
                 <div>Контакты</div>
                 <div>
-                    <label htmlFor="">Поиск</label>
+                    <label>Поиск</label>
                     <input className={styles.header_input} type="text"/>
                 </div>
                 <div>Вход</div>

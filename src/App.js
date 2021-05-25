@@ -6,9 +6,9 @@ import {Userservice} from "./services/UserService";
 import {useEffect} from "react";
 
 function App() {
-    useEffect(() => {
-        Userservice().then(r => console.log(r));
-    }, [])
+    // useEffect(() => {
+    //     Userservice().then(r => console.log(r));
+    // }, [])
 
   return (
     <div className="App">

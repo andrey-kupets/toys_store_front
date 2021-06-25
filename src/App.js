@@ -2,12 +2,14 @@ import './App.css';
 import {HeaderBlock} from "./components/header/HeaderBlock";
 import {MainBlock} from "./components/main/MainBlock";
 import {FooterBlock} from "./components/footer/FooterBlock";
-import {Userservice} from "./services/UserService";
+import {UserService} from "./services/UserService";
 import {useEffect} from "react";
+import {ProductService} from "./services";
 
 function App() {
     useEffect(() => {
-        Userservice().then(r => console.log(r));
+        UserService().then(r => console.log(r));
+        ProductService().then(r => console.log(r));
     }, [])
 
   return (

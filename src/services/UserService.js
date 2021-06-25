@@ -5,7 +5,7 @@
 // };
 
 
-export const Userservice = () => {
+export const UserService = () => {
     const baseUrl = 'http://localhost:5000/users';
     return fetch (baseUrl, {
         method: 'POST',

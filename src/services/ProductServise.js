@@ -1,5 +1,14 @@
-import axios from "axios";
+import { axiosDB } from './axiosConfig'
 
-export const ProductService = () => {
-  return axios.get('http://localhost:5000/products')
+class ProductService {
+  getProducts() {
+    return axiosDB.get('/products');
+  }
+
+  getProductById(productId) {
+    return axiosDB.get(`/products/${productId}`)
+  }
+
 }
+
+export const productService = new ProductService();

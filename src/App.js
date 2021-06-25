@@ -4,12 +4,13 @@ import {MainBlock} from "./components/main/MainBlock";
 import {FooterBlock} from "./components/footer/FooterBlock";
 import {UserService} from "./services/UserService";
 import {useEffect} from "react";
-import {ProductService} from "./services";
+import {productService} from "./services";
 
 function App() {
     useEffect(() => {
-        UserService().then(r => console.log(r));
-        ProductService().then(r => console.log(r));
+        // UserService().then(r => console.log(r));
+        productService.getProducts().then(r => console.log(r));
+        productService.getProductById("60b231505d469ae5fefc2de8").then(r => console.log(r));
     }, [])
 
   return (

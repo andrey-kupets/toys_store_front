@@ -16,6 +16,20 @@
     "redux-thunk": "^2.3.0",
     "web-vitals": "^1.0.1"
   },
+  "devDependencies": {
+    "husky": "^6.0.0",
+    "eslint": "^7.29.0",
+    "lint-staged": "^11.0.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-promise": "^5.1.0"
+  },
+  "lint-staged": {
+    "*.{js, json}": [
+      "eslint",
+      "git add"
+    ]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

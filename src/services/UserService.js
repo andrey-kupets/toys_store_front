@@ -4,10 +4,9 @@
 //         .then(r => r.json());
 // };
 
-
 export const UserService = () => {
     const baseUrl = 'http://localhost:5000/users';
-    return fetch (baseUrl, {
+    return fetch(baseUrl, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -33,7 +32,7 @@ export const UserService = () => {
           }
         )
     })
-      .then(r => r.json());
+      .then((r) => r.json());
 };
 // (async () => {
 //     const rawResponse = await fetch('https://httpbin.org/post', {

@@ -9,7 +9,7 @@ import {productService} from "./services";
 function App() {
     useEffect(() => {
         // UserService().then(r => console.log(r));
-        productService.getProducts().then(r => console.log(r));
+        productService.getProducts().then(console.log);
         productService.getProductById("60b231505d469ae5fefc2de8").then(r => console.log(r));
     }, [])
 

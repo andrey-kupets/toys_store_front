@@ -1,12 +1,14 @@
 import { axiosDB } from './axiosConfig'
 
 class ProductService {
-  getProducts() {
-    return axiosDB.get('/products');
+  async getProducts() {
+    const { data } = await axiosDB.get('/products');
+    return data;
   }
 
-  getProductById(productId) {
-    return axiosDB.get(`/products/${productId}`)
+  async getProductById(productId) {
+    const { data } = await axiosDB.get(`/products/${productId}`)
+    return data;
   }
 
 }

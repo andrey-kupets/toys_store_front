@@ -1,14 +1,12 @@
 import React from "react";
 import styles from './FooterBlock.module.css';
 
-export const FooterBlock = () => {
-    return (
-        <div className={styles.footer}>
-            <div className={styles.footer_wrapper}>
-                <div>Обратная связь</div>
-                <div>График работы</div>
-                <div>Условия оплаты и доставки</div>
-            </div>
-        </div>
-    )
-}
+export const FooterBlock = () => ( // early return pattern
+  <div className={styles.footer}>
+    <div className={styles.footer_wrapper}>
+      <div>Обратная связь</div>
+      <div>График работы</div>
+      <div>Условия оплаты и доставки</div>
+    </div>
+  </div>
+);

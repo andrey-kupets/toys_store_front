@@ -24,5 +24,5 @@ export const LeftSideBar = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

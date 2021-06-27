@@ -6,5 +6,5 @@ export const ProductsContainer = () => {
         <div className={styles.products_container}>
             ProductsContainer
         </div>
-    )
-}
+    );
+};

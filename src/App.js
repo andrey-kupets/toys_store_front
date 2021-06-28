@@ -1,9 +1,8 @@
 import './App.css';
 import { useEffect } from "react";
-import { HeaderBlock } from "./components/header/HeaderBlock";
-import { MainBlock } from "./components/main/MainBlock";
-import { FooterBlock } from "./components/footer/FooterBlock";
 import { productService, userService } from "./services";
+import { BaseLayout } from "./layouts";
+import { Home } from "./views";
 
 const getUsers = async () => {
     const users = await userService.getUsers();
@@ -31,20 +30,18 @@ const getProductById = async (productId) => {
 };
 
 function App() {
-  useEffect(() => {
-    createUser();
-    getUsers();
-    getUserById('60b229625d469ae5fefc2ddc');
-    getProducts();
-    getProductById('60b231505d469ae5fefc2de8');
-  }, []);
+  // useEffect(() => {
+  //   createUser();
+  //   getUsers();
+  //   getUserById("60d8f6b51127ae1df05ccf8f");
+  //   getProducts();
+  //   getProductById('60b231505d469ae5fefc2de8');
+  // }, []);
 
   return (
-    <div className="App">
-      <HeaderBlock/>
-      <MainBlock/>
-      <FooterBlock/>
-    </div>
+    <BaseLayout>
+      <Home/>
+    </BaseLayout>
   );
 }
 

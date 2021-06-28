@@ -5,11 +5,9 @@ import { ProductsContainer } from "./ProductsContainer";
 
 export const MainBlock = () => {
   return (
-    <div className={styles.main}>
-      <div className={styles.main_wrapper}>
-        <LeftSideBar className={styles.left_sideBar}/>
-        <ProductsContainer className={styles.products_container}/>
-      </div>
+    <div className={[styles.main_block]}>
+      <LeftSideBar className={styles.left_sideBar}/>
+      <ProductsContainer className={styles.products_container}/>
     </div>
   );
 };

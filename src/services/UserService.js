@@ -14,18 +14,18 @@ class UserService {
   async createUser() {
     const { data } = await axiosDB.post('/users', {
       name: "max",
-      email: 'max@gmail.com',
+      email: "max@gmail.com",
       password: 'max111',
       _products: [
         {
-          _id: '60b231505d469ae5fefc2df0'
+          _id: "60b231505d469ae5fefc2df0"
 
         },
         {
-          _id: '60b231505d469ae5fefc2df1'
+          _id: "60b231505d469ae5fefc2df1"
         },
         {
-          _id: '60b231505d469ae5fefc2df1'
+          _id: "60b231505d469ae5fefc2df1"
         }
       ]
     });

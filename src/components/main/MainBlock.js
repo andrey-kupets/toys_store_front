@@ -5,7 +5,9 @@ import { ProductsContainer } from "./ProductsContainer";
 
 export const MainBlock = () => {
   return (
-    <div className={[styles.main_block]}>
+    <div className={styles.main_block}>
+      {/*div for checking overflow scrolling*/}
+      {/*<div style={{height: 1600, background: 'blue'}}>yy</div>*/}
       <LeftSideBar className={styles.left_sideBar}/>
       <ProductsContainer className={styles.products_container}/>
     </div>

@@ -30,13 +30,13 @@
     align-items: center;
 }
 
-.products_container {
+.products_list {
     /*height: 84vh;*/
     width: 80%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    padding: 20px;
 }
 
 h2, h3 {
@@ -45,5 +45,14 @@ h2, h3 {
 
 .left_sideBar_label {
     color: #807272;
+}
+
+.loading {
+    width: 80%;
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 

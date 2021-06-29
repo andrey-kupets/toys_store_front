@@ -1,15 +1,16 @@
 import React from "react";
 import styles from './Main.module.css';
-import { LeftSideBar } from "./LeftSideBar";
-import { ProductsContainer } from "./ProductsContainer";
+import { LeftSideBar } from "./left-sidebar/LeftSideBar";
+import { ProductsList } from "./products-list/ProductsList";
 
-export const MainBlock = () => {
+export const MainBlock = ({ children }) => {
   return (
     <div className={styles.main_block}>
       {/*div for checking overflow scrolling*/}
       {/*<div style={{height: 1600, background: 'blue'}}>yy</div>*/}
-      <LeftSideBar className={styles.left_sideBar}/>
-      <ProductsContainer className={styles.products_container}/>
+      {/*<LeftSideBar className={styles.left_sideBar}/>*/}
+      {/*<ProductsList className={styles.products_container}/>*/}
+      { children }
     </div>
   );
 };

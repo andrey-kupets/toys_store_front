@@ -2,7 +2,7 @@ import { axiosDB } from './axiosConfig';
 
 class ProductService {
   async getProducts() {
-    const { data } = await axiosDB.get('/products');
+    const { data } = await axiosDB.get('/products-list');
     return data;
   }
 

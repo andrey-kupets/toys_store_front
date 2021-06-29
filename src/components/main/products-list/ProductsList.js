@@ -1,7 +1,7 @@
 import React from "react";
-import styles from './Main.module.css';
+import styles from '../Main.module.css';
 
-export const ProductsContainer = () => {
+export const ProductsList = () => {
     return (
         <div className={styles.products_container}>
             ProductsContainer

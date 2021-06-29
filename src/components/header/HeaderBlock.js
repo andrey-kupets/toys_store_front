@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './HeaderBlock.module.css';
-import { Logo } from "./Logo";
-import { constants } from '../../constants/constants';
+import { Logo } from "./logo";
+import { constants } from '../../constants';
 
 export const HeaderBlock = () => {
   return (

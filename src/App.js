@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { productService, userService } from "./services";
 import { BaseLayout } from "./layouts";
 import { Home } from "./views";
-import {MainBlock} from "./components/main/MainBlock";
 
 const getUsers = async () => {
     const users = await userService.getUsers();
@@ -41,9 +40,8 @@ function App() {
 
   return (
     <div className="main-wrapper">
-      <BaseLayout >
+      <BaseLayout>
         <Home/>
-        {/*<MainBlock/>*/}
       </BaseLayout>
     </div>
   );

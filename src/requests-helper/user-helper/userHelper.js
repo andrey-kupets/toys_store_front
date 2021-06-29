@@ -1,4 +1,4 @@
-import { productService, userService } from "../services";
+import { userService } from "../../services";
 
 const getUsers = async () => {
   const users = await userService.getUsers();
@@ -15,20 +15,8 @@ const createUser = async () => {
   console.log(createdUserResponse);
 };
 
-const getProducts = async () => {
-  const products = await productService.getProducts();
-  console.log(products);
-};
-
-const getProductById = async (productId) => {
-  const product = await productService.getProductById(productId);
-  console.log(product);
-};
-
 export {
   getUsers,
   getUserById,
   createUser,
-  getProducts,
-  getProductById,
 };

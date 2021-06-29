@@ -1,8 +1,7 @@
 import { productService } from "../../services";
 
 const getProducts = async () => {
-  const products = await productService.getProducts();
-  console.log(products);
+  return await productService.getProducts();
 };
 
 const getProductById = async (productId) => {

@@ -29,7 +29,7 @@ export const ProductItem = (props) => {
       </div>
       <div>
         <h3>{name}</h3>
-        <span>Price: {price} грн.</span><br/>
+        <span>Цена: {price} грн.</span><br/>
         {/*<span>Category: {category}</span><br/>*/}
         {/*<span>Type: {type}</span>*/}
         <p className={styles.product_item_description}>{description}</p>

@@ -3,11 +3,19 @@
     border-radius: 8px;
     padding: 4px;
     margin-bottom: 5px;
+    background: aliceblue;
 }
 
 .product_item:hover {
-    background-color: palegreen;
-    cursor: pointer;
+    box-shadow:
+            1px 1px #9bc4f6,
+            2px 2px #9bc4f6,
+            3px 3px #9bc4f6,
+            4px 4px #9bc4f6,
+            5px 5px #9bc4f6,
+            6px 6px #9bc4f6,
+            7px 7px #9bc4f6;
+    transform: translateX(-7px);
 }
 
 .product_image {

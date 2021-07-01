@@ -5,7 +5,7 @@ export const LeftSideBar = () => {
     return (
         <div className={styles.left_sideBar}>
             <div className={styles.left_sideBar_category}>
-                <h2>Категория</h2>
+                <h1>Категория</h1>
                 <ul>
                     <li><a href="1">Игрушки для малышей</a></li>
                     <li><a href="1">Машинки и спецтехника</a></li>
@@ -17,10 +17,10 @@ export const LeftSideBar = () => {
                 </ul>
             </div>
             <div className={styles.left_sideBar_filter}>
-                <h3>Выбор по цене</h3>
+                <h3>Ценовой диапазон</h3>
                 <div>
-                    <label className={styles.left_sideBar_label} htmlFor=""><b>От</b></label><input type="text"/><br/>
-                    <label className={styles.left_sideBar_label} htmlFor=""><b>До</b></label><input type="text"/>
+                    <input type="text" placeholder='Укажите цену "От" ...грн.'/><br/>
+                    <input type="text" placeholder='Укажите цену "До" ...грн.'/>
                 </div>
             </div>
         </div>

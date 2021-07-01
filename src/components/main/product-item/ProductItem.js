@@ -21,14 +21,14 @@ export const ProductItem = (props) => {
 
   return (
     <div className={styles.product_item}>
-      <div>
+      <div className={styles.product_image_wrapper}>
         <img className={styles.product_image} src={img} alt={`${name} toy`}/>
       </div>
       <div>
         <h3>{name}</h3>
-        <span>Price: {price} грн.</span><br/>
-        <span>Category: {category}</span><br/>
-        <span>Type: {type}</span>
+        <div>Price: {price} грн.</div>
+        <div>Category: {category}</div>
+        <div>Type: {type}</div>
         <p>{description}</p>
       </div>
     </div>

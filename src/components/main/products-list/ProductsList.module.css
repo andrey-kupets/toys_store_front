@@ -1,0 +1,13 @@
+.products_list_wrapper {
+    /*height: 84vh;*/
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /*align-items: center;*/
+    padding: 20px 0;
+}
+
+.products_item_wrapper {
+    width: 30%;
+}

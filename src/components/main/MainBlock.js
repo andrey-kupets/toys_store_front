@@ -23,7 +23,7 @@ export const MainBlock = ({ children }) => {
       {/*{children}*/}
       { loading || loading === null
         ? Loading()
-        : <ProductsList items={products} className={styles.products_list}/>
+        : <ProductsList items={products}/>
       }
     </div>
   );

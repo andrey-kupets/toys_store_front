@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './ProductItem.module.css';
 
 export const ProductItem = (props) => {
   // category: "Игрушки для малышей"
@@ -19,13 +20,13 @@ export const ProductItem = (props) => {
   } = props;
 
   return (
-    <div>
+    <div className={styles.product_item}>
       <div>
-        <img src={img} alt={`${name} toy name`}  style={{height: 200, width: 200}}/>
+        <img className={styles.product_image} src={img} alt={`${name} toy`}/>
       </div>
       <div>
-        <h3>Name: {name}</h3>
-        <span>Price: {price}</span><br/>
+        <h3>{name}</h3>
+        <span>Price: {price} грн.</span><br/>
         <span>Category: {category}</span><br/>
         <span>Type: {type}</span>
         <p>{description}</p>

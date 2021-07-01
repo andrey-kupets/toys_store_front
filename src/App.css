@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 /*.App {*/
 /*  text-align: center;*/
 /*}*/
@@ -35,10 +39,4 @@
 /*  to {*/
 /*    transform: rotate(360deg);*/
 /*  }*/
-/*}*/
-
-/*.main-wrapper {*/
-/*    height: 100vh;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
 /*}*/

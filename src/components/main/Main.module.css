@@ -32,15 +32,6 @@
     align-items: center;
 }
 
-.products_list {
-    /*height: 84vh;*/
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 20px;
-}
-
 h2, h3 {
     color: dodgerblue;
 }
@@ -63,4 +54,3 @@ h2, h3 {
     font-weight: bold;
     font-size: 26px;
 }
-

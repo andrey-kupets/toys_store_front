@@ -26,6 +26,12 @@ function App() {
             {/*  <ProductsList/>*/}
             {/*</MainBlock>*/}
           </Route>
+
+          <Route path="/products/:productId">
+            <div style={{flex: 1}}
+            >product details view</div>
+          </Route>
+
           <Route>
             <h1 style={{flex: 1}}>PAGE NOT FOUND
               <button onClick={() => history.push('/')}>

@@ -32,7 +32,7 @@ export const ProductDetails = () => {
         <div className={styles.product_image_wrapper}>
           <img className={styles.product_image} src={product.img} alt={`${product.name} toy`}/>
         </div>
-        <div style={{marginTop: 20}}>
+        <div>
           <h3>{product.name}</h3>
           <span>Цена: {product.price} грн.</span><br/>
           <span>Category: {product.category}</span><br/>

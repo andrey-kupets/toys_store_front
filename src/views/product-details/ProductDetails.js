@@ -27,17 +27,17 @@ export const ProductDetails = () => {
 
 
   return (
-    <div  className={styles.product_details_wrapper}>
+    <div className={styles.product_details_wrapper}>
       {loading || loading === null && !product ? Loading() :(<>
-        <div className={styles.product_image_wrapper}>
+        <div className={styles.product_details}>
+          <div className={styles.product_properties}>
+            <h2>{product.name}</h2>
+            <span>Цена: <b>{product.price}</b> грн.</span><br/>
+            <span>Category: <i><u>{product.category}</u></i></span><br/>
+            <span>Type: <i>{product.type}</i></span>
+            <p>{product.description}</p>
+          </div>
           <img className={styles.product_image} src={product.img} alt={`${product.name} toy`}/>
-        </div>
-        <div>
-          <h3>{product.name}</h3>
-          <span>Цена: {product.price} грн.</span><br/>
-          <span>Category: {product.category}</span><br/>
-          <span>Type: {product.type}</span>
-          <p>{product.description}</p>
         </div>
       </>)}
     </div>

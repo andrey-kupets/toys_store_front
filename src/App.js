@@ -1,16 +1,8 @@
 import './App.css';
-import React, { useEffect } from "react";
-import { productService, userService } from "./services";
+import React from "react";
 import { BaseLayout } from "./layouts";
-import { Home } from "./views";
-import { LeftSideBar, MainBlock, ProductsList } from "./components/main";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useHistory
-} from "react-router-dom";
+import { MainBlock } from "./views";
+import { Route, Switch, useHistory } from "react-router-dom";
 
 
 function App() {
@@ -20,11 +12,7 @@ function App() {
       <BaseLayout>
         <Switch>
           <Route path="/" exact>
-            <Home/>
-            {/*<MainBlock>*/}
-            {/*  <LeftSideBar/>*/}
-            {/*  <ProductsList/>*/}
-            {/*</MainBlock>*/}
+            <MainBlock/>
           </Route>
 
           <Route path="/products/:productId">

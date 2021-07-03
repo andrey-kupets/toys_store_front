@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from './Main.module.css';
-import { LeftSideBar } from "./left-sidebar";
-import { ProductsList } from "./products-list";
-import { getProducts } from "../../requests-helper";
+import { getProducts } from "../requests-helper";
+import { LeftSideBar, ProductsList } from "../components";
 
 const Loading = () => <div className={styles.loading}>Loading...</div>
 

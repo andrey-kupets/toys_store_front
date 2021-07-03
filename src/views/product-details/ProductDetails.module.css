@@ -1,9 +1,25 @@
-.product_image {
-    height: 200px;
-    width: 200px;
+.product_details_wrapper {
+    flex: 1;
+    overflow-y: auto;
+    position: relative;
 }
 
 .product_image_wrapper {
     display: flex;
     justify-content: center;
+    /*overflow: hidden;*/
 }
+
+.product_image {
+    height: 340px;
+    width: 340px;
+}
+
+.product_image:hover {
+    transform: scale(1.5);
+    margin-top: 90px;
+    border: 2px solid lightsteelblue;
+    /*position: absolute;*/
+    /*top: 90px;*/
+}
+

@@ -16,7 +16,6 @@ const getProductById = async (productId, setProduct, setLoading) => {
   try {
     setLoading(true);
     const res = await productService.getProductById(productId);
-    console.log(res)
     setProduct(res);
   } catch (e) {
     console.log(e);

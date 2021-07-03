@@ -27,12 +27,12 @@ export const ProductDetails = () => {
 
 
   return (
-    <div style={{ flex: 1 }}>
+    <div  className={styles.product_details_wrapper}>
       {loading || loading === null && !product ? Loading() :(<>
         <div className={styles.product_image_wrapper}>
           <img className={styles.product_image} src={product.img} alt={`${product.name} toy`}/>
         </div>
-        <div>
+        <div style={{marginTop: 20}}>
           <h3>{product.name}</h3>
           <span>Цена: {product.price} грн.</span><br/>
           <span>Category: {product.category}</span><br/>

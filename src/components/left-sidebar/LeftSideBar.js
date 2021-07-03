@@ -1,5 +1,5 @@
 import React from "react";
-import styles from '../../views/Main.module.css';
+import styles from './LeftSideBar.module.css';
 
 export const LeftSideBar = () => {
     return (

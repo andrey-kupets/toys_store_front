@@ -1,7 +1,6 @@
 import React from "react";
 import styles from './BaseLayout.module.css';
-import { HeaderBlock } from "../components/header";
-import { FooterBlock } from "../components/footer";
+import { FooterBlock, HeaderBlock } from "../components";
 
 export const BaseLayout = ({ children }) => {
   return (

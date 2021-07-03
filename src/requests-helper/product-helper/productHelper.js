@@ -12,9 +12,17 @@ const getProducts = async (setProducts, setLoading) => {
   }
 };
 
-const getProductById = async (productId) => {
-  const product = await productService.getProductById(productId);
-  console.log(product);
+const getProductById = async (productId, setProduct, setLoading) => {
+  try {
+    setLoading(true);
+    const res = await productService.getProductById(productId);
+    console.log(res)
+    setProduct(res);
+  } catch (e) {
+    console.log(e);
+  } finally {
+    setLoading(false);
+  }
 };
 
 export {

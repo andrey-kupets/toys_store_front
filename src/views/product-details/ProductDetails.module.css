@@ -1,0 +1,9 @@
+.product_image {
+    height: 200px;
+    width: 200px;
+}
+
+.product_image_wrapper {
+    display: flex;
+    justify-content: center;
+}

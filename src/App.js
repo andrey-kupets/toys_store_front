@@ -1,8 +1,8 @@
 import './App.css';
 import React from "react";
 import { BaseLayout } from "./layouts";
-import { MainBlock } from "./views";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
+import { MainBlock, ProductDetails } from "./views";
 
 
 function App() {
@@ -16,9 +16,10 @@ function App() {
           </Route>
 
           <Route path="/products/:productId">
-            <div style={{flex: 1}}
-            >product details view</div>
+            <ProductDetails/>
           </Route>
+
+          {/*<Redirect to="/"/>*/}
 
           <Route>
             <h1 style={{flex: 1}}>PAGE NOT FOUND

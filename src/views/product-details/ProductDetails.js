@@ -25,10 +25,14 @@ export const ProductDetails = () => {
     await getProductById(productId, setProduct, setLoading);
   }, []);
 
+  if (loading || loading === null || !product?.id) {
+    return <h1>Page not found 2</h1>
+  }
 
   return (
     <div className={styles.product_details_wrapper}>
       {loading || loading === null && !product ? Loading() :(<>
+      {/*{loading || false ? Loading() :(<>*/}
         <div className={styles.product_details}>
           <div className={styles.product_properties}>
             <h2>{product.name}</h2>

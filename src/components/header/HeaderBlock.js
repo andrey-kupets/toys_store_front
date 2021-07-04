@@ -23,7 +23,7 @@ export const HeaderBlock = () => {
         <div>Вход</div>
         <div className={styles.cart_wishlist_block}>
           <Wishlist title={'Отложенные'}/>
-          <Cart/>
+          <Cart title={'Корзина'}/>
         </div>
       </div>
     </div>

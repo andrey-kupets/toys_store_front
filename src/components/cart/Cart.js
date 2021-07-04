@@ -9,5 +9,5 @@ export const Cart = (props) => {
       <img className={styles.cart_wishlist_icon} src={constants.CART_2}
            alt="cart"/>
     </button>
-  )
-}
+  );
+};

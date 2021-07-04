@@ -11,7 +11,7 @@ export const HeaderBlock = () => {
     <div className={styles.header}>
       <div className={styles.header_wrapper}>
         <Logo/>
-        <div><Link>Главная</Link></div>
+        <div><Link to='/products'>Главная</Link></div>
         <div>Контакты</div>
         <div>
           <label>Поиск</label>

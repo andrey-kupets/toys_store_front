@@ -1,7 +1,6 @@
 import React from "react";
 import styles from './HeaderBlock.module.css';
 import { Logo } from "../logo";
-import { constants } from '../../constants';
 import { Link } from "react-router-dom";
 import { Wishlist } from "../wishlist";
 import { Cart } from "../cart";

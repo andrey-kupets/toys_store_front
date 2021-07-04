@@ -1,19 +1,11 @@
-.header {
+.header_wrapper {
     /*height: 8vh;*/
+    padding: 0 10px;
     background: antiquewhite;
     color: fuchsia;
-}
-
-.header_wrapper {
-    margin: 0 10px 0 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.logo {
-    height: 7vh;
-    width: 7vw;
 }
 
 .header_input {

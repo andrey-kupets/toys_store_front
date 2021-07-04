@@ -17,7 +17,7 @@ export const LeftSideBar = () => {
                 </ul>
             </div>
             <div className={styles.left_sideBar_filter}>
-                <h3>Ценовой диапазон</h3>
+                <h3>Ценовой фильтр</h3>
                 <div>
                     <input type="text" placeholder='Укажите цену "От" ...грн.'/><br/>
                     <input type="text" placeholder='Укажите цену "До" ...грн.'/>

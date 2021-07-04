@@ -9,6 +9,9 @@ import {
 } from "react-router-dom";
 import styles from './ProductDetails.module.css';
 import { getProductById } from "../../requests-helper";
+import { constants } from "../../constants";
+import { Wishlist } from "../../components/wishlist";
+import { Cart } from "../../components/cart";
 
 const Loading = () => <div>Loading...</div>
 
@@ -40,6 +43,8 @@ export const ProductDetails = () => {
             <span>Category: <i><u>{product.category}</u></i></span><br/>
             <span>Type: <i>{product.type}</i></span>
             <p>{product.description}</p>
+            <Wishlist btnName={'Отложить'}/>
+            <Cart btnName={'Купить'}/>
           </div>
           <img className={styles.product_image} src={product.img} alt={`${product.name} toy`}/>
         </div>

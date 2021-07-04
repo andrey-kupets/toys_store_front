@@ -2,30 +2,28 @@ import React from "react";
 import styles from './HeaderBlock.module.css';
 import { Logo } from "./logo";
 import { constants } from '../../constants';
+import { Link } from "react-router-dom";
+import { Wishlist } from "../wishlist";
+import { Cart } from "../cart";
 
 export const HeaderBlock = () => {
   return (
     <div className={styles.header}>
       <div className={styles.header_wrapper}>
         <Logo/>
+        <div><Link>Главная</Link></div>
         <div>Контакты</div>
         <div>
           <label>Поиск</label>
-          <input className={styles.header_input} type="text"/>
+          <input
+            className={styles.header_input} type="text"
+            placeholder='Название продукта целиком / часть фразы'
+          />
         </div>
         <div>Вход</div>
         <div className={styles.cart_wishlist_block}>
-          <div>
-            <button>
-              <img title={'список желаний'} className={styles.cart_wishlist_icon} src={constants.WISHLIST_1}
-                   alt="wishlist"/>
-            </button>
-          </div>
-          <div>
-            <button>
-              <img title={'корзина'} className={styles.cart_wishlist_icon} src={constants.CART_2} alt="cart"/>
-            </button>
-          </div>
+          <Wishlist title={'Отложенные'}/>
+          <Cart/>
         </div>
       </div>
     </div>

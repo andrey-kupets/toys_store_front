@@ -12,14 +12,16 @@ function App() {
       <BaseLayout>
         <Switch>
           <Route path="/" exact>
+            <Redirect to="/products"/>
+          </Route>
+
+          <Route path="/products" exact>
             <MainBlock/>
           </Route>
 
           <Route path="/products/:productId">
             <ProductDetails/>
           </Route>
-
-          {/*<Redirect to="/"/>*/}
 
           <Route>
             <h1 style={{flex: 1}}>PAGE NOT FOUND

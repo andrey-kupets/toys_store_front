@@ -3,9 +3,11 @@ import styles from './Main.module.css';
 import { getProducts } from "../../requests-helper";
 import { LeftSideBar, ProductsList } from "../../components";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Loading = () => <div className={styles.loading}>Loading...</div>
-
+const notify = () => toast.success("You may set a price range using filter or URL-holder.");
+const notifyError = () => toast.error("Error occurred while loading.");
 
 export const MainBlock = ({ children }) => {
   const [products, setProducts] = useState([]);
@@ -13,7 +15,7 @@ export const MainBlock = ({ children }) => {
   const history = useHistory();
 
   useEffect( () => {
-     getProducts(setProducts, setLoading);
+     getProducts(setProducts, setLoading, notify, notifyError);
   }, []);
 
   const onProductClick = (product) => {

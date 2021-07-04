@@ -1,12 +1,15 @@
 import { productService } from "../../services";
 
-const getProducts = async (setProducts, setLoading) => {
+const getProducts = async (setProducts, setLoading, notify, notifyError) => {
   try {
     setLoading(true);
+    // throw new Error(); // for notifyError() using
     const res = await productService.getProducts();
     setProducts(res);
+    notify();
   } catch (e) {
     console.log(e);
+    notifyError();
   } finally {
     setLoading(false);
   }

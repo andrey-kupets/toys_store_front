@@ -14,15 +14,14 @@ export const MainBlock = ({ children }) => {
   const [loading, setLoading] = useState(null); // если null - можно проверить, происходил ли запрос вообще
   const history = useHistory();
 
-  // const { search } = location;
-  // console.log(location);
-  // console.log('search', search);
-  //
-  // const searchParams = search.replace('?', '');
-  // console.log(searchParams);
+  const { search } = location;
+  console.log(location);
+  console.log('search', search);
 
-  const searchParams = useLocation().search.replace('?', '');
-  console.log(searchParams)
+  const searchParams = search.replace('?', '');
+  console.log(searchParams);
+
+
 
 
   useEffect(() => {

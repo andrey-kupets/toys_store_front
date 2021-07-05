@@ -12,7 +12,6 @@ const notifyError = () => toast.error("Error occurred while loading.");
 export const MainBlock = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(null); // если null - можно проверить, происходил ли запрос вообще
-  const history = useHistory();
 
   // window.location
   // const { search } = location;

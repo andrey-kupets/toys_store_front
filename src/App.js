@@ -3,6 +3,7 @@ import React from "react";
 import { BaseLayout } from "./layouts";
 import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { MainBlock, ProductDetails } from "./views";
+import { PageNotFound } from "./views/page_not_found";
 
 
 function App() {
@@ -24,11 +25,7 @@ function App() {
           </Route>
 
           <Route>
-            <h1 style={{flex: 1}}>PAGE NOT FOUND
-              <button onClick={() => history.push('/')}>
-                go home
-              </button>
-            </h1>
+            <PageNotFound/>
           </Route>
         </Switch>
       </BaseLayout>

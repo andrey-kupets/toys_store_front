@@ -13,6 +13,7 @@ import { constants } from "../../constants";
 import { Wishlist } from "../../components/wishlist";
 import { Cart } from "../../components/cart";
 import { Loading } from "../../components/loading";
+import { PageNotFound } from "../page_not_found";
 
 export const ProductDetails = () => {
   // const { params: { productId } } = useRouteMatch(); // const match: {params : {id}}
@@ -28,7 +29,7 @@ export const ProductDetails = () => {
   }, []);
 
   if (loading || loading === null || !product?.id) {
-    return <h1>Page not found 2</h1>
+    return <PageNotFound/>
   }
 
   return (

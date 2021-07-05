@@ -3,7 +3,7 @@ import { axiosDB } from './axiosConfig';
 class ProductService {
   async getProducts(searchParams) {
     // const { data } = await axiosDB.get(`/products`);
-    const { data } = await axiosDB.get(`/products?${searchParams}`);
+    const { data } = await axiosDB.get(`/products?${searchParams}`); // for query
     return data;
   }
 

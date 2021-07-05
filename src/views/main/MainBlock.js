@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from './Main.module.css';
 import { getProducts } from "../../requests-helper";
 import { LeftSideBar, ProductsList } from "../../components";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Loading = () => <div className={styles.loading}>Loading...</div>
@@ -14,12 +14,16 @@ export const MainBlock = ({ children }) => {
   const [loading, setLoading] = useState(null); // если null - можно проверить, происходил ли запрос вообще
   const history = useHistory();
 
-  const { search } = location;
-  console.log(location);
-  console.log('search', search);
+  // const { search } = location;
+  // console.log(location);
+  // console.log('search', search);
+  //
+  // const searchParams = search.replace('?', '');
+  // console.log(searchParams);
 
-  const searchParams = search.replace('?', '');
-  console.log(searchParams);
+  const searchParams = useLocation().search.replace('?', '');
+  console.log(searchParams)
+
 
   useEffect(() => {
     getProducts(setProducts, setLoading, notify, notifyError, searchParams);

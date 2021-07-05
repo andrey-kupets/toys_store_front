@@ -14,15 +14,21 @@ export const MainBlock = ({ children }) => {
   const [loading, setLoading] = useState(null); // если null - можно проверить, происходил ли запрос вообще
   const history = useHistory();
 
-  const { search } = location;
-  console.log(location);
-  console.log('search', search);
+  // window.location
+  // const { search } = location;
+  // console.log(location);
+  // console.log('search', search);
+  //
+  // const searchParams = search.replace('?', '');
+  // console.log(searchParams);
 
-  const searchParams = search.replace('?', '');
+  const searchParams = useLocation().search.replace('?', '');
   console.log(searchParams);
 
-
-
+  // for query value
+  // const searchParams = useLocation().search;
+  // const queryValue = new URLSearchParams(searchParams).get('price')
+  // console.log(queryValue);
 
   useEffect(() => {
     getProducts(setProducts, setLoading, notify, notifyError, searchParams);

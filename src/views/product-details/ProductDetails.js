@@ -12,8 +12,7 @@ import { getProductById } from "../../requests-helper";
 import { constants } from "../../constants";
 import { Wishlist } from "../../components/wishlist";
 import { Cart } from "../../components/cart";
-
-const Loading = () => <div>Loading...</div>
+import { Loading } from "../../components/loading";
 
 export const ProductDetails = () => {
   // const { params: { productId } } = useRouteMatch(); // const match: {params : {id}}
@@ -34,7 +33,7 @@ export const ProductDetails = () => {
 
   return (
     <div className={styles.product_details_wrapper}>
-      {loading || loading === null && !product ? Loading() :(<>
+      {loading || loading === null && !product ? <Loading/> :(<>
       {/*{loading || false ? Loading() :(<>*/}
         <div className={styles.product_details}>
           <div className={styles.product_properties}>

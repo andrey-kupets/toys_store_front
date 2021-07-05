@@ -4,8 +4,8 @@ import { getProducts } from "../../requests-helper";
 import { LeftSideBar, ProductsList } from "../../components";
 import { useHistory, useParams, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Loading } from "../../components/loading";
 
-const Loading = () => <div className={styles.loading}>Loading...</div>
 const notify = () => toast.success("You may set a price range using component filter or query in URL-holder.");
 const notifyError = () => toast.error("Error occurred while loading.");
 
@@ -16,7 +16,7 @@ export const MainBlock = ({ children }) => {
 
   // window.location
   // const { search } = location;
-  // console.log(location);
+  // console.log('location', location);
   // console.log('search', search);
   //
   // const searchParams = search.replace('?', '');
@@ -25,7 +25,7 @@ export const MainBlock = ({ children }) => {
   const searchParams = useLocation().search.replace('?', '');
   console.log(searchParams);
 
-  // for query value
+  // for query value URLSearchParams
   // const searchParams = useLocation().search;
   // const queryValue = new URLSearchParams(searchParams).get('price')
   // console.log(queryValue);
@@ -45,7 +45,7 @@ export const MainBlock = ({ children }) => {
       <LeftSideBar/>
       {/*{children}*/}
       {loading || loading === null
-        ? Loading() :(
+        ? <Loading/> :(
           <ProductsList
             items={products}
             onProductClick={onProductClick}

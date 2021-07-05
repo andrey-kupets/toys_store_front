@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from './Main.module.css';
 import { getProducts } from "../../requests-helper";
 import { LeftSideBar, ProductsList } from "../../components";
-import { useHistory, useParams, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Loading } from "../../components/loading";
 
@@ -12,6 +12,7 @@ const notifyError = () => toast.error("Error occurred while loading.");
 export const MainBlock = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(null); // если null - можно проверить, происходил ли запрос вообще
+  const history = useHistory();
 
   // window.location
   // const { search } = location;

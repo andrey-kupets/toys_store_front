@@ -15,7 +15,7 @@ export const HeaderBlock = () => {
         <label>Поиск</label>
         <input
           className={styles.header_input} type="text"
-          placeholder='Название продукта целиком / часть фразы'
+          placeholder='Введите название продукта целиком / часть фразы'
         />
       </div>
       <div>Вход</div>

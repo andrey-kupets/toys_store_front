@@ -4,7 +4,7 @@ const getProducts = async (setProducts, setLoading, notify, notifyError, searchP
   try {
     setLoading(true);
     // throw new Error(); // for notifyError() using
-    const res = await productService.getProducts(searchParams);
+    const res = await productService.getProducts(!!searchParams ? searchParams : '');
     console.log(res);
     setProducts(res);
     notify();

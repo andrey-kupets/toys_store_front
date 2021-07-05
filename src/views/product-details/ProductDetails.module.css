@@ -20,7 +20,7 @@
 .product_image:hover {
     transform: scale(1.4);
     margin-top: 90px;
-    border: 2px solid lightsteelblue;
+    /*border: 2px solid lightsteelblue;*/
     /*position: absolute;*/
     /*top: 90px;*/
 }

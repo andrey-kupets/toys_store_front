@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import styles from './Main.module.css';
 import { getProducts } from "../../requests-helper";
 import { LeftSideBar, ProductsList } from "../../components";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Loading = () => <div className={styles.loading}>Loading...</div>
-const notify = () => toast.success("You may set a price range using filter or URL-holder.");
+const notify = () => toast.success("You may set a price range using component filter or query in URL-holder.");
 const notifyError = () => toast.error("Error occurred while loading.");
 
 export const MainBlock = ({ children }) => {
@@ -14,8 +14,15 @@ export const MainBlock = ({ children }) => {
   const [loading, setLoading] = useState(null); // если null - можно проверить, происходил ли запрос вообще
   const history = useHistory();
 
-  useEffect( () => {
-     getProducts(setProducts, setLoading, notify, notifyError);
+  const { search } = location;
+  console.log(location);
+  console.log('search', search);
+
+  const searchParams = search.replace('?', '');
+  console.log(searchParams);
+
+  useEffect(() => {
+    getProducts(setProducts, setLoading, notify, notifyError, searchParams);
   }, []);
 
   const onProductClick = (product) => {

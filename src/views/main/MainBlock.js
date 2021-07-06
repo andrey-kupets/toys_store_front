@@ -17,6 +17,7 @@ export const MainBlock = ({ children }) => {
   const history = useHistory();
 
   const [pageData, setPageData] = useState(null); // если null - можно проверить, происходил ли запрос вообще
+  // console.log(pageData);
 
   const searchParams = useLocation().search.replace('?', '');
   // console.log(searchParams);
@@ -29,7 +30,6 @@ export const MainBlock = ({ children }) => {
     history.push(`/products/${product.id}`);
   };
 
-  console.log(pageData)
   return (
     <div className={styles.main_block}>
       {/*div for checking overflow scrolling*/}

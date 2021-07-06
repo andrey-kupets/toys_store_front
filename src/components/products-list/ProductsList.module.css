@@ -1,6 +1,7 @@
 .products_list_wrapper {
     /*height: 84vh;*/
-    width: 80%;
+    /*when added PaginationWrapper --- have to shift width and add it to */
+    /*width: 80%;*/
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;

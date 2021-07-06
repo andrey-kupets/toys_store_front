@@ -5,6 +5,8 @@ import { LeftSideBar, ProductsList } from "../../components";
 import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Loading } from "../../components/loading";
+import { PaginationWrapper } from "../../components/pagination-wrapper";
+import { logDOM } from "@testing-library/react";
 
 const notify = () => toast.success("You may set a price range using component filter or query in URL-holder.");
 const notifyError = () => toast.error("Error occurred while loading.");
@@ -46,10 +48,16 @@ export const MainBlock = ({ children }) => {
       {/*{children}*/}
       {loading || loading === null
         ? <Loading/> :(
-          <ProductsList
-            items={products}
-            onProductClick={onProductClick}
-          />
+          <PaginationWrapper
+            currentPage={1}
+            totalPages={3}
+            onPrevClick={console.log}
+            onNextClick={console.log}>
+            <ProductsList
+              items={products}
+              onProductClick={onProductClick}
+            />
+          </PaginationWrapper>
         )
       }
     </div>

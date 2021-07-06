@@ -1,12 +1,18 @@
 import { productService } from "../../services";
 
-const getProducts = async (setProducts, setLoading, notify, notifyError, searchParams) => {
+const getProducts = async (setProducts, setLoading, notify, notifyError, searchParams, setPageData) => {
   try {
     setLoading(true);
     // throw new Error(); // for notifyError() using
     const res = await productService.getProducts(!!searchParams ? searchParams : '');
-    console.log(res);
+    // console.log(res);
+
+    const page = 1;
+    const limit = 9;
+    const totalPages = Math.ceil(res.length / limit);
+
     setProducts(res);
+    !!res.length && setPageData({page, totalPages});
     notify();
   } catch (e) {
     console.log(e);

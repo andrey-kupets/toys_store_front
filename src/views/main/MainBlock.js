@@ -6,53 +6,43 @@ import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Loading } from "../../components/loading";
 import { PaginationWrapper } from "../../components/pagination-wrapper";
-import { logDOM } from "@testing-library/react";
 
 const notify = () => toast.success("You may set a price range using component filter or query in URL-holder.");
 const notifyError = () => toast.error("Error occurred while loading.");
 
 export const MainBlock = ({ children }) => {
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(null); // если null - можно проверить, происходил ли запрос вообще
   const history = useHistory();
 
-  // window.location
-  // const { search } = location;
-  // console.log('location', location);
-  // console.log('search', search);
-  //
-  // const searchParams = search.replace('?', '');
-  // console.log(searchParams);
+  const [pageData, setPageData] = useState(null); // если null - можно проверить, происходил ли запрос вообще
 
   const searchParams = useLocation().search.replace('?', '');
-  console.log(searchParams);
-
-  // for query value URLSearchParams
-  // const searchParams = useLocation().search;
-  // const queryValue = new URLSearchParams(searchParams).get('price')
-  // console.log(queryValue);
+  // console.log(searchParams);
 
   useEffect(() => {
-    getProducts(setProducts, setLoading, notify, notifyError, searchParams);
+    getProducts(setProducts, setLoading, notify, notifyError, searchParams, setPageData);
   }, []);
 
   const onProductClick = (product) => {
     history.push(`/products/${product.id}`);
   };
 
+  console.log(pageData)
   return (
     <div className={styles.main_block}>
       {/*div for checking overflow scrolling*/}
       {/*<div style={{height: 1600, background: 'blue'}}>yy</div>*/}
       <LeftSideBar/>
       {/*{children}*/}
-      {loading || loading === null
+      {(loading || loading === null)
         ? <Loading/> :(
           <PaginationWrapper
-            currentPage={1}
-            totalPages={3}
-            onPrevClick={console.log}
-            onNextClick={console.log}>
+            currentPage={pageData.page}
+            totalPages={pageData.totalPages}
+            onPrevClick={(page) => console.log(page)}
+            onNextClick={(page) => console.log(page)}>
             <ProductsList
               items={products}
               onProductClick={onProductClick}
@@ -63,3 +53,18 @@ export const MainBlock = ({ children }) => {
     </div>
   );
 };
+
+// window.location
+// const { search } = location;
+// console.log('location', location);
+// console.log('search', search);
+//
+// const searchParams = search.replace('?', '');
+// console.log(searchParams);
+
+
+
+// for query value URLSearchParams
+// const searchParams = useLocation().search;
+// const queryValue = new URLSearchParams(searchParams).get('price')
+// console.log(queryValue);

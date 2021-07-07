@@ -2,7 +2,9 @@
     width: 80%;
 }
 
-
+.button_wrapper {
+    padding: 4px 0 0 15px;
+}
 
 /*.products_list_wrapper {*/
 /*    !*height: 84vh;*!*/

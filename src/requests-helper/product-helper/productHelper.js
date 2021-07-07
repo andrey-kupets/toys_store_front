@@ -14,9 +14,6 @@ const getProducts = async (setProducts, setLoading, notify, notifyError, searchP
     !!res.length && setPageData({ page, totalPages });
 
     setProducts(res.slice((page - 1) * limit, page * limit));
-    console.log('ALL PRODUCTS', res);
-    console.log('page from helper', page);
-
 
     notify();
   } catch (e) {
@@ -30,7 +27,9 @@ const getProducts = async (setProducts, setLoading, notify, notifyError, searchP
 const getProductById = async (productId, setProduct, setLoading) => {
   try {
     setLoading(true);
+
     const res = await productService.getProductById(productId);
+
     setProduct(res);
   } catch (e) {
     console.log(e);

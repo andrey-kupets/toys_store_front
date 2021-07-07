@@ -17,7 +17,6 @@ export const MainBlock = ({ children }) => {
   const history = useHistory();
 
   const [pageData, setPageData] = useState({ page: 1 });
-  // console.log(pageData);
 
   const searchParams = useLocation().search.replace('?', '');
   // console.log(searchParams);

@@ -26,6 +26,19 @@ export const MainBlock = ({ children }) => {
     getProducts(setProducts, setLoading, notify, notifyError, searchParams, setPageData, pageData);
   }, [pageData.page]);
 
+  const onPrevClick = () => {
+    if (pageData.page === 1) {
+      return;
+    }
+
+    setPageData(
+      {
+        ...pageData,
+        page: pageData.page - 1
+      }
+    );
+  };
+
   const onNextClick = () => {
     if (pageData.page === pageData.totalPages) {
       return;
@@ -37,7 +50,6 @@ export const MainBlock = ({ children }) => {
         page: pageData.page + 1
       }
     );
-    console.log(pageData.page, 'page');
   };
 
   const onProductClick = (product) => {
@@ -55,8 +67,8 @@ export const MainBlock = ({ children }) => {
           <PaginationWrapper
             currentPage={pageData.page}
             totalPages={pageData.totalPages}
-            onPrevClick={(page) => console.log(page)}
-            onNextClick={onNextClick}>
+            onPrevClick={onPrevClick}
+            onNextClick={onNextClick} >
             <ProductsList
               items={products}
               onProductClick={onProductClick}

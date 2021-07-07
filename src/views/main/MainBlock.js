@@ -52,6 +52,19 @@ export const MainBlock = ({ children }) => {
     );
   };
 
+  // const onClickHandler = (value) => {
+  //   if (pageData.page === pageData.totalPages) {
+  //     return;
+  //   }
+  //
+  //   setPageData(
+  //     {
+  //       ...pageData,
+  //       page: pageData.page + 1
+  //     }
+  //   );
+  // };
+
   const onProductClick = (product) => {
     history.push(`/products/${product.id}`);
   };
@@ -68,7 +81,10 @@ export const MainBlock = ({ children }) => {
             currentPage={pageData.page}
             totalPages={pageData.totalPages}
             onPrevClick={onPrevClick}
-            onNextClick={onNextClick} >
+            onNextClick={onNextClick}
+            firstPageValue={() => setPageData({ ...pageData, page: 1 })}
+            lastPageValue={() => setPageData({...pageData, page: pageData.totalPages})}
+          >
             <ProductsList
               items={products}
               onProductClick={onProductClick}
@@ -87,7 +103,6 @@ export const MainBlock = ({ children }) => {
 //
 // const searchParams = search.replace('?', '');
 // console.log(searchParams);
-
 
 
 // for query value URLSearchParams

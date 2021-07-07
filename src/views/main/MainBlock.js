@@ -16,15 +16,29 @@ export const MainBlock = ({ children }) => {
   const [loading, setLoading] = useState(null); // если null - можно проверить, происходил ли запрос вообще
   const history = useHistory();
 
-  const [pageData, setPageData] = useState(null); // если null - можно проверить, происходил ли запрос вообще
+  const [pageData, setPageData] = useState({ page: 1 });
   // console.log(pageData);
 
   const searchParams = useLocation().search.replace('?', '');
   // console.log(searchParams);
 
   useEffect(() => {
-    getProducts(setProducts, setLoading, notify, notifyError, searchParams, setPageData);
-  }, []);
+    getProducts(setProducts, setLoading, notify, notifyError, searchParams, setPageData, pageData);
+  }, [pageData.page]);
+
+  const onNextClick = () => {
+    if (pageData.page === pageData.totalPages) {
+      return;
+    }
+
+    setPageData(
+      {
+        ...pageData,
+        page: pageData.page + 1
+      }
+    );
+    console.log(pageData.page, 'page');
+  };
 
   const onProductClick = (product) => {
     history.push(`/products/${product.id}`);
@@ -42,7 +56,7 @@ export const MainBlock = ({ children }) => {
             currentPage={pageData.page}
             totalPages={pageData.totalPages}
             onPrevClick={(page) => console.log(page)}
-            onNextClick={(page) => console.log(page)}>
+            onNextClick={onNextClick}>
             <ProductsList
               items={products}
               onProductClick={onProductClick}

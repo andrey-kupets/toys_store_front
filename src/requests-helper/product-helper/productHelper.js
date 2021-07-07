@@ -1,18 +1,23 @@
 import { productService } from "../../services";
 
-const getProducts = async (setProducts, setLoading, notify, notifyError, searchParams, setPageData) => {
+const getProducts = async (setProducts, setLoading, notify, notifyError, searchParams, setPageData, pageData) => {
   try {
     setLoading(true);
     // throw new Error(); // for notifyError() using
-    const res = await productService.getProducts(!!searchParams ? searchParams : '');
+    const res = await productService.getProducts(!!searchParams ? searchParams :'');
     // console.log(res);
 
-    const page = 1;
+    const { page } = pageData;
     const limit = 9;
     const totalPages = Math.ceil(res.length / limit);
 
-    setProducts(res);
-    !!res.length && setPageData({page, totalPages});
+    !!res.length && setPageData({ page, totalPages });
+
+    setProducts(res.slice((page - 1) * limit, page * limit));
+    console.log('ALL PRODUCTS', res);
+    console.log('page from helper', page);
+
+
     notify();
   } catch (e) {
     console.log(e);

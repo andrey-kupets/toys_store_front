@@ -23,7 +23,7 @@ export const MainBlock = ({ children }) => {
 
   useEffect(() => {
     getProducts(setProducts, setLoading, notify, notifyError, searchParams, setPageData, pageData);
-  }, [pageData.page]);
+  }, [pageData.page, searchParams]);
 
   const onPrevClick = () => {
     if (pageData.page === 1) {

@@ -42,7 +42,7 @@ export const LeftSideBar = () => {
       const priceGte = priceData.priceFrom;
       const priceLte = priceData.priceTo;
 
-      history.push(`/products?gte=${priceGte}&lte=${priceLte}`);
+      history.push(`/products?priceGte=${priceGte}&priceLte=${priceLte}`);
   };
 
   return (

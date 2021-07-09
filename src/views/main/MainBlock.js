@@ -49,6 +49,9 @@ export const MainBlock = ({ children }) => {
         page: pageData.page + 1
       }
     );
+
+    // history.push(`/products?page=${pageData.page + 1}`);
+
   };
 
   // const onClickHandler = (value) => {

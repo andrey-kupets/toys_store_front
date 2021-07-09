@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
   useRouteMatch,
   useParams
 } from "react-router-dom";
 import styles from './ProductDetails.module.css';
 import { getProductById } from "../../requests-helper";
-import { constants } from "../../constants";
 import { Wishlist } from "../../components/wishlist";
 import { Cart } from "../../components/cart";
 import { Loading } from "../../components/loading";
@@ -28,7 +23,7 @@ export const ProductDetails = () => {
     await getProductById(productId, setProduct, setLoading);
   }, []);
 
-  if (loading || loading === null || !product?.id) {
+  if (loading === false && !product?.id) {
     return <PageNotFound/>
   }
 

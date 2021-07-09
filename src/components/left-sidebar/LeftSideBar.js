@@ -45,19 +45,18 @@ export const LeftSideBar = () => {
       history.push(`/products?gte=${priceGte}&lte=${priceLte}`);
   };
 
-
   return (
     <div className={styles.left_sideBar}>
       <div className={styles.left_sideBar_category}>
         <h1>Категория</h1>
         <ul>
-          <li><Link to={`products?category=${constants.toys_for_toddlers}`}>Игрушки для малышей</Link></li>
-          <li><Link to={`/products?category=${constants.cars_and_special_equipment}`}>Машинки и спецтехника</Link></li>
-          <li><Link to={`/products?category=${constants.strollers_and_dolls}`}>Коляски и куклы</Link></li>
-          <li><Link to={`/products?category=${constants.creation}`}>Творчество</Link></li>
-          <li><Link to={`/products?category=${constants.educational_toys}`}>Развивающие игрушки</Link></li>
-          <li><Link to={`/products?category=${constants.stuffed_toys}`}>Мягкие игрушки</Link></li>
-          <li><Link to={`/products?category=${constants.board_games}`}>Настольные игры</Link></li>
+          <li><Link to={`products?category=${constants.toys_for_toddlers}`}>{constants.toys_for_toddlers}</Link></li>
+          <li><Link to={`/products?category=${constants.cars_and_special_equipment}`}>{constants.cars_and_special_equipment}</Link></li>
+          <li><Link to={`/products?category=${constants.strollers_and_dolls}`}>{constants.strollers_and_dolls}</Link></li>
+          <li><Link to={`/products?category=${constants.creation}`}>{constants.creation}</Link></li>
+          <li><Link to={`/products?category=${constants.constructors}`}>{constants.constructors}</Link></li>
+          <li><Link to={`/products?category=${constants.stuffed_toys}`}>{constants.stuffed_toys}</Link></li>
+          <li><Link to={`/products?category=${constants.board_games}`}>{constants.board_games}</Link></li>
         </ul>
       </div>
       <div className={styles.left_sideBar_filter}>

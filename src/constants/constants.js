@@ -16,7 +16,7 @@ export const constants = {
     cars_and_special_equipment: 'Машинки и спецтехника',
     strollers_and_dolls: 'Коляски и куклы',
     creation: 'Творчество',
-    educational_toys: 'Развивающие игрушки',
+    constructors: 'Конструкторы',
     stuffed_toys: 'Мягкие игрушки',
     board_games: 'Настольные игры',
 };

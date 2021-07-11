@@ -22,22 +22,13 @@ export const MainBlock = ({ children }) => {
   const [loading, setLoading] = useState(null); // если null - можно проверить, происходил ли запрос вообще
   const history = useHistory();
 
-  const [pageData, setPageData] = useState({ page: 1 });
+  const [pageData, setPageData] = useState({});
 
   const searchParams = useLocation().search.replace('?', '');
 
-  // useMemo(() => {
-  //   if (!searchParams.includes('page')) {
-  //     setPageData({
-  //       ...pageData,
-  //       page: 1,
-  //       totalPages: pageData.totalPages
-  //     });
-  //   }
-  // }, [searchParams]);
-
   useEffect(() => {
     setProductsData(setProducts, setLoading, notify, notifyError, searchParams, setPageData, pageData);
+    console.log(pageData.page)
   }, [pageData.page, pageData.totalPages, searchParams]);
 
 

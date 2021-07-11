@@ -5,13 +5,19 @@ const setProductsData = async (setProducts, setLoading, notify, notifyError, sea
     setLoading(true);
     // throw new Error(); // for notifyError() using
 
-    const { data,
+    const {
+      data,
       page,
       // limit,
       // count,
-      pages } = await productService.getProducts(!!searchParams ? searchParams :'');
+      pages
+    } = await productService.getProducts(!!searchParams ? searchParams :'');
 
-    !!data.length && setPageData({ page, totalPages: pages });
+    !!data.length && setPageData({
+      ...pageData,
+      page: +page,
+      totalPages: +pages
+    });
 
     // setProducts(resTotals.slice((page - 1) * limit, page * limit)); for FRONT only
     setProducts(data);

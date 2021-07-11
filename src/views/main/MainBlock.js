@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from './Main.module.css';
 import { getProducts } from "../../requests-helper";
 import { LeftSideBar, ProductsList } from "../../components";
@@ -19,7 +19,17 @@ export const MainBlock = ({ children }) => {
   const [pageData, setPageData] = useState({ page: 1 });
 
   const searchParams = useLocation().search.replace('?', '');
-  // console.log(searchParams);
+  console.log(searchParams.includes('page'));
+
+  useMemo(() => {
+    if (!searchParams.includes('page')) {
+      setPageData({
+        ...pageData,
+        page: 1,
+        totalPages: pageData.totalPages
+      });
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     getProducts(setProducts, setLoading, notify, notifyError, searchParams, setPageData, pageData);

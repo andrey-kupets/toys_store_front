@@ -1,2 +1,2 @@
-export * from './product-helper';
-export * from './user-helper';
+export * from './productRequests-helper';
+export * from './userRequests-helper';

@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import styles from './Main.module.css';
 import {
-  getProducts,
+  setProductsData,
   onFirstClick,
   onPrevClick,
   onNextClick,
@@ -25,21 +25,20 @@ export const MainBlock = ({ children }) => {
   const [pageData, setPageData] = useState({ page: 1 });
 
   const searchParams = useLocation().search.replace('?', '');
-  console.log(searchParams.includes('page'));
 
-  useMemo(() => {
-    if (!searchParams.includes('page')) {
-      setPageData({
-        ...pageData,
-        page: 1,
-        totalPages: pageData.totalPages
-      });
-    }
-  }, [searchParams]);
+  // useMemo(() => {
+  //   if (!searchParams.includes('page')) {
+  //     setPageData({
+  //       ...pageData,
+  //       page: 1,
+  //       totalPages: pageData.totalPages
+  //     });
+  //   }
+  // }, [searchParams]);
 
   useEffect(() => {
-    getProducts(setProducts, setLoading, notify, notifyError, searchParams, setPageData, pageData);
-  }, [pageData.page, searchParams]);
+    setProductsData(setProducts, setLoading, notify, notifyError, searchParams, setPageData, pageData);
+  }, [pageData.page, pageData.totalPages, searchParams]);
 
 
   // const onClickHandler = (value) => {

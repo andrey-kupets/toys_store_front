@@ -1,1 +1,1 @@
-export * from './productHelper';
+export * from './productRequestsHelper';

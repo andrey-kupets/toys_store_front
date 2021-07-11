@@ -4,7 +4,7 @@ import {
   useParams
 } from "react-router-dom";
 import styles from './ProductDetails.module.css';
-import { getProductById } from "../../funtion-helpers";
+import { setProductById } from "../../funtion-helpers";
 import { Wishlist } from "../../components/wishlist";
 import { Cart } from "../../components/cart";
 import { Loading } from "../../components/loading";
@@ -20,7 +20,7 @@ export const ProductDetails = () => {
   console.log(product, 'product from ProductDetails');
 
   useEffect(async () => {
-    await getProductById(productId, setProduct, setLoading);
+    await setProductById(productId, setProduct, setLoading);
   }, []);
 
   if (loading === false && !product?.id) {

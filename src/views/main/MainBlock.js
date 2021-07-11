@@ -75,7 +75,7 @@ export const MainBlock = ({ children }) => {
       }
     );
 
-    history.push(`/products/${pageData.totalPages}`);
+    history.push(`/products?page=${pageData.totalPages}`);
   };
 
   // const onClickHandler = (value) => {

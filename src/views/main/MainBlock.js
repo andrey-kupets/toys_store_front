@@ -25,6 +25,18 @@ export const MainBlock = ({ children }) => {
     getProducts(setProducts, setLoading, notify, notifyError, searchParams, setPageData, pageData);
   }, [pageData.page, searchParams]);
 
+
+  const onFirstClick = () => {
+    setPageData(
+      {
+        ...pageData,
+        page: 1
+      }
+    );
+
+    history.push(`/products`);
+  };
+
   const onPrevClick = () => {
     if (pageData.page === 1) {
       return;
@@ -36,6 +48,8 @@ export const MainBlock = ({ children }) => {
         page: pageData.page - 1
       }
     );
+
+    history.push(`/products?page=${pageData.page - 1}`);
   };
 
   const onNextClick = () => {
@@ -50,8 +64,18 @@ export const MainBlock = ({ children }) => {
       }
     );
 
-    // history.push(`/products?page=${pageData.page + 1}`);
+    history.push(`/products?page=${pageData.page + 1}`);
+  };
 
+  const onLastClick = () => {
+    setPageData(
+      {
+        ...pageData,
+        page: pageData.totalPages
+      }
+    );
+
+    history.push(`/products/${pageData.totalPages}`);
   };
 
   // const onClickHandler = (value) => {
@@ -84,8 +108,8 @@ export const MainBlock = ({ children }) => {
             totalPages={pageData.totalPages}
             onPrevClick={onPrevClick}
             onNextClick={onNextClick}
-            firstPageValue={() => setPageData({ ...pageData, page: 1 })}
-            lastPageValue={() => setPageData({...pageData, page: pageData.totalPages})}
+            onFirstClick={onFirstClick}
+            onLastClick={onLastClick}
           >
             <ProductsList
               items={products}

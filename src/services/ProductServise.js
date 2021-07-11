@@ -1,9 +1,14 @@
 import { axiosDB } from './axiosConfig';
 
 class ProductService {
-  async getProducts(searchParams) {
+  async getProductsPerPage(searchParams) {
     // const { data } = await axiosDB.get(`/products`);
     const { data } = await axiosDB.get(`/products?${searchParams}`); // for query
+    return data;
+  }
+
+  async getProductsTotals() {
+    const { data } = await axiosDB.get(`/products/totals`); // for query
     return data;
   }
 

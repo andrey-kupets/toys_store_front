@@ -4,16 +4,17 @@ const getProducts = async (setProducts, setLoading, notify, notifyError, searchP
   try {
     setLoading(true);
     // throw new Error(); // for notifyError() using
-    const res = await productService.getProducts(!!searchParams ? searchParams :'');
-    // console.log(res);
+    const res = await productService.getProductsPerPage(!!searchParams ? searchParams :'');
+    const resTotals = await productService.getProductsTotals();
 
     const { page } = pageData;
     const limit = 9;
-    const totalPages = Math.ceil(res.length / limit);
+    const totalPages = Math.ceil(resTotals.length / limit);
 
     !!res.length && setPageData({ page, totalPages });
 
-    setProducts(res.slice((page - 1) * limit, page * limit));
+    // setProducts(resTotals.slice((page - 1) * limit, page * limit)); for FRONT only
+    setProducts(res);
 
     notify();
   } catch (e) {

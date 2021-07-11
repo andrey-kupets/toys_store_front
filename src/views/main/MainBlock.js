@@ -1,6 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import styles from './Main.module.css';
-import { getProducts } from "../../requests-helper";
+import {
+  getProducts,
+  onFirstClick,
+  onPrevClick,
+  onNextClick,
+  onLastClick
+} from "../../funtion-helpers";
 import { LeftSideBar, ProductsList } from "../../components";
 import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -36,58 +42,6 @@ export const MainBlock = ({ children }) => {
   }, [pageData.page, searchParams]);
 
 
-  const onFirstClick = () => {
-    setPageData(
-      {
-        ...pageData,
-        page: 1
-      }
-    );
-
-    history.push(`/products`);
-  };
-
-  const onPrevClick = () => {
-    if (pageData.page === 1) {
-      return;
-    }
-
-    setPageData(
-      {
-        ...pageData,
-        page: pageData.page - 1
-      }
-    );
-
-    history.push(`/products?page=${pageData.page - 1}`);
-  };
-
-  const onNextClick = () => {
-    if (pageData.page === pageData.totalPages) {
-      return;
-    }
-
-    setPageData(
-      {
-        ...pageData,
-        page: pageData.page + 1
-      }
-    );
-
-    history.push(`/products?page=${pageData.page + 1}`);
-  };
-
-  const onLastClick = () => {
-    setPageData(
-      {
-        ...pageData,
-        page: pageData.totalPages
-      }
-    );
-
-    history.push(`/products?page=${pageData.totalPages}`);
-  };
-
   // const onClickHandler = (value) => {
   //   if (pageData.page === pageData.totalPages) {
   //     return;
@@ -116,10 +70,10 @@ export const MainBlock = ({ children }) => {
           <PaginationWrapper
             currentPage={pageData.page}
             totalPages={pageData.totalPages}
-            onPrevClick={onPrevClick}
-            onNextClick={onNextClick}
-            onFirstClick={onFirstClick}
-            onLastClick={onLastClick}
+            onPrevClick={() => onPrevClick(history, setPageData, pageData)}
+            onNextClick={() => onNextClick(history, setPageData, pageData)}
+            onFirstClick={() => onFirstClick(history, setPageData, pageData)}
+            onLastClick={() => onLastClick(history, setPageData, pageData)}
           >
             <ProductsList
               items={products}

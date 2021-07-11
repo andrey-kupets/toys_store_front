@@ -4,7 +4,7 @@ import {
   useParams
 } from "react-router-dom";
 import styles from './ProductDetails.module.css';
-import { getProductById } from "../../requests-helper";
+import { getProductById } from "../../funtion-helpers";
 import { Wishlist } from "../../components/wishlist";
 import { Cart } from "../../components/cart";
 import { Loading } from "../../components/loading";

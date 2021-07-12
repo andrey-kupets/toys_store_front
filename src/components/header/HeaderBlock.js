@@ -7,11 +7,10 @@ import { Cart } from "../cart";
 
 export const HeaderBlock = () => {
   const history = useHistory();
-  const [namePhrase, setNamePhrase] = useState('');
 
   const onInputNamePhrase = (e) => {
     const { target: { value }, key } = e;
-    if (key === 'Enter') history.push(`/products?name=${value.toLowerCase()}`)
+    key === 'Enter' && history.push(`/products?name=${value}`) // ignore Lower/UpperCase in 'back'
   }
 
   return (
@@ -24,8 +23,6 @@ export const HeaderBlock = () => {
         <input
           className={styles.header_input} type="text"
           placeholder='Введите название продукта целиком / часть фразы'
-          // value={namePhrase}
-          onChange={onInputNamePhrase}
           onKeyDown={onInputNamePhrase}
         />
       </div>

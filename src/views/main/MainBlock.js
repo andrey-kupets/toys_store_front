@@ -28,8 +28,7 @@ export const MainBlock = ({ children }) => {
 
   useEffect(() => {
     setProductsData(setProducts, setLoading, notify, notifyError, searchParams, setPageData, pageData);
-    console.log(pageData.page)
-  }, [pageData.page, pageData.totalPages, searchParams]);
+  }, [searchParams]);
 
 
   // const onClickHandler = (value) => {

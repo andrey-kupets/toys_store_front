@@ -34,7 +34,7 @@ export const LeftSideBar = () => {
 
   const onSubmitHandler = () => {
     setPriceData({
-      ...priceData,
+      // ...priceData,
       priceFrom: '',
       priceTo: ''
     });
@@ -42,7 +42,9 @@ export const LeftSideBar = () => {
       const priceGte = priceData.priceFrom;
       const priceLte = priceData.priceTo;
 
-      history.push(`/products?priceGte=${priceGte}&priceLte=${priceLte}`);
+      !!priceGte && history.push(`/products?priceGte=${priceGte}`);
+      !!priceLte && history.push(`/products?priceLte=${priceLte}`);
+      !!priceGte && !!priceLte && history.push(`/products?priceGte=${priceGte}&priceLte=${priceLte}`);
   };
 
   return (

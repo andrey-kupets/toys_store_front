@@ -21,4 +21,8 @@ export const constants = {
     constructors: 'Конструкторы',
     stuffed_toys: 'Мягкие игрушки',
     board_games: 'Настольные игры',
+
+    // search query
+    searchQuery: (searchParams) => !!searchParams ? searchParams + '&' : '',
+
 };

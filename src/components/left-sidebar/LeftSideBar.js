@@ -3,7 +3,6 @@ import styles from './LeftSideBar.module.css';
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { constants } from '../../constants';
 
-
 export const LeftSideBar = () => {
   const history = useHistory();
   const searchParams = useLocation().search.replace('?', '');
@@ -44,9 +43,49 @@ export const LeftSideBar = () => {
     const priceGte = priceData.priceFrom;
     const priceLte = priceData.priceTo;
 
-    !!priceGte && history.push(`/products?${query}priceGte=${priceGte}`);
-    !!priceLte && history.push(`/products?${query}priceLte=${priceLte}`);
-    !!priceGte && !!priceLte && history.push(`/products?${query}priceGte=${priceGte}&priceLte=${priceLte}`);
+    const currentQueryFunc = (searchParams) => {
+      const currentQuery = {};
+      const currentQueryArray = searchParams.split('&');
+      console.log(currentQueryArray, 'queryString');
+
+      currentQueryArray.forEach(el => {
+        const items = el.split('=');
+        console.log(items, 'items of QueryString')
+
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i];
+
+          if (!(i % 2)) currentQuery[item] = items[i + 1];
+          // console.log(currentQuery)
+        }
+      })
+      return currentQuery;
+    };
+
+    const currentQuery = currentQueryFunc(searchParams);
+    console.log(currentQuery, 'currentQuery')
+    const newQuery = { priceGte, priceLte };
+    console.log(newQuery, 'newQuery')
+
+    const newQueryObj = !!searchParams ? { ...currentQuery, ...newQuery } : {  ...newQuery };
+    console.log(newQueryObj, 'newQueryObj')
+
+    const newQueryString = JSON
+      .stringify(newQueryObj).
+      replaceAll(':', '=').
+      replaceAll(',', '&').
+      replaceAll('"', '').
+      replace('{', '').
+      replace('}', '');
+    console.log(newQueryString);
+
+    // !!priceGte && history.push(`/products?${query}priceGte=${priceGte}`);
+    // !!priceLte && history.push(`/products?${query}priceLte=${priceLte}`);
+    // !!priceGte && !!priceLte && history.push(`/products?${query}priceGte=${priceGte}&priceLte=${priceLte}`);
+
+    // history.push(`/products?${ !!searchParams ? newQueryObj : newQuery }`);
+    // history.push(`/products?${ newQueryObj }`);
+    history.push(`/products?${ newQueryString }`);
   };
 
   return (

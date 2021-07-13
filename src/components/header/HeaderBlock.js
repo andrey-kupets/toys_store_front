@@ -9,7 +9,7 @@ import { constants } from "../../constants";
 export const HeaderBlock = () => {
   const history = useHistory();
   const searchParams = useLocation().search.replace('?', '');
-  const query = constants.searchQuery(searchParams);
+  const query = searchParams.includes('name') ? searchParams + '&' + constants.searchQuery(searchParams) : constants.searchQuery(searchParams);
 
   const [namePhrase, setNamePhrase] = useState('');
 

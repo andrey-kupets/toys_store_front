@@ -1,4 +1,11 @@
+import { constants } from "../../constants";
+import { useLocation } from "react-router-dom";
+
+
 const onFirstClick = (history, setPageData, pageData) => {
+const searchParams = useLocation().search.replace('?', '');
+
+
   setPageData(
     {
       ...pageData,

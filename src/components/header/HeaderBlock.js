@@ -4,12 +4,11 @@ import { Logo } from "../logo";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { Wishlist } from "../wishlist";
 import { Cart } from "../cart";
-import { constants } from "../../constants";
+import { transformQuery } from '../../funtion-helpers';
 
 export const HeaderBlock = () => {
   const history = useHistory();
   const searchParams = useLocation().search.replace('?', '');
-  const query = searchParams.includes('name') ? searchParams + '&' + constants.searchQuery(searchParams) : constants.searchQuery(searchParams);
 
   const [namePhrase, setNamePhrase] = useState('');
 
@@ -17,7 +16,7 @@ export const HeaderBlock = () => {
     const { target: { value }, key } = e;
     setNamePhrase(value);
     if (key === 'Enter') {
-      history.push(`/products?${query}name=${value}`) // ignore Lower/UpperCase in 'back'
+      history.push(`/products?${transformQuery(searchParams, { name: namePhrase })}`) // ignore Lower/UpperCase in 'back'
       setNamePhrase('');
     }
   }

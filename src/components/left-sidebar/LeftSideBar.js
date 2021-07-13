@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import styles from './LeftSideBar.module.css';
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { constants } from '../../constants';
+import { transformQuery } from '../../funtion-helpers';
 
 export const LeftSideBar = () => {
   const history = useHistory();
   const searchParams = useLocation().search.replace('?', '');
-  const query = constants.searchQuery(searchParams);
+  const categories = constants.categoryList;
 
   // Uncontrolled inputs
   // const onFormSubmit = (e) => {
@@ -35,7 +36,7 @@ export const LeftSideBar = () => {
 
   const onSubmitHandler = () => {
     setPriceData({
-      // ...priceData,
+      ...priceData,
       priceFrom: '',
       priceTo: ''
     });
@@ -43,49 +44,12 @@ export const LeftSideBar = () => {
     const priceGte = priceData.priceFrom;
     const priceLte = priceData.priceTo;
 
-    const currentQueryFunc = (searchParams) => {
-      const currentQuery = {};
-      const currentQueryArray = searchParams.split('&');
-      console.log(currentQueryArray, 'queryString');
+    let newQuery;
+    if (!!priceGte) newQuery = { priceGte };
+    if (!!priceLte) newQuery = { priceLte };
+    if (!!priceGte && !!priceLte) newQuery = { priceGte, priceLte };
 
-      currentQueryArray.forEach(el => {
-        const items = el.split('=');
-        console.log(items, 'items of QueryString')
-
-        for (let i = 0; i < items.length; i++) {
-          const item = items[i];
-
-          if (!(i % 2)) currentQuery[item] = items[i + 1];
-          // console.log(currentQuery)
-        }
-      })
-      return currentQuery;
-    };
-
-    const currentQuery = currentQueryFunc(searchParams);
-    console.log(currentQuery, 'currentQuery')
-    const newQuery = { priceGte, priceLte };
-    console.log(newQuery, 'newQuery')
-
-    const newQueryObj = !!searchParams ? { ...currentQuery, ...newQuery } : {  ...newQuery };
-    console.log(newQueryObj, 'newQueryObj')
-
-    const newQueryString = JSON
-      .stringify(newQueryObj).
-      replaceAll(':', '=').
-      replaceAll(',', '&').
-      replaceAll('"', '').
-      replace('{', '').
-      replace('}', '');
-    console.log(newQueryString);
-
-    // !!priceGte && history.push(`/products?${query}priceGte=${priceGte}`);
-    // !!priceLte && history.push(`/products?${query}priceLte=${priceLte}`);
-    // !!priceGte && !!priceLte && history.push(`/products?${query}priceGte=${priceGte}&priceLte=${priceLte}`);
-
-    // history.push(`/products?${ !!searchParams ? newQueryObj : newQuery }`);
-    // history.push(`/products?${ newQueryObj }`);
-    history.push(`/products?${ newQueryString }`);
+    history.push(`/products?${transformQuery(searchParams, newQuery)}`);
   };
 
   return (
@@ -93,26 +57,26 @@ export const LeftSideBar = () => {
       <div className={styles.left_sideBar_category}>
         <h1>Категория</h1>
         <ul>
-          <li><Link
-            to={`products?${query}category=${constants.toys_for_toddlers}`}>{constants.toys_for_toddlers}</Link>
+          <li><Link name={categories[0]}
+            to={`products?${transformQuery(searchParams, { category: categories[0] })}`}>{categories[0]}</Link>
           </li>
           <li><Link
-            to={`/products?${query}category=${constants.cars_and_special_equipment}`}>{constants.cars_and_special_equipment}</Link>
+            to={`/products?${transformQuery(searchParams, { category: categories[1] })}`}>{categories[1]}</Link>
           </li>
           <li><Link
-            to={`/products?${query}category=${constants.strollers_and_dolls}`}>{constants.strollers_and_dolls}</Link>
+            to={`/products?${transformQuery(searchParams, { category: categories[2] })}`}>{categories[2]}</Link>
           </li>
           <li><Link
-            to={`/products?${query}category=${constants.creation}`}>{constants.creation}</Link>
+            to={`/products?${transformQuery(searchParams, { category: categories[3] })}`}>{categories[3]}</Link>
           </li>
           <li><Link
-            to={`/products?${query}category=${constants.constructors}`}>{constants.constructors}</Link>
+            to={`/products?${transformQuery(searchParams, { category: categories[4] })}`}>{categories[4]}</Link>
           </li>
           <li><Link
-            to={`/products?${query}category=${constants.stuffed_toys}`}>{constants.stuffed_toys}</Link>
+            to={`/products?${transformQuery(searchParams, { category: categories[5] })}`}>{categories[5]}</Link>
           </li>
           <li><Link
-            to={`/products?${query}category=${constants.board_games}`}>{constants.board_games}</Link>
+            to={`/products?${transformQuery(searchParams, { category: categories[6] })}`}>{categories[6]}</Link>
           </li>
         </ul>
       </div>

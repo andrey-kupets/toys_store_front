@@ -1,4 +1,6 @@
-const onFirstClick = (history, setPageData, pageData) => {
+import { transformQuery } from "../joinQueries-helper";
+
+const onFirstClick = (history, setPageData, pageData, searchParams) => {
 
   setPageData(
     {
@@ -7,10 +9,10 @@ const onFirstClick = (history, setPageData, pageData) => {
     }
   );
 
-  history.push(`/products`);
+  history.push(`/products?${transformQuery(searchParams, { page: 1 })}`)
 };
 
-const onPrevClick = (history, setPageData, pageData) => {
+const onPrevClick = (history, setPageData, pageData, searchParams) => {
   if (pageData.page === 1) {
     return;
   }
@@ -22,10 +24,11 @@ const onPrevClick = (history, setPageData, pageData) => {
     }
   );
 
-  history.push(`/products?page=${pageData.page - 1}`);
+  history.push(`/products?${transformQuery(searchParams, { page: pageData.page - 1 })}`)
+
 };
 
-const onNextClick = (history, setPageData, pageData) => {
+const onNextClick = (history, setPageData, pageData, searchParams) => {
   if (pageData.page === pageData.totalPages) {
     return;
   }
@@ -37,10 +40,10 @@ const onNextClick = (history, setPageData, pageData) => {
     }
   );
 
-  history.push(`/products?page=${pageData.page + 1}`);
+  history.push(`/products?${transformQuery(searchParams, { page: pageData.page + 1 })}`)
 };
 
-const onLastClick = (history, setPageData, pageData) => {
+const onLastClick = (history, setPageData, pageData, searchParams) => {
   setPageData(
     {
       ...pageData,
@@ -48,7 +51,8 @@ const onLastClick = (history, setPageData, pageData) => {
     }
   );
 
-  history.push(`/products?page=${pageData.totalPages}`);
+  history.push(`/products?${transformQuery(searchParams, { page: pageData.totalPages })}`)
+
 };
 
 export {

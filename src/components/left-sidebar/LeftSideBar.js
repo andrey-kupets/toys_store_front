@@ -57,29 +57,17 @@ export const LeftSideBar = () => {
       <div className={styles.left_sideBar_category}>
         <h1>Категория</h1>
         <ul>
-          <li><Link name={categories[0]}
-            to={`products?${transformQuery(searchParams, { category: categories[0] })}`}>{categories[0]}</Link>
-          </li>
-          <li><Link
-            to={`/products?${transformQuery(searchParams, { category: categories[1] })}`}>{categories[1]}</Link>
-          </li>
-          <li><Link
-            to={`/products?${transformQuery(searchParams, { category: categories[2] })}`}>{categories[2]}</Link>
-          </li>
-          <li><Link
-            to={`/products?${transformQuery(searchParams, { category: categories[3] })}`}>{categories[3]}</Link>
-          </li>
-          <li><Link
-            to={`/products?${transformQuery(searchParams, { category: categories[4] })}`}>{categories[4]}</Link>
-          </li>
-          <li><Link
-            to={`/products?${transformQuery(searchParams, { category: categories[5] })}`}>{categories[5]}</Link>
-          </li>
-          <li><Link
-            to={`/products?${transformQuery(searchParams, { category: categories[6] })}`}>{categories[6]}</Link>
-          </li>
+          {categories.map((item) => (
+            <li key={item}>
+              <Link
+                to={`/products?${transformQuery(searchParams, { category: item })}`}>{item}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
+
+
       <div className={styles.left_sideBar_filter}>
         <h3>Ценовой фильтр</h3>
 
@@ -100,7 +88,7 @@ export const LeftSideBar = () => {
             onChange={updatePriceData}
             value={priceData.priceTo}
             name='priceTo' type="number"
-            placeholder='Укажите цену "До" ...грн.'/>
+            placeholder='Укажите цену "До" ...грн.'/><br/>
           <button onClick={onSubmitHandler}>Подтвердить</button>
         </div>
       </div>

@@ -59,10 +59,10 @@ export const MainBlock = ({ children }) => {
           <PaginationWrapper
             currentPage={pageData.page}
             totalPages={pageData.totalPages}
-            onPrevClick={() => onPrevClick(history, setPageData, pageData)}
-            onNextClick={() => onNextClick(history, setPageData, pageData)}
-            onFirstClick={() => onFirstClick(history, setPageData, pageData)}
-            onLastClick={() => onLastClick(history, setPageData, pageData)}
+            onPrevClick={() => onPrevClick(history, setPageData, pageData, searchParams)}
+            onNextClick={() => onNextClick(history, setPageData, pageData, searchParams)}
+            onFirstClick={() => onFirstClick(history, setPageData, pageData, searchParams)}
+            onLastClick={() => onLastClick(history, setPageData, pageData, searchParams)}
           >
             <ProductsList
               items={products}

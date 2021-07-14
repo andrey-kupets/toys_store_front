@@ -12,6 +12,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Loading } from "../../components/loading";
 import { PaginationWrapper } from "../../components/pagination-wrapper";
+import { NoSearchResults } from "../../components/noResults-search";
 
 const notify = () => toast.success("You may set a price range using component filter or query in URL-holder.");
 const notifyError = () => toast.error("Error occurred while loading.");
@@ -64,6 +65,7 @@ export const MainBlock = ({ children }) => {
             onFirstClick={() => onFirstClick(history, setPageData, pageData, searchParams)}
             onLastClick={() => onLastClick(history, setPageData, pageData, searchParams)}
           >
+            {!!searchParams && !products.length && <NoSearchResults/>}
             <ProductsList
               items={products}
               onProductClick={onProductClick}
@@ -73,7 +75,8 @@ export const MainBlock = ({ children }) => {
       }
     </div>
   );
-};
+}
+;
 
 // window.location
 // const { search } = location;

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import styles from './Entrance.module.css';
+import styles from './Login.module.css';
 import { authService } from "../../services";
 import { Link, useHistory } from "react-router-dom";
 
-export const Entrance = () => {
+export const Login = () => {
 
   const [authData, setAuthData] = useState({
     email: '',
@@ -34,9 +34,14 @@ export const Entrance = () => {
     history.push('/products'); // pass to products when authorized
   };
 
+  const onRedirectReg = () => {
+    history.push('/users');
+  };
+
   return (
-    <div className={styles.entrance_wrapper}>
-      <div className={styles.entrance_window}>
+    <div className={styles.login_wrapper}>
+      <div className={styles.login_window}>
+        <h2>Вход</h2>
         <input
           name='email'
           type='text'
@@ -51,9 +56,9 @@ export const Entrance = () => {
           placeholder='Пароль'/><br/>
         <div>
           <button onClick={onSubmitHandler}>Войти</button>
-          <button><Link to='/users'>Регистрация</Link></button>
+          <button onClick={onRedirectReg}>Регистрация</button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

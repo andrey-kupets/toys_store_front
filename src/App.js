@@ -4,7 +4,8 @@ import { BaseLayout } from "./layouts";
 import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { MainBlock, ProductDetails } from "./views";
 import { PageNotFound } from "./views/page_not_found";
-import { Entrance } from "./views/entrance";
+import { Login } from "./views/login";
+import { Registration } from "./views/registration";
 
 
 function App() {
@@ -25,8 +26,12 @@ function App() {
             <ProductDetails/>
           </Route>
 
-          <Route path="/auth" exact>
-            <Entrance/>
+          <Route path="/auth">
+            <Login/>
+          </Route>
+
+          <Route path="/users">
+            <Registration/>
           </Route>
 
           <Route>

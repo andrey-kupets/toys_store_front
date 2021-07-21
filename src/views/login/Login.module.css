@@ -1,11 +1,11 @@
-.entrance_wrapper {
+.login_wrapper {
     flex: 1;
     background: url("https://img.freepik.com/free-vector/logo-design-for-kids-toys_29937-4737.jpg?size=626&ext=jpg") no-repeat;
     -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
     position: relative;
 }
 
-.entrance_window {
+.login_window {
     height: 40%;
     width: 25vw;
     position: absolute;
@@ -20,3 +20,6 @@
     justify-content: center;
 }
 
+.login_wrapper h2 {
+    color: white;
+}

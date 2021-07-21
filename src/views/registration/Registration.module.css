@@ -1,0 +1,26 @@
+.register_wrapper {
+    flex: 1;
+    background: url("https://img.freepik.com/free-vector/logo-design-for-kids-toys_29937-4737.jpg?size=626&ext=jpg") no-repeat;
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    position: relative;
+}
+
+.register_window {
+    height: 40%;
+    width: 25vw;
+    position: absolute;
+    top: 28%;
+    left: 38%;
+    /*background-color: transparent;*/
+    background-color: rgba(253, 219, 47, 0.3);
+    border: solid 2px lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.register_wrapper h2 {
+    color: white;
+}
+

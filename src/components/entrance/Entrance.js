@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from './Entrance.module.css';
 import { authService } from "../../services";
+import { useHistory } from "react-router-dom";
 
 export const Entrance = () => {
 
@@ -8,6 +9,8 @@ export const Entrance = () => {
     email: '',
     password: ''
   });
+
+  const history = useHistory();
 
   const checkAuthData = (e) => {
     const { target: { value, name } } = e;
@@ -27,6 +30,8 @@ export const Entrance = () => {
 
     const tokens = await authService.authUser(authData)
     console.log(tokens);
+
+    history.push('/products'); // pass to products when authorized
   };
 
   return (

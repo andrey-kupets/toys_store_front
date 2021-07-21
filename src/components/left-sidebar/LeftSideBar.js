@@ -82,12 +82,14 @@ export const LeftSideBar = () => {
           <input
             onChange={updatePriceData}
             value={priceData.priceFrom}
-            name='priceFrom' type="number"
+            name='priceFrom'
+            type="number"
             placeholder='Укажите цену "От" ...грн.'/><br/>
           <input
             onChange={updatePriceData}
             value={priceData.priceTo}
-            name='priceTo' type="number"
+            name='priceTo'
+            type="number"
             placeholder='Укажите цену "До" ...грн.'/><br/>
           <button onClick={onSubmitHandler}>Подтвердить</button>
         </div>

@@ -4,7 +4,7 @@ import { BaseLayout } from "./layouts";
 import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { MainBlock, ProductDetails } from "./views";
 import { PageNotFound } from "./views/page_not_found";
-import { Entrance } from "./components/entrance";
+import { Entrance } from "./views/entrance";
 
 
 function App() {

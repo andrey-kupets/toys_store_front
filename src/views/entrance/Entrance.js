@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from './Entrance.module.css';
 import { authService } from "../../services";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export const Entrance = () => {
 
@@ -51,7 +51,7 @@ export const Entrance = () => {
           placeholder='Пароль'/><br/>
         <div>
           <button onClick={onSubmitHandler}>Войти</button>
-          {/*<button onClick={onSubmitHandler}>Регистрация</button>*/}
+          <button><Link to='/users'>Регистрация</Link></button>
         </div>
       </div>
     </div>

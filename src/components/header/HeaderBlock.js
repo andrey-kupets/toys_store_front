@@ -36,7 +36,7 @@ export const HeaderBlock = () => {
           onKeyDown={onInputNamePhrase}
         />
       </div>
-      <div>Вход</div>
+      <div><Link to='/auth'>Вход</Link></div>
       <div className={styles.cart_wishlist_block}>
         <Wishlist title={'Отложенные'}/>
         <Cart title={'Корзина'}/>

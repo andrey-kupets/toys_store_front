@@ -1,0 +1,21 @@
+.entrance_wrapper {
+    flex: 1;
+    background: #9bc4f6;
+    color: antiquewhite;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    position: relative;
+}
+
+.entrance_window {
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    top: 28%;
+    left: 38%;
+    background: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

@@ -4,6 +4,7 @@ import { BaseLayout } from "./layouts";
 import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { MainBlock, ProductDetails } from "./views";
 import { PageNotFound } from "./views/page_not_found";
+import { Entrance } from "./components/entrance";
 
 
 function App() {
@@ -22,6 +23,10 @@ function App() {
 
           <Route path="/products/:productId">
             <ProductDetails/>
+          </Route>
+
+          <Route path="/auth" exact>
+            <Entrance/>
           </Route>
 
           <Route>

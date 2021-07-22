@@ -28,7 +28,7 @@ export const Login = () => {
       password: ''
     });
 
-    const tokens = await authService.authUser(authData)
+    const tokens = await authService.authUser(authData);
     console.log(tokens);
 
     history.push('/products'); // pass to products when authorized

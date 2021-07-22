@@ -6,8 +6,8 @@
 }
 
 .register_window {
-    height: 40%;
-    width: 25vw;
+    height: 45vh;
+    width: 22vw;
     position: absolute;
     top: 28%;
     left: 38%;
@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .register_wrapper h2 {

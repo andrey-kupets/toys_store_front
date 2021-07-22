@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styles from './Registration.module.css';
 import { userService } from "../../services";
+import { useHistory } from "react-router-dom";
 
 export const Registration = () => {
+  const history = useHistory();
+
   const [userData, setUserData] = useState({
     name: '',
     phone: '',
@@ -30,6 +33,7 @@ export const Registration = () => {
     const user = await userService.createUser(userData);
     console.log(user);
 
+    history.push('/products');
   };
 
   return (

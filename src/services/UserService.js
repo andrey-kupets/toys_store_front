@@ -12,7 +12,7 @@ class UserService {
   }
 
   async createUser(reqBody) {
-    const  data  = await axiosDB.post('/users', reqBody
+    const { data } = await axiosDB.post('/users', reqBody
       // name: "max",
       // email: "max@gmail.com",
       // password: 'max111',

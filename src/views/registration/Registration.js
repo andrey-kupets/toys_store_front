@@ -59,7 +59,8 @@ export const Registration = () => {
           value={userData.password}
           onChange={register}
           type="text"
-          placeholder='Пароль'/>
+          title='Только латиница, не менее 8 символов, маленькие буквы, заглавные буквы, цифры'
+          placeholder='Пароль как xxZZZ555'/>
         <button onClick={onSubmitHandler}>Зарегистрироваться</button>
       {userData.name && <div>You've been registered successfully</div>}
       </div>

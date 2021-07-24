@@ -12,27 +12,8 @@ class UserService {
   }
 
   async createUser(reqBody) {
-    const { data } = await axiosDB.post('/users', reqBody
-      // name: "max",
-      // email: "max@gmail.com",
-      // password: 'max111',
-      // _products: [
-      //   {
-      //     _id: "60b231505d469ae5fefc2df0"
-      //
-      //   },
-      //   {
-      //     _id: "60b231505d469ae5fefc2df1"
-      //   },
-      //   {
-      //     _id: "60b231505d469ae5fefc2df1"
-      //   }
-      // ]
-    );
-
-    console.log(data)
+    const { data } = await axiosDB.post('/users', reqBody);
     return data;
-
   }
 }
 

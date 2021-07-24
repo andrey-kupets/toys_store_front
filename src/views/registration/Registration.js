@@ -29,9 +29,9 @@ export const Registration = () => {
       email: '',
       password: '',
     });
-    console.log(userData)
-    const user = await userService.createUser(userData);
-    console.log(user);
+
+    const res = await userService.createUser(userData);
+    console.log(res);
 
     history.push('/products');
   };

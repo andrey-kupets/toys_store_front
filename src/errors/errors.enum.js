@@ -7,7 +7,7 @@ export const errorsEnum = {
     ru: 'Запрос неверный',
   },
 
-  // JOI
+  // BAD_REQUEST - JOI
 
   4001: {
     en: 'Wrong fields',
@@ -15,7 +15,7 @@ export const errorsEnum = {
     ru: 'Неверно заполнены поля',
   },
 
-  // AUTH - BAD REQUEST
+  // BAD REQUEST - AUTH
 
   4002: {
     en: 'WRONG_EMAIL_OR_PASSWORD',
@@ -45,6 +45,72 @@ export const errorsEnum = {
     en: 'Incorrect user',
     ua: 'Деякі поля користувача заповнені невірно',
     ru: 'Некоторые поля пользователя заполнены неверно',
+  },
+
+  // USER todo
+
+  4007: {
+    en: 'No user',
+    ua: 'Користувача не знайдено',
+    ru: 'Пользователь не найден',
+  },
+
+  4008: {
+    en: 'No user',
+    ua: 'Користувачів не знайдено',
+    ru: 'Пользователи не найдены',
+  },
+
+  4009: {
+    en: 'No user',
+    ua: 'Користувач з такою поштою вже є',
+    ru: 'Пользователь с такой почтой уже есть',
+  },
+
+  // BAD_REQUEST - DOCS
+
+  40010: {
+    en: 'This doc is too large',
+    ua: 'Даний документ занадто великий',
+    ru: 'Данный документ слишком большой',
+  },
+
+  40011: {
+    en: 'This photo is too large',
+    ua: 'Дане фото занадто велике',
+    ru: 'Данное фото слишком большое',
+  },
+
+  40012: {
+    en: 'This video is too large',
+    ua: 'Дане відео занадто велике',
+    ru: 'Данное видео слишком большое',
+  },
+
+  40013: {
+    en: 'This file is unknown',
+    ua: 'Неприпустимий тип файлів',
+    ru: 'Недопустимый тип файлов',
+  },
+
+  40014: {
+    en: 'Not valid photo type',
+    ua: 'Неприпустимий тип фото',
+    ru: 'Недопустимый тип фото',
+  },
+
+  // BAD REQUEST - MUTUAL
+
+  40015: {
+    en: 'Some fields are empty',
+    ua: 'Деякі поля незаповнені',
+    ru: 'Некоторые поля незаполнены',
+  },
+
+  40016: {
+    en: 'INVALID_ID',
+    ua: 'Невірно вказано ID',
+    ru: 'Неверно указан ID',
   },
 
   // AUTH -UNAUTHORIZED
@@ -82,72 +148,11 @@ export const errorsEnum = {
     ru: 'Неварифицирован токен обновления',
   },
 
-  // MUTUAL
+  // NOT FOUND
 
-  40018: {
-    en: 'Some fields are empty',
-    ua: 'Деякі поля незаповнені',
-    ru: 'Некоторые поля незаполнены',
-  },
-
-  40019: {
-    en: 'INVALID_ID',
-    ua: 'Невірно вказано ID',
-    ru: 'Неверно указан ID',
-  },
-
-  // USER todo
-  TOO_WEAK_PASSWORD: {
-    customCode: 4007
-  },
-
-  TOO_STRONG_PASSWORD: {
-    customCode: 4008
-  },
-
-  INVALID_MAIL: {
-    customCode: 4009
-  },
-
-  NO_USER: {
-    customCode: 40010
-  },
-
-  NO_USERS: {
-    customCode: 40011
-  },
-
-  USER_ALREADY_EXISTS: {
-    customCode: 40012
-  },
-
-  DOC_IS_TOO_LARGE: {
-    customCode: 40013,
-    en: 'This doc is too large',
-    ua: 'Даний документ занадто великий',
-  },
-
-  PHOTO_IS_TOO_LARGE: {
-    customCode: 40014,
-    en: 'This photo is too large',
-    ua: 'Дане фото занадто велике',
-  },
-
-  VIDEO_IS_TOO_LARGE: {
-    customCode: 40015,
-    en: 'This video is too large',
-    ua: 'Дане відео занадто велике',
-  },
-
-  NOT_VALID_FILE: {
-    customCode: 40016,
-    en: 'This file is unknown',
-    ua: 'Даний вид файлів є неприпустимим',
-  },
-
-  NOT_VALID_PHOTO_TYPE: {
-    customCode: 40017,
-    en: 'Not valid photo type',
-    ua: 'Неприпустиме фото',
+  4041: {
+    en: 'RECORD NOT FOUND',
+    ua: 'ІНФО-ЗАПИС НЕ ЗНАЙДЕНО',
+    ru: 'ИНФО-ЗАПИСЬ НЕ НАЙДЕНА',
   },
 };

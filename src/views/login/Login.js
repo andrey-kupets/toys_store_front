@@ -39,7 +39,7 @@ export const Login = () => {
 
       history.push('/products'); // pass to products when authorized
     } catch ({ response: { data } }) {
-      console.log(errorsEnum[data.customCode][prefLang = 'ru']);
+      console.log(errorsEnum[data.customCode][prefLang]);
       setError(errorsEnum[data.customCode][prefLang = 'ru']);
     }
   };

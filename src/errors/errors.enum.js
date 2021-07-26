@@ -2,7 +2,7 @@ export const errorsEnum = {
   // BAD_REQUEST
 
   4000: {
-    en: 'BAD_REQUEST',
+    en: 'BAD REQUEST',
     ua: 'Запит невірний',
     ru: 'Запрос неверный',
   },
@@ -18,19 +18,19 @@ export const errorsEnum = {
   // BAD REQUEST - AUTH
 
   4002: {
-    en: 'WRONG_EMAIL_OR_PASSWORD',
+    en: 'Wrong email or password',
     ua: 'Невірно вказано пошту або пароль',
     ru: 'Неверно указаны почта или пароль',
   },
 
   4003: {
-    en: 'ACCESS_TOKEN_IS_REQUIRED',
+    en: 'Access token is required',
     ua: 'Необхідний токен доступу',
     ru: 'Необходим токен доступа',
   },
 
   4004: {
-    en: 'REFRESH_TOKEN_IS_REQUIRED',
+    en: 'Refresh token is required',
     ua: 'Необхідний токен оновлення',
     ru: 'Необходим токен обновления',
   },
@@ -56,13 +56,13 @@ export const errorsEnum = {
   },
 
   4008: {
-    en: 'No user',
+    en: 'No users',
     ua: 'Користувачів не знайдено',
     ru: 'Пользователи не найдены',
   },
 
   4009: {
-    en: 'No user',
+    en: 'User with such email is already registered',
     ua: 'Користувач з такою поштою вже є',
     ru: 'Пользователь с такой почтой уже есть',
   },
@@ -108,7 +108,7 @@ export const errorsEnum = {
   },
 
   40016: {
-    en: 'INVALID_ID',
+    en: 'Invalid ID',
     ua: 'Невірно вказано ID',
     ru: 'Неверно указан ID',
   },
@@ -116,20 +116,20 @@ export const errorsEnum = {
   // AUTH -UNAUTHORIZED
 
   4010: {
-    en: 'UNAUTHORIZED',
+    en: 'Unauthorized',
     ua: 'Вас неавторизовано',
     ru: 'Вы - неавторизованы',
   },
 
 
   4011: {
-    en: 'ACCESS_TOKEN_IS_NOT_VALID',
+    en: 'Access token is not valid',
     ua: 'Невалідний токен доступу',
     ru: 'Невалидный токен доступа',
   },
 
   4012: {
-    en: 'REFRESH_TOKEN_IS_NOT_VALID',
+    en: 'Refresh token is not valid',
     ua: 'Невалідний токен оновлення',
     ru: 'Невалидный токен обновления',
   },
@@ -137,13 +137,13 @@ export const errorsEnum = {
   // AUTH - FORBIDDEN
 
   4031: {
-    en: 'ACCESS_TOKEN_IS_NOT_VERIFIED',
+    en: 'Access token is not verified',
     ua: 'Не варифіковано токен доступу',
     ru: 'Неварифицирован токен доступа',
   },
 
   4032: {
-    en: 'REFRESH_TOKEN_IS_NOT_VERIFIED',
+    en: 'Refresh token is not verified',
     ua: 'Не варифіковано токен оновлення',
     ru: 'Неварифицирован токен обновления',
   },
@@ -151,8 +151,8 @@ export const errorsEnum = {
   // NOT FOUND
 
   4041: {
-    en: 'RECORD NOT FOUND',
-    ua: 'ІНФО-ЗАПИС НЕ ЗНАЙДЕНО',
-    ru: 'ИНФО-ЗАПИСЬ НЕ НАЙДЕНА',
+    en: 'Record not found',
+    ua: 'Запис не знайдено',
+    ru: 'Запись не найдена',
   },
 };

@@ -47,7 +47,7 @@ export const errorsEnum = {
     ru: 'Некоторые поля пользователя заполнены неверно',
   },
 
-  // USER todo
+  // USER
 
   4007: {
     en: 'No user',

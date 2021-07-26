@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import styles from './Login.module.css';
 import { authService } from "../../services";
 import { Link, useHistory } from "react-router-dom";
+import { errorsEnum } from "../../errors";
 
 export const Login = () => {
+  let prefLang = 'en'; // TODO REDUX
 
+  const [error, setError] = useState(null);
   const [authData, setAuthData] = useState({
     email: '',
     password: ''
@@ -21,17 +24,24 @@ export const Login = () => {
   };
 
   const onSubmitHandler = async () => {
-    // add todo try/catch + localeStorage
-    setAuthData({
-      ...authData,
-      email: '',
-      password: ''
-    });
+    try {
+      // add todo try/catch + localeStorage
+      setAuthData({
+        ...authData,
+        email: '',
+        password: ''
+      });
 
-    const tokens = await authService.authUser(authData);
-    console.log(tokens);
+      // const tokens = await authService.authUser(authData);
+      // console.log(tokens);
 
-    history.push('/products'); // pass to products when authorized
+      const data = await authService.authUser(authData);
+
+      history.push('/products'); // pass to products when authorized
+    } catch ({ response: { data } }) {
+      console.log(errorsEnum[data.customCode][prefLang = 'ru']);
+      setError(errorsEnum[data.customCode][prefLang = 'ru']);
+    }
   };
 
   const onRedirectReg = () => {
@@ -54,6 +64,7 @@ export const Login = () => {
           value={authData.password}
           onChange={checkAuthData}
           placeholder='Пароль'/><br/>
+        {error && <div>{error}</div>}
         <div>
           <button onClick={onSubmitHandler}>Войти</button>
           <button onClick={onRedirectReg}>Регистрация</button>

@@ -3,6 +3,7 @@ import styles from './Login.module.css';
 import { authService } from "../../services";
 import { Link, useHistory } from "react-router-dom";
 import { errorsEnum } from "../../errors";
+import { Error } from "../../components/error";
 
 export const Login = () => {
   let prefLang = 'en'; // TODO REDUX
@@ -39,7 +40,6 @@ export const Login = () => {
 
       history.push('/products'); // pass to products when authorized
     } catch ({ response: { data } }) {
-      console.log(errorsEnum[data.customCode][prefLang]);
       setError(errorsEnum[data.customCode][prefLang = 'ru']);
     }
   };
@@ -64,7 +64,7 @@ export const Login = () => {
           value={authData.password}
           onChange={checkAuthData}
           placeholder='Пароль'/><br/>
-        {error && <div>{error}</div>}
+        {error && <Error error={error}/>}
         <div>
           <button onClick={onSubmitHandler}>Войти</button>
           <button onClick={onRedirectReg}>Регистрация</button>

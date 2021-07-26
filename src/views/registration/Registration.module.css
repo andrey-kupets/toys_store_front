@@ -7,7 +7,7 @@
 
 .register_window {
     height: 45vh;
-    width: 24vw;
+    width: 320px;
     position: absolute;
     top: 28%;
     left: 38%;

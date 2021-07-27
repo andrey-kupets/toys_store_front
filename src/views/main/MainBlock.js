@@ -9,13 +9,10 @@ import {
 } from "../../funtion-helpers";
 import { LeftSideBar, ProductsList } from "../../components";
 import { useHistory, useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
 import { Loading } from "../../components/loading";
 import { PaginationWrapper } from "../../components/pagination-wrapper";
 import { NoSearchResults } from "../../components/noResults-search";
-
-const notify = () => toast.success("You may set a price range using component filter or query in URL-holder.");
-const notifyError = () => toast.error("Error occurred while loading.");
+import { toastifyHelper } from '../../funtion-helpers';
 
 export const MainBlock = ({ children }) => {
 
@@ -28,7 +25,7 @@ export const MainBlock = ({ children }) => {
   const searchParams = useLocation().search.replace('?', '');
 
   useEffect(() => {
-    setProductsData(setProducts, setLoading, notify, notifyError, searchParams, setPageData, pageData);
+    setProductsData(setProducts, setLoading, toastifyHelper.notify, toastifyHelper.notifyError, searchParams, setPageData, pageData);
   }, [searchParams]);
 
 

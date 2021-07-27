@@ -4,6 +4,8 @@ import { authService } from "../../services";
 import { Link, useHistory } from "react-router-dom";
 import { errorsEnum } from "../../errors";
 import { Error } from "../../components/error";
+import { toastifyHelper } from "../../funtion-helpers";
+import { constants } from "../../constants";
 
 export const Login = () => {
   let prefLang = 'en'; // TODO REDUX
@@ -26,21 +28,23 @@ export const Login = () => {
 
   const onSubmitHandler = async () => {
     try {
-      // add todo try/catch + localeStorage
+      // todo localeStorage
       setAuthData({
         ...authData,
         email: '',
         password: ''
       });
 
-      // const tokens = await authService.authUser(authData);
-      // console.log(tokens);
+      const tokens = await authService.authUser(authData);
+      localStorage.setItem('TOKENS', JSON.stringify(tokens));
 
-      const data = await authService.authUser(authData);
+      toastifyHelper.notify(constants.USER_IS_AUTHORIZED[prefLang]);
 
       history.push('/products'); // pass to products when authorized
     } catch ({ response: { data } }) {
       setError(errorsEnum[data.customCode][prefLang = 'ru']);
+
+      toastifyHelper.notifyError(errorsEnum[data.customCode][prefLang = 'ru'])
     }
   };
 

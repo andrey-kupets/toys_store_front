@@ -1,7 +1,7 @@
 .error_wrapper {
-    background: red;
-    color: yellow;
+    background: white;
+    color: red;
     border: #9bc4f6 solid 2px;
     padding: 0 4px;
-    font-size: 14px;
+    font-size: 12px;
 }

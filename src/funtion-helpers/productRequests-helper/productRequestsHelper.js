@@ -1,9 +1,11 @@
 import { productService } from "../../services";
+import { constants } from "../../constants";
+import { errorsEnum } from "../../errors";
 
 const setProductsData = async (setProducts, setLoading, notify, notifyError, searchParams, setPageData, pageData) => {
+  let prefLang = 'en';
   try {
     setLoading(true);
-    // throw new Error(); // for notifyError() using
 
     const {
       data,
@@ -22,10 +24,10 @@ const setProductsData = async (setProducts, setLoading, notify, notifyError, sea
     // setProducts(resTotals.slice((page - 1) * limit, page * limit)); for FRONT only
     setProducts(data);
 
-    notify();
+    // notify(constants.SUCCESSFUL_RESPONSE[prefLang]);
   } catch (e) {
     console.log(e);
-    notifyError();
+    notifyError(errorsEnum["5000"][prefLang]);
   } finally {
     setLoading(false);
   }

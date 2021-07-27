@@ -1,7 +1,7 @@
 .login_wrapper {
     flex: 1;
     background: url("https://img.freepik.com/free-vector/logo-design-for-kids-toys_29937-4737.jpg?size=626&ext=jpg") center no-repeat;
-    -webkit-background-size: 70vw auto; /* Safari 3.1+ и Chrome 4.0+ */
+    -webkit-background-size: 70vw 100vh; /* Safari 3.1+ и Chrome 4.0+ */
     position: relative;
 }
 

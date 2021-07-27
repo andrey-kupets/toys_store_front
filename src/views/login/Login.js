@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from './Login.module.css';
 import { authService } from "../../services";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { errorsEnum } from "../../errors";
 import { Error } from "../../components/error";
 import { toastifyHelper } from "../../funtion-helpers";
@@ -10,7 +10,7 @@ import { constants } from "../../constants";
 export const Login = () => {
   let prefLang = 'en'; // TODO REDUX
 
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
   const [authData, setAuthData] = useState({
     email: '',
     password: ''
@@ -28,7 +28,7 @@ export const Login = () => {
 
   const onSubmitHandler = async () => {
     try {
-      // todo localeStorage
+      // todo localeStorage and???
       setAuthData({
         ...authData,
         email: '',
@@ -68,7 +68,7 @@ export const Login = () => {
           value={authData.password}
           onChange={checkAuthData}
           placeholder='Пароль'/><br/>
-        {error && <Error error={error}/>}
+        {!!error && <Error error={error}/>}
         <div>
           <button onClick={onSubmitHandler}>Войти</button>
           <button onClick={onRedirectReg}>Регистрация</button>

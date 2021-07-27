@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import styles from './Registration.module.css';
 import { userService } from "../../services";
 import { useHistory } from "react-router-dom";
+import { toastifyHelper } from "../../funtion-helpers";
+import { errorsEnum } from "../../errors";
+import { Error } from "../../components/error";
 
 export const Registration = () => {
+  let prefLang = 'en'; // todo redux
+
   const history = useHistory();
 
+  const [error, setError] = useState('');
   const [userData, setUserData] = useState({
     name: '',
     phone: '',
@@ -22,18 +28,25 @@ export const Registration = () => {
   };
 
   const onSubmitHandler = async () => {
-    setUserData({
-      ...userData,
-      name: '',
-      phone: '',
-      email: '',
-      password: '',
-    });
+    try {
+      setUserData({
+        ...userData,
+        name: '',
+        phone: '',
+        email: '',
+        password: '',
+      });
 
-    const res = await userService.createUser(userData);
-    console.log(res);
+      const resData = await userService.createUser(userData);
 
-    history.push('/products');
+      toastifyHelper.notify(resData[prefLang = 'ru']);
+
+      // history.push('/products');
+    } catch ({ response: { data } }) {
+      setError(errorsEnum[data.customCode][prefLang = 'ru']);
+
+      toastifyHelper.notifyError(errorsEnum[data.customCode][prefLang = 'ru']);
+    }
   };
 
   return (
@@ -65,8 +78,8 @@ export const Registration = () => {
           type="text"
           title='Только латиница, не менее 8 символов, маленькие буквы, заглавные буквы, цифры'
           placeholder='Пароль как xxZZZ555'/>
+        {!!error && <Error error={error}/>}
         <button onClick={onSubmitHandler}>Зарегистрироваться</button>
-      {userData.name && <div>You've been registered successfully</div>}
       </div>
     </div>
   );

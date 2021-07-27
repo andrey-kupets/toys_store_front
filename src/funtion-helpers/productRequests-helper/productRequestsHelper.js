@@ -3,7 +3,7 @@ import { constants } from "../../constants";
 import { errorsEnum } from "../../errors";
 
 const setProductsData = async (setProducts, setLoading, notify, notifyError, searchParams, setPageData, pageData) => {
-  let prefLang = 'en';
+  let prefLang = 'en'; // todo redux
   try {
     setLoading(true);
 

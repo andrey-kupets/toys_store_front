@@ -6,13 +6,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Provider } from "react-redux";
+import { store } from "./redux";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <App/>
-      <ToastContainer position="bottom-right"/>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <App/>
+        <ToastContainer position="bottom-right"/>
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

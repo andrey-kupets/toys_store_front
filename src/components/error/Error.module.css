@@ -1,8 +1,11 @@
 .error_wrapper {
-    background: white;
+    width: 200px;
+    /*background: white;*/
     color: red;
-    border: #9bc4f6 solid 2px;
-    padding: 0 4px;
     font-size: 12px;
     font-weight: bold;
+    text-align: center;
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
 }

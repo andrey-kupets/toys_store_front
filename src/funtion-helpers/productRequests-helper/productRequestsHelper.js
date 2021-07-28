@@ -1,8 +1,9 @@
 import { productService } from "../../services";
 import { constants } from "../../constants";
 import { errorsEnum } from "../../errors";
+import { toastifyHelper } from "../toastify-helper"
 
-const setProductsData = async (setProducts, setLoading, notify, notifyError, searchParams, setPageData, pageData) => {
+const setProductsData = async (setProducts, setLoading, searchParams, setPageData, pageData) => {
   let prefLang = 'en'; // todo redux
   try {
     setLoading(true);
@@ -24,10 +25,15 @@ const setProductsData = async (setProducts, setLoading, notify, notifyError, sea
     // setProducts(resTotals.slice((page - 1) * limit, page * limit)); for FRONT only
     setProducts(data);
 
-    // notify(constants.SUCCESSFUL_RESPONSE[prefLang]);
+    toastifyHelper.notify(constants.SUCCESSFUL_RESPONSE[prefLang]);
+
+    // return {
+    //   page,
+    //   pages
+    // };
   } catch (e) {
     console.log(e);
-    notifyError(errorsEnum["5000"][prefLang]);
+    toastifyHelper.notifyError(errorsEnum["5000"][prefLang]);
   } finally {
     setLoading(false);
   }

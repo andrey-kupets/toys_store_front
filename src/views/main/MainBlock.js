@@ -12,7 +12,6 @@ import { useHistory, useLocation } from "react-router-dom";
 import { Loading } from "../../components/loading";
 import { PaginationWrapper } from "../../components/pagination-wrapper";
 import { NoSearchResults } from "../../components/noResults-search";
-import { toastifyHelper } from '../../funtion-helpers';
 
 export const MainBlock = ({ children }) => {
 
@@ -25,7 +24,7 @@ export const MainBlock = ({ children }) => {
   const searchParams = useLocation().search.replace('?', '');
 
   useEffect(() => {
-    setProductsData(setProducts, setLoading, toastifyHelper.notify, toastifyHelper.notifyError, searchParams, setPageData, pageData);
+    setProductsData(setProducts, setLoading, searchParams, setPageData, pageData);
   }, [searchParams]);
 
 

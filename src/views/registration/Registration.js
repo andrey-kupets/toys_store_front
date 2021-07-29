@@ -11,7 +11,7 @@ export const Registration = () => {
 
   const history = useHistory();
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
   const [userData, setUserData] = useState({
     name: '',
     phone: '',
@@ -39,6 +39,7 @@ export const Registration = () => {
 
       const resData = await userService.createUser(userData);
 
+      setError(null);
       toastifyHelper.notify(resData[prefLang = 'ru']);
 
       // history.push('/products');

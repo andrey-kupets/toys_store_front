@@ -39,7 +39,7 @@ export const Login = () => {
       localStorage.setItem('access_token', JSON.stringify(access_token));
       localStorage.setItem('refresh_token', JSON.stringify(refresh_token));
 
-
+      setError(null);
       toastifyHelper.notify(constants.USER_IS_AUTHORIZED[prefLang]);
 
       history.push('/products'); // pass to products when authorized

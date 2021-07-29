@@ -25,7 +25,7 @@ const setProductsData = async (setProducts, setLoading, searchParams, setPageDat
     // setProducts(resTotals.slice((page - 1) * limit, page * limit)); for FRONT only
     setProducts(data);
 
-    toastifyHelper.notify(constants.SUCCESSFUL_RESPONSE[prefLang]);
+    // toastifyHelper.notify(constants.SUCCESSFUL_RESPONSE[prefLang]);
 
     // return {
     //   page,

@@ -42,7 +42,7 @@ export const Login = () => {
       setError(null);
       toastifyHelper.notify(constants.USER_IS_AUTHORIZED[prefLang]);
 
-      history.push('/products'); // pass to products when authorized
+      history.push('/'); // pass to '/' || products when authorized
     } catch ({ response: { data } }) {
       setError(errorsEnum[data.customCode][prefLang = 'ru']);
 

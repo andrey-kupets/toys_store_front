@@ -42,7 +42,7 @@ export const Registration = () => {
       setError(null);
       toastifyHelper.notify(resData[prefLang = 'ru']);
 
-      // history.push('/products');
+      history.push('/');
     } catch ({ response: { data } }) {
       setError(errorsEnum[data.customCode][prefLang = 'ru']);
 

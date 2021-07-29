@@ -60,7 +60,7 @@ export const LeftSideBar = () => {
           {categories.map((item) => (
             <li key={item}>
               <Link
-                to={`/products?${transformQuery(searchParams, { category: item })}`}>{item}
+                to={`/products?${transformQuery(searchParams, { category: item, page: 1 })}`}>{item}
               </Link>
             </li>
           ))}

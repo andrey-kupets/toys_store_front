@@ -16,7 +16,7 @@ export const HeaderBlock = () => {
     const { target: { value }, key } = e;
     setNamePhrase(value);
     if (key === 'Enter') {
-      history.push(`/products?${transformQuery(searchParams, { name: namePhrase })}`) // ignore Lower/UpperCase in 'back'
+      history.push(`/products?page=1&${transformQuery(searchParams, { name: namePhrase })}`) // ignore Lower/UpperCase in 'back'
       setNamePhrase('');
     }
   }
@@ -24,7 +24,7 @@ export const HeaderBlock = () => {
   return (
     <div className={styles.header_wrapper}>
       <Logo/>
-      <div><Link to='/products'>Главная</Link></div>
+      <div><Link to='/'>Главная</Link></div>
       <div>Контакты</div>
       <div>
         <label>Поиск</label>

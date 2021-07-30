@@ -1,31 +1,27 @@
 .product_details_wrapper {
     flex: 1;
-    overflow-y: auto;
-    /*position: relative;*/
-    padding: 0 10px;
-}
-
-.product_details {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    /*overflow: hidden;*/
+    overflow-y: auto;
 }
 
 .product_image {
-    height: 420px;
-    width: 420px;
+    height: 400px;
+    width: 400px;
 }
 
 .product_image:hover {
     transform: scale(1.4);
-    margin-top: 90px;
-    /*border: 2px solid lightsteelblue;*/
-    /*position: absolute;*/
-    /*top: 90px;*/
 }
 
 .product_properties {
-    width: 30%;
+    width: 250px;
+    height: 100%;
+    padding-top: 60px;
 }
 
+.cut {
+    width: 600px;
+    overflow: hidden;
+}

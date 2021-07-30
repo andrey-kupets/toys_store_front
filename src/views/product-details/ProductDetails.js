@@ -30,17 +30,17 @@ export const ProductDetails = () => {
   return (
     <div className={styles.product_details_wrapper}>
       {loading || loading === null && !product ? <Loading/> :(<>
-      {/*{loading || false ? Loading() :(<>*/}
-        <div className={styles.product_details}>
-          <div className={styles.product_properties}>
-            <h2>{product.name}</h2>
-            <span>Цена: <b>{product.price}</b> грн.</span><br/>
-            <span>Category: <i><u>{product.category}</u></i></span><br/>
-            <span>Type: <i>{product.type}</i></span>
-            <p>{product.description}</p>
-            <Wishlist btnName={'Отложить'}/>
-            <Cart btnName={'Купить'}/>
-          </div>
+        {/*{loading || false ? Loading() :(<>*/}
+        <div className={styles.product_properties}>
+          <h2>{product.name}</h2>
+          <span>Цена: <b>{product.price}</b> грн.</span><br/>
+          <span>Category: <i><u>{product.category}</u></i></span><br/>
+          <span>Type: <i>{product.type}</i></span>
+          <p>{product.description}</p>
+          <Wishlist btnName={'Отложить'}/>
+          <Cart btnName={'Купить'}/>
+        </div>
+        <div /*className={styles.cut}*/>
           <img className={styles.product_image} src={product.img} alt={`${product.name} toy`}/>
         </div>
       </>)}

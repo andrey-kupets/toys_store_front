@@ -14,12 +14,13 @@ function App() {
     <div className="main-wrapper">
       <BaseLayout>
         <Switch>
-          {/*<Route path="/" exact>*/}
-          {/*  <Redirect to="/products"/>*/}
-          {/*</Route>*/}
+          <Route path="/" exact>
+            <Redirect to="/products"/>
+          </Route>
 
-          <Route path={["/", "/products"]} exact>
-            <Redirect to="/products?page=1"/>
+          {/*<Route path={["/", "/products"]} exact>*/}
+          <Route path={"/products"} exact>
+            {/*<Redirect to="/products?page=1"/>*/}
             <MainBlock/>
           </Route>
 

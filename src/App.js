@@ -6,7 +6,8 @@ import { MainBlock, ProductDetails } from "./views";
 import { PageNotFound } from "./views/page_not_found";
 import { Login } from "./views/login";
 import { Registration } from "./views/registration";
-
+import { Cart } from "./components/cart";
+import { Wishlist } from "./components/wishlist";
 
 function App() {
   const history = useHistory();
@@ -24,7 +25,7 @@ function App() {
             <MainBlock/>
           </Route>
 
-          <Route path="/products/:productId">
+          <Route path="/products/:productId" exact>
             <ProductDetails/>
           </Route>
 
@@ -32,8 +33,18 @@ function App() {
             <Login/>
           </Route>
 
-          <Route path="/users">
+          <Route path="/users" exact>
             <Registration/>
+          </Route>
+
+          <Route path="/users/:userId/wishlist" exact>
+          {/*<Route path="/users/wishlist" exact>*/}
+            <Wishlist/>
+          </Route>
+
+          <Route path="/users/:userId/cart" exact>
+          {/*<Route path="/users/cart" exact>*/}
+            <Cart/>
           </Route>
 
           <Route>

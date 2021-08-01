@@ -1,6 +1,4 @@
 .wishlist_wrapper {
-    position: absolute;
-    top: 150px;
-    left: 200px;
     background: #1af3d2;
+    flex: 1;
 }

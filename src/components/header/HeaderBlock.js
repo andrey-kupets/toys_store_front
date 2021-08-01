@@ -12,6 +12,16 @@ export const HeaderBlock = () => {
 
   const [namePhrase, setNamePhrase] = useState('');
 
+  const onWishlistViewClick = () => {
+    history.push('/users/:userId/wishlist');
+    // history.push('/users/wishlist');
+  };
+
+  const onCartViewClick = () => {
+    history.push('/users/:userId/cart');
+    // history.push('/users/cart');
+  };
+
   const onInputNamePhrase = (e) => {
     const { target: { value }, key } = e;
     setNamePhrase(value);
@@ -38,8 +48,8 @@ export const HeaderBlock = () => {
       </div>
       <div><Link to='/auth'>Вход</Link></div>
       <div className={styles.cart_wishlist_block}>
-        <WishlistBtn title={'Отложенные'}/>
-        <CartBtn title={'Корзина'}/>
+        <WishlistBtn view={onWishlistViewClick} title={'Отложенные'}/>
+        <CartBtn view={onCartViewClick} title={'Корзина'}/>
       </div>
     </div>
   );

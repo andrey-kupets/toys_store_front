@@ -1,6 +1,12 @@
 .cart_wrapper {
-    position: absolute;
-    top: 150px;
-    left: 200px;
     background: #1af383;
+    flex: 1;
+}
+
+.cart_titles {
+    display: flex;
+}
+
+.cart_payload {
+    display: flex;
 }

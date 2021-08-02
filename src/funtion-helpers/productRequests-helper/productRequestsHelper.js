@@ -1,11 +1,14 @@
 import { productService } from "../../services";
 import { errorsEnum } from "../../errors";
 import { toastifyHelper } from "../toastify-helper"
-import { endProductsLoading, setPageData, setProducts, startProductsLoading } from "../../redux";
+import { setLoading, setPageData, setProducts } from "../../redux";
+import { constants } from "../../constants"; // for notify
 
 const loadProductsData = async (dispatch, searchParams) => {
+  let prefLang = 'en'; // todo redux
+
   try {
-    dispatch(startProductsLoading());
+    dispatch(setLoading(true));
 
     const { data, page, pages } = await productService.getProducts(!!searchParams ? searchParams :'');
 
@@ -18,11 +21,13 @@ const loadProductsData = async (dispatch, searchParams) => {
     console.log(e);
     toastifyHelper.notifyError(errorsEnum["5000"][prefLang]);
   } finally {
-    dispatch(endProductsLoading());
+    dispatch(setLoading(false));
   }
 };
 
 const loadProductById = async (productId, setProduct, setLoading) => {
+  let prefLang = 'en'; // todo redux
+
   try {
     setLoading(true);
 
@@ -31,6 +36,7 @@ const loadProductById = async (productId, setProduct, setLoading) => {
     setProduct(res);
   } catch (e) {
     console.log(e);
+    toastifyHelper.notifyError(errorsEnum["5000"][prefLang]);
   } finally {
     setLoading(false);
   }

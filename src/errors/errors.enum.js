@@ -156,6 +156,8 @@ export const errorsEnum = {
     ru: 'Запись не найдена',
   },
 
+  // SERVER ERROR
+
   5000: {
     en: 'Internal Server Error',
     ua: 'Помилка серверу',

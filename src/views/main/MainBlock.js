@@ -1,77 +1,68 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect } from "react";
 import styles from './Main.module.css';
-import {
-  setProductsData,
-  onFirstClick,
-  onPrevClick,
-  onNextClick,
-  onLastClick
-} from "../../funtion-helpers";
+import { loadProductsData } from "../../funtion-helpers";
 import { LeftSideBar, ProductsList } from "../../components";
 import { useHistory, useLocation } from "react-router-dom";
 import { Loading } from "../../components/loading";
 import { PaginationWrapper } from "../../components/pagination-wrapper";
 import { NoSearchResults } from "../../components/noResults-search";
+import { useDispatch, useSelector } from "react-redux";
 
 export const MainBlock = ({ children }) => {
+    const { products, loading } = useSelector(({ products }) => products);
+    const { pages, page } = useSelector(({ counter }) => counter);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(null); // если null - можно проверить, происходил ли запрос вообще
-  const history = useHistory();
+    const searchParams = useLocation().search.replace('?', '');
 
-  const [pageData, setPageData] = useState({});
-
-  const searchParams = useLocation().search.replace('?', '');
-
-  useEffect(() => {
-    setProductsData(setProducts, setLoading, searchParams, setPageData, pageData);
-  }, [searchParams]);
+    useEffect(() => {
+      loadProductsData(dispatch, searchParams);
+    }, [searchParams]);
 
 
-  // const onClickHandler = (value) => {
-  //   if (pageData.page === pageData.totalPages) {
-  //     return;
-  //   }
-  //
-  //   setPageData(
-  //     {
-  //       ...pageData,
-  //       page: pageData.page + 1
-  //     }
-  //   );
-  // };
+    // const onClickHandler = (value) => {
+    //   if (pageData.page === pageData.totalPages) {
+    //     return;
+    //   }
+    //
+    //   setPageData(
+    //     {
+    //       ...pageData,
+    //       page: pageData.page + 1
+    //     }
+    //   );
+    // };
 
-  const onProductClick = (product) => {
-    history.push(`/products/${product.id}`);
-  };
+    const onProductClick = (product) => {
+      history.push(`/products/${product.id}`);
+    };
 
-  return (
-    <div className={styles.main_block}>
-      {/*div for checking overflow scrolling*/}
-      {/*<div style={{height: 1600, background: 'blue'}}>yy</div>*/}
-      <LeftSideBar/>
-      {/*{children}*/}
-      {(loading || loading === null)
-        ? <Loading/> :(
-          <PaginationWrapper
-            currentPage={pageData.page}
-            totalPages={pageData.totalPages}
-            onPrevClick={() => onPrevClick(history, setPageData, pageData, searchParams)}
-            onNextClick={() => onNextClick(history, setPageData, pageData, searchParams)}
-            onFirstClick={() => onFirstClick(history, setPageData, pageData, searchParams)}
-            onLastClick={() => onLastClick(history, setPageData, pageData, searchParams)}
-          >
-            {!!searchParams && !products.length && <NoSearchResults/>}
-            <ProductsList
-              items={products}
-              onProductClick={onProductClick}
-            />
-          </PaginationWrapper>
-        )
-      }
-    </div>
-  );
-}
+    return (
+      <div className={styles.main_block}>
+        {/*div for checking overflow scrolling*/}
+        {/*<div style={{height: 1600, background: 'blue'}}>yy</div>*/}
+        <LeftSideBar/>
+        {/*{children}*/}
+        {(loading || loading === null)
+          ? <Loading/>
+          :(
+            <PaginationWrapper
+              page={page}
+              pages={pages}
+              searchParams={searchParams}
+            >
+              {!!searchParams && !products.length && <NoSearchResults/>}
+              <ProductsList
+                items={products}
+                onProductClick={onProductClick}
+              />
+            </PaginationWrapper>
+          )
+        }
+      </div>
+    );
+  }
 ;
 
 // window.location

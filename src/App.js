@@ -1,7 +1,7 @@
 import './App.css';
 import React from "react";
 import { BaseLayout } from "./layouts";
-import { Redirect, Route, Switch, useHistory } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { MainBlock, ProductDetails } from "./views";
 import { PageNotFound } from "./views/page_not_found";
 import { Login } from "./views/login";
@@ -10,7 +10,7 @@ import { Cart } from "./components/cart";
 import { Wishlist } from "./components/wishlist";
 
 function App() {
-  const history = useHistory();
+
   return (
     <div className="main-wrapper">
       <BaseLayout>
@@ -19,11 +19,6 @@ function App() {
             <Redirect to="/products"/>
           </Route>
 
-          {/*<Route path={["/", "/products"]} exact>*/}
-          <Route path={"/products"} exact>
-            {/*<Redirect to="/products?page=1"/>*/}
-            <MainBlock/>
-          </Route>
 
           <Route path="/products/:productId" exact>
             <ProductDetails/>
@@ -38,13 +33,19 @@ function App() {
           </Route>
 
           <Route path="/users/:userId/wishlist" exact>
-          {/*<Route path="/users/wishlist" exact>*/}
+            {/*<Route path="/users/wishlist" exact>*/}
             <Wishlist/>
           </Route>
 
           <Route path="/users/:userId/cart" exact>
-          {/*<Route path="/users/cart" exact>*/}
+            {/*<Route path="/users/cart" exact>*/}
             <Cart/>
+          </Route>
+
+          {/*<Route path={["/", "/products"]} exact>*/}
+          <Route path={"/products"} exact>
+            {/*<Redirect to="/products?page=1"/>*/}
+            <MainBlock/>
           </Route>
 
           <Route>

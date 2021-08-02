@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  const {page, pages} = action.payload || { };
+  const {page, pages} = action.payload;
 
   switch (action.type) {
     case SET_PAGE_DATA: return { ...state, page, pages }

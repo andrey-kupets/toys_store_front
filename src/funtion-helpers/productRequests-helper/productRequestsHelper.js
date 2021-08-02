@@ -9,8 +9,8 @@ const loadProductsData = async (dispatch, searchParams) => {
 
     const { data, page, pages } = await productService.getProducts(!!searchParams ? searchParams :'');
 
-    dispatch(setPageData({ page, pages }));
     dispatch(setProducts(data));
+    dispatch(setPageData({ page, pages }));
 
     // toastifyHelper.notify(constants.SUCCESSFUL_RESPONSE[prefLang]);
 

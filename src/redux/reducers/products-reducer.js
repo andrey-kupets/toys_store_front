@@ -17,7 +17,6 @@ const reducer = (state = initialState, action) => {
 
     case END_PRODUCTS_LOADING: return { ...state, loading: false };
 
-    //
     //   case 'USE_LOADING'
 
     default: return state;

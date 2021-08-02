@@ -4,15 +4,14 @@ import { toastifyHelper } from "../toastify-helper"
 import { endProductsLoading, setPageData, setProducts, startProductsLoading } from "../../redux";
 
 const loadProductsData = async (dispatch, searchParams) => {
-  let prefLang = 'en'; // todo redux
   try {
     dispatch(startProductsLoading());
 
     const { data, page, pages } = await productService.getProducts(!!searchParams ? searchParams :'');
 
     dispatch(setPageData({ page, pages }));
-    // setProducts(resTotals.slice((page - 1) * limit, page * limit)); for FRONT only
     dispatch(setProducts(data));
+
     // toastifyHelper.notify(constants.SUCCESSFUL_RESPONSE[prefLang]);
 
   } catch (e) {
@@ -41,3 +40,5 @@ export {
   loadProductsData,
   loadProductById,
 };
+
+// setProducts(resTotals.slice((page - 1) * limit, page * limit)); for FRONT only

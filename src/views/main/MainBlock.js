@@ -9,30 +9,15 @@ import { NoSearchResults } from "../../components/noResults-search";
 import { useDispatch, useSelector } from "react-redux";
 
 export const MainBlock = ({ children }) => {
-    const { products, loading } = useSelector(({ products }) => products);
-    const { pages, page } = useSelector(({ counter }) => counter);
+    const { pages, page, products, loading } = useSelector(({ counter, products }) => ({ ...counter, ...products }));
     const dispatch = useDispatch();
     const history = useHistory();
-
     const searchParams = useLocation().search.replace('?', '');
+    // let prefLang = 'en'; // todo redux
 
     useEffect(() => {
       loadProductsData(dispatch, searchParams);
     }, [searchParams]);
-
-
-    // const onClickHandler = (value) => {
-    //   if (pageData.page === pageData.totalPages) {
-    //     return;
-    //   }
-    //
-    //   setPageData(
-    //     {
-    //       ...pageData,
-    //       page: pageData.page + 1
-    //     }
-    //   );
-    // };
 
     const onProductClick = (product) => {
       history.push(`/products/${product.id}`);

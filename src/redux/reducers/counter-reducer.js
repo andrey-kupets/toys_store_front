@@ -6,7 +6,7 @@ const initialState = {
   pages: null
 };
 
-export const counter = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   const {page, pages} = action.payload || { };
 
   switch (action.type) {
@@ -16,4 +16,4 @@ export const counter = (state = initialState, action) => {
   }
 };
 
-// export default reducer;
+export default reducer;

@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import authReducer from './auth-reducer';
 import cartReducer from './cart-reducer';
-import {counter} from './counter-reducer';
-import { products } from './products-reducer';
+import counterReducer from './counter-reducer';
+import productsReducer from './products-reducer';
 import usersReducer from './users-reducer';
 import wishlistReducer from './wishlist-reducer';
 
@@ -10,8 +10,8 @@ import wishlistReducer from './wishlist-reducer';
 export const reducer = combineReducers({
   auth: authReducer,
   cart: cartReducer,
-  counter,
-  products,
+  counter: counterReducer,
+  products: productsReducer,
   users: usersReducer,
   wishlist: wishlistReducer,
 });

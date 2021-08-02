@@ -19,7 +19,6 @@ function App() {
             <Redirect to="/products"/>
           </Route>
 
-
           <Route path="/products/:productId" exact>
             <ProductDetails/>
           </Route>

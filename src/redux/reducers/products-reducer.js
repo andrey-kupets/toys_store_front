@@ -9,7 +9,7 @@ const initialState = {
   loading: null
 };
 
-export const products = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
 
   switch (action.type) {
     case SET_PRODUCTS: return { ...state, products: action.payload };
@@ -25,4 +25,4 @@ export const products = (state = initialState, action) => {
   }
 };
 
-// export default reducer;
+export default reducer;

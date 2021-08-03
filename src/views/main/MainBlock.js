@@ -7,17 +7,18 @@ import { Loading } from "../../components/loading";
 import { PaginationWrapper } from "../../components/pagination-wrapper";
 import { NoSearchResults } from "../../components/noResults-search";
 import { useDispatch, useSelector } from "react-redux";
+import { setLanguage } from "../../redux";
 
 export const MainBlock = ({ children }) => {
-  const { pages, page, products, loading } = useSelector(({ counter, products }) => ({ ...counter, ...products }));
+  const { pages, page, products, loading, language } = useSelector(
+    ({ counter, products, language }) => ({ ...counter, ...products, ...language }));
+  console.log(language);
   const dispatch = useDispatch();
   const history = useHistory();
   const searchParams = useLocation().search.replace('?', '');
 
-  // let prefLang = 'en'; // todo redux
-
   useEffect(() => {
-    loadProductsData(dispatch, searchParams);
+    loadProductsData(dispatch, searchParams, language);
   }, [searchParams]);
 
   const onProductClick = (product) => {

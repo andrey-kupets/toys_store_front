@@ -6,9 +6,12 @@ import { errorsEnum } from "../../errors";
 import { Error } from "../../components/error";
 import { toastifyHelper } from "../../funtion-helpers";
 import { constants } from "../../constants";
+import { setLanguage } from "../../redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export const Login = () => {
-  let prefLang = 'en'; // TODO REDUX
+  const { language } = useSelector(({language}) => language);
+  const dispatch = useDispatch();
 
   const [error, setError] = useState('');
   const [authData, setAuthData] = useState({
@@ -27,6 +30,7 @@ export const Login = () => {
   };
 
   const onSubmitHandler = async () => {
+    dispatch(setLanguage('ru'));
     try {
       // todo localeStorage and???
       setAuthData({
@@ -40,13 +44,13 @@ export const Login = () => {
       localStorage.setItem('refresh_token', JSON.stringify(refresh_token));
 
       setError(null);
-      toastifyHelper.notify(constants.USER_IS_AUTHORIZED[prefLang]);
+      toastifyHelper.notify(constants.USER_IS_AUTHORIZED[language]);
 
       history.push('/'); // pass to '/' || products when authorized
     } catch ({ response: { data } }) {
-      setError(errorsEnum[data.customCode][prefLang = 'ru']);
+      setError(errorsEnum[data.customCode][language]);
 
-      toastifyHelper.notifyError(errorsEnum[data.customCode][prefLang = 'ru'])
+      toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
     }
   };
 

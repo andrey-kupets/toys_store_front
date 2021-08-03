@@ -5,10 +5,12 @@ import { useHistory } from "react-router-dom";
 import { toastifyHelper } from "../../funtion-helpers";
 import { errorsEnum } from "../../errors";
 import { Error } from "../../components/error";
+import { useDispatch, useSelector } from "react-redux";
+import { setLanguage } from "../../redux";
 
 export const Registration = () => {
-  let prefLang = 'en'; // todo redux
-
+  const { language } = useSelector(({language}) => language);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const [error, setError] = useState(null);
@@ -28,6 +30,7 @@ export const Registration = () => {
   };
 
   const onSubmitHandler = async () => {
+    dispatch(setLanguage('ru'));
     try {
       setUserData({
         ...userData,
@@ -40,13 +43,13 @@ export const Registration = () => {
       const resData = await userService.createUser(userData);
 
       setError(null);
-      toastifyHelper.notify(resData[prefLang = 'ru']);
+      toastifyHelper.notify(resData[language]);
 
       history.push('/');
     } catch ({ response: { data } }) {
-      setError(errorsEnum[data.customCode][prefLang = 'ru']);
+      setError(errorsEnum[data.customCode][language]);
 
-      toastifyHelper.notifyError(errorsEnum[data.customCode][prefLang = 'ru']);
+      toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
     }
   };
 

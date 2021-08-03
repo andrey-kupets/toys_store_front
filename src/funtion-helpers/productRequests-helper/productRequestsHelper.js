@@ -1,13 +1,12 @@
 import { productService } from "../../services";
 import { errorsEnum } from "../../errors";
 import { toastifyHelper } from "../toastify-helper"
-import { setLoading, setOneProduct, setPageData, setProducts } from "../../redux";
+import { setLanguage, setLoading, setOneProduct, setPageData, setProducts } from "../../redux";
 import { constants } from "../../constants"; // for notify
 
-const loadProductsData = async (dispatch, searchParams) => {
-  let prefLang = 'en'; // todo redux
-
+const loadProductsData = async (dispatch, searchParams, language) => {
   try {
+    dispatch(setLanguage('ru')); // first language after page refreshing - 'en'
     dispatch(setLoading(true));
 
     const { data, page, pages } = await productService.getProducts(!!searchParams ? searchParams :'');
@@ -15,19 +14,19 @@ const loadProductsData = async (dispatch, searchParams) => {
     dispatch(setProducts(data));
     dispatch(setPageData({ page, pages }));
 
-    // toastifyHelper.notify(constants.SUCCESSFUL_RESPONSE[prefLang]);
+    // toastifyHelper.notify(constants.SUCCESSFUL_RESPONSE[language]);
 
   } catch (e) {
+    dispatch(setLanguage('ru'));
     console.log(e);
-    toastifyHelper.notifyError(errorsEnum["5000"][prefLang]);
+
+    toastifyHelper.notifyError(errorsEnum["5000"][language]);
   } finally {
     dispatch(setLoading(false));
   }
 };
 
-const loadProductById = async (productId, dispatch) => {
-  let prefLang = 'en'; // todo redux
-
+const loadProductById = async (productId, dispatch, language) => {
   try {
     dispatch(setLoading(true));
 
@@ -35,8 +34,9 @@ const loadProductById = async (productId, dispatch) => {
 
     dispatch(setOneProduct(res));
   } catch (e) {
+    dispatch(setLanguage('ru'));
     console.log(e);
-    toastifyHelper.notifyError(errorsEnum["5000"][prefLang]);
+    toastifyHelper.notifyError(errorsEnum["5000"][language]);
   } finally {
     dispatch(setLoading(false));
   }

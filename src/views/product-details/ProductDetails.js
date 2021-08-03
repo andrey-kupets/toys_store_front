@@ -14,16 +14,13 @@ import { useDispatch, useSelector } from "react-redux";
 export const ProductDetails = () => {
   // const { params: { productId } } = useRouteMatch(); // const match: {params : {id}}
   const { productId } = useParams(); // straight const params: {id}
-  const { loading, product } = useSelector(({ products }) => products);
+  const { loading, product, language } = useSelector(
+    ({ products, language }) => ({ ...products, language })
+  );
   const dispatch = useDispatch();
 
-  // const [product, setProduct] = useState(null);
-  // const [loading, setLoading] = useState(null);
-
-  console.log(product, 'prdispatchoduct from ProductDetails');
-
-  useEffect(async () => {
-    await loadProductById(productId, dispatch);
+  useEffect(() => {
+    loadProductById(productId, dispatch, language);
   }, []);
 
   if (loading === false && !product?.id) {

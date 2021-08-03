@@ -9,18 +9,21 @@ import { WishlistBtn } from "../../components/wishlistBtn";
 import { CartBtn } from "../../components/cartBtn";
 import { Loading } from "../../components/loading";
 import { PageNotFound } from "../page_not_found";
+import { useDispatch, useSelector } from "react-redux";
 
 export const ProductDetails = () => {
   // const { params: { productId } } = useRouteMatch(); // const match: {params : {id}}
   const { productId } = useParams(); // straight const params: {id}
+  const { loading, product } = useSelector(({ products }) => products);
+  const dispatch = useDispatch();
 
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(null);
+  // const [product, setProduct] = useState(null);
+  // const [loading, setLoading] = useState(null);
 
-  console.log(product, 'product from ProductDetails');
+  console.log(product, 'prdispatchoduct from ProductDetails');
 
   useEffect(async () => {
-    await loadProductById(productId, setProduct, setLoading);
+    await loadProductById(productId, dispatch);
   }, []);
 
   if (loading === false && !product?.id) {

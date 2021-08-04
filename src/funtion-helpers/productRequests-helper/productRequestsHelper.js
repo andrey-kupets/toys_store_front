@@ -6,7 +6,7 @@ import { constants } from "../../constants"; // for notify
 
 const loadProductsData = async (dispatch, searchParams, language) => {
   try {
-    dispatch(setLanguage('ru')); // first language after page refreshing - 'en'
+    // dispatch(setLanguage('ru')); // first language after page refreshing - 'en'
     dispatch(setLoading(true));
 
     const { data, page, pages } = await productService.getProducts(!!searchParams ? searchParams :'');
@@ -17,7 +17,7 @@ const loadProductsData = async (dispatch, searchParams, language) => {
     // toastifyHelper.notify(constants.SUCCESSFUL_RESPONSE[language]);
 
   } catch (e) {
-    dispatch(setLanguage('ru'));
+    // dispatch(setLanguage('ru'));
     console.log(e);
 
     toastifyHelper.notifyError(errorsEnum["5000"][language]);

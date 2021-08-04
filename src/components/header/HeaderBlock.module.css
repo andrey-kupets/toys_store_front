@@ -1,5 +1,5 @@
 .header_wrapper {
-    /*height: 8vh;*/
+    min-height: 50px;
     width: 1536px;
     padding: 0 10px;
     background: antiquewhite;

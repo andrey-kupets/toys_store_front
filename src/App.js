@@ -10,7 +10,6 @@ import { Cart } from "./components/cart";
 import { Wishlist } from "./components/wishlist";
 
 function App() {
-
   return (
     <div className="main-wrapper">
       <BaseLayout>

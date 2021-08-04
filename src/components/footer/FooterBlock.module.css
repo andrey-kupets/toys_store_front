@@ -5,7 +5,7 @@
 }
 
 .footer_wrapper {
-    height: 8vh;
+    min-height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;

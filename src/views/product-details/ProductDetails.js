@@ -52,7 +52,7 @@ export const ProductDetails = () => {
         <div /*className={styles.cut}*/>
           <img className={styles.product_image} src={product.img} alt={`${product.name} toy`}/>
         </div>
-        {!!productModal && <ProductModal/>}
+        {!!productModal && product && <ProductModal product={product}/>}
       </>)}
     </div>
   )

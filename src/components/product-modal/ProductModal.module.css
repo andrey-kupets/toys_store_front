@@ -1,0 +1,96 @@
+.product_modal_wrapper {
+    height: 280px;
+    width: 400px;
+    background: orange;
+    position: absolute;
+    top: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.product_modal_image {
+    height: 120px;
+    width: 120px;
+    margin-right: 8px;
+}
+
+.btn_count_wrapper {
+    width: 86px;
+    height: 30px;
+    border: solid white 2px;
+    border-radius: 14px ;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    padding: 2px;
+}
+
+.count_span {
+    background: white;
+}
+
+.product_modal_main {
+    display: flex;
+}
+
+.product_modal_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn_minus {
+    height: 100%;
+    width: 30%;
+    border: solid white 1px;
+    border-radius: 14px 0 0 14px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn_plus {
+    height: 100%;
+    width: 30%;
+    border: solid white 1px;
+    border-radius: 0 14px 14px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.count_span {
+    height: 100%;
+    width: 40%;
+    margin: 0 2px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 2px;
+}
+
+.btn_cart_pass {
+    height: 30px;
+    border: solid white 2px;
+    border-radius: 14px;
+    background: #ff3300;
+    color: white;
+    font-weight: bold;
+}
+
+.btn_cart_pass:hover {
+    background: #f61e0a;
+}
+
+.btn_close {
+    position: relative;
+    left: 180px;
+    top: -16px;
+}
+
+.h3 {
+    margin-top: -6px;
+    color: #424040;
+}

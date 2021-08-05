@@ -44,15 +44,14 @@ export const ProductDetails = () => {
           <span>Type: <i>{product.type}</i></span>
           <p>{product.description}</p>
           <WishlistBtn btnName={'Отложить'} view={onModalClick} state={true}/>
-          <WishlistBtn btnName={'Закрыть'} view={onModalClick}/>
+          {/*<WishlistBtn btnName={'Закрыть'} view={onModalClick}/>*/}
           {/* set close*/}
           <CartBtn btnName={'Купить'} view={onModalClick} state={true}/>
-          <CartBtn btnName={'Закрыть'} view={onModalClick}/>
         </div>
         <div /*className={styles.cut}*/>
           <img className={styles.product_image} src={product.img} alt={`${product.name} toy`}/>
         </div>
-        {!!productModal && product && <ProductModal product={product}/>}
+        {!!productModal && product && <ProductModal product={product} view={onModalClick} state={true}/>}
       </>)}
     </div>
   )

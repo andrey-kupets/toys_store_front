@@ -3,7 +3,7 @@ import styles from './ProductModal.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { setCount } from "../../redux";
 
-export const ProductModal = ({ product }) => {
+export const ProductModal = ({ product, state, view }) => {
   const { count } = useSelector(({ counter }) => counter);
   const dispatch = useDispatch();
 
@@ -13,7 +13,7 @@ export const ProductModal = ({ product }) => {
 
   return (
     <div className={styles.product_modal_wrapper}>
-      <button className={styles.btn_close}>X</button>
+      <button className={styles.btn_close} onClick={() => view(!state)}>X</button>
       <h3 className={styles.h3}>ТОВАР ДОБАВЛЕН В КОРЗИНУ</h3>
       <div className={styles.product_modal_main}>
         <div>

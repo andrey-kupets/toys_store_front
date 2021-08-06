@@ -29,13 +29,13 @@ export const ProductModal = ({ product, state, view }) => {
         <div className={styles.product_modal_info}>
           {product.name}
           <div className={styles.btn_count_wrapper}>
-            <button disabled={count === 1} className={styles.btn_minus} onClick={() => onCounterClick(- 1)}>-</button>
+            <button disabled={count === 1} className={styles.btn_minus} onClick={() => onCounterClick(-1)}>-</button>
             <span className={styles.count_span}>{count}</span>
-            <button className={styles.btn_plus} onClick={() => onCounterClick(+ 1)}>+</button>
+            <button className={styles.btn_plus} onClick={() => onCounterClick(+1)}>+</button>
           </div>
         </div>
       </div>
-      <div>В корзине ... товаров на сумму ...</div>
+      <div>Общая стоимость товара <b>{product.price * count}</b> грн.</div>
       <button className={styles.btn_cart_pass} onClick={onCartPassClick}>ПЕРЕЙТИ В КОРЗИНУ</button>
     </div>
   );

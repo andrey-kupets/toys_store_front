@@ -2,13 +2,20 @@ import React from "react";
 import styles from './ProductModal.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { setCount } from "../../redux";
+import { useHistory, useParams } from "react-router-dom";
 
 export const ProductModal = ({ product, state, view }) => {
   const { count } = useSelector(({ counter }) => counter);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { userId } = useParams();
 
   const onCounterClick = (payload) => {
     dispatch(setCount(payload));
+  };
+
+  const onCartPassClick = () => {
+    history.push(`/users/${userId}/cart`);
   };
 
   return (
@@ -29,7 +36,7 @@ export const ProductModal = ({ product, state, view }) => {
         </div>
       </div>
       <div>В корзине ... товаров на сумму ...</div>
-      <button className={styles.btn_cart_pass}>ПЕРЕЙТИ В КОРЗИНУ</button>
+      <button className={styles.btn_cart_pass} onClick={onCartPassClick}>ПЕРЕЙТИ В КОРЗИНУ</button>
     </div>
   );
 };

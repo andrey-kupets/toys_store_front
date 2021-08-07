@@ -13,17 +13,6 @@ export const ProductItem = (props) => {
 
   return (
     <div className={styles.product_item}>
-      {/*may so*/}
-      {/*<div*/}
-      {/*  style={{*/}
-      {/*    backgroundRepeat: 'no-repeat',*/}
-      {/*    backgroundSize: '100%',*/}
-      {/*    backgroundPosition: 'center',*/}
-      {/*    height: 300,*/}
-      {/*    width: '100%',*/}
-      {/*    backgroundImage: `url(${img})`*/}
-      {/*  }}>*/}
-      {/*</div>*/}
       <div className={styles.product_image_wrapper}>
         <img className={styles.product_image} src={img} alt={`${name} toy`}/>
       </div>

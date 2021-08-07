@@ -1,17 +1,17 @@
 import React from "react";
 import styles from './ProductModal.module.css';
 import { useDispatch, useSelector } from "react-redux";
-import { setCount } from "../../redux";
+import { setProductToCart } from "../../redux";
 import { useHistory, useParams } from "react-router-dom";
 
 export const ProductModal = ({ product, state, view }) => {
-  const { count } = useSelector(({ counter }) => counter);
+  const { oneProductCountInCart } = useSelector(({ cart }) => cart);
   const dispatch = useDispatch();
   const history = useHistory();
   const { userId } = useParams();
 
   const onCounterClick = (payload) => {
-    dispatch(setCount(payload));
+    dispatch(setProductToCart(payload));
   };
 
   const onCartPassClick = () => {
@@ -29,13 +29,13 @@ export const ProductModal = ({ product, state, view }) => {
         <div className={styles.product_modal_info}>
           {product.name}
           <div className={styles.btn_count_wrapper}>
-            <button disabled={count === 1} className={styles.btn_minus} onClick={() => onCounterClick(-1)}>-</button>
-            <span className={styles.count_span}>{count}</span>
+            <button disabled={oneProductCountInCart === 1} className={styles.btn_minus} onClick={() => onCounterClick(-1)}>-</button>
+            <span className={styles.count_span}>{oneProductCountInCart}</span>
             <button className={styles.btn_plus} onClick={() => onCounterClick(+1)}>+</button>
           </div>
         </div>
       </div>
-      <div>Общая стоимость товара <b>{product.price * count}</b> грн.</div>
+      <div>Общая стоимость товара <b>{product.price * oneProductCountInCart}</b> грн.</div>
       <button className={styles.btn_cart_pass} onClick={onCartPassClick}>ПЕРЕЙТИ В КОРЗИНУ</button>
     </div>
   );

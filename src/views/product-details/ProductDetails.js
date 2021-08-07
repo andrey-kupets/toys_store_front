@@ -10,14 +10,14 @@ import { CartBtn } from "../../components/cartBtn";
 import { Loading } from "../../components/loading";
 import { PageNotFound } from "../page_not_found";
 import { useDispatch, useSelector } from "react-redux";
-import { showProductModal } from "../../redux";
+import { showProductModal, toggleItem } from "../../redux";
 import { ProductModal } from "../../components/product-modal";
 
 export const ProductDetails = () => {
   // const { params: { productId } } = useRouteMatch(); // const match: {params : {id}}
   const { productId } = useParams(); // straight const params: {id}
   const { loading, product, productModal, language } = useSelector(
-    ({ products, language }) => ({ ...products, language })
+    ({ products, language }) => ({ ...products, ...language })
   );
   const dispatch = useDispatch();
 
@@ -33,6 +33,10 @@ export const ProductDetails = () => {
     dispatch(showProductModal(payload));
   };
 
+  // const actWishlist = (payload) => {
+  //   dispatch(toggleItem(payload));
+  // };
+
   return (
     <div className={styles.product_details_wrapper}>
       {loading || loading === null && !product ? <Loading/> :(<>
@@ -43,7 +47,7 @@ export const ProductDetails = () => {
           <span>Category: <i><u>{product.category}</u></i></span><br/>
           <span>Type: <i>{product.type}</i></span>
           <p>{product.description}</p>
-          <WishlistBtn btnName={'Отложить'} view={onModalClick} state={true}/>
+          <WishlistBtn btnName={'Отложить'} click={onModalClick}/>
           {/*<WishlistBtn btnName={'Закрыть'} view={onModalClick}/>*/}
           {/* set close*/}
           <CartBtn btnName={'Купить'} view={onModalClick} state={true}/>

@@ -5,6 +5,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { WishlistBtn } from "../wishlistBtn";
 import { CartBtn } from "../cartBtn";
 import { transformQuery } from '../../funtion-helpers';
+import { useSelector } from "react-redux";
 
 export const HeaderBlock = () => {
   const history = useHistory();
@@ -48,7 +49,8 @@ export const HeaderBlock = () => {
       </div>
       <div><Link to='/auth'>Вход</Link></div>
       <div className={styles.cart_wishlist_block}>
-        <WishlistBtn view={onWishlistViewClick} title={'Отложенные'}/>
+        <WishlistBtn click={onWishlistViewClick} title={'Отложенные'}/>
+
         <CartBtn view={onCartViewClick} title={'Корзина'}/>
       </div>
     </div>

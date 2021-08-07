@@ -1,9 +1,8 @@
-import { SET_COUNT, SET_PAGE_DATA } from '../action-types';
+import { SET_PAGE_DATA } from '../action-types';
 
 const initialState = {
   page: null,
   pages: null,
-  count: 1
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,8 +10,6 @@ const reducer = (state = initialState, action) => {
 
   switch (action.type) {
     case SET_PAGE_DATA: return { ...state, page, pages };
-
-    case SET_COUNT: return { ...state, count: state.count + action.payload };
 
     default: return state;
   }

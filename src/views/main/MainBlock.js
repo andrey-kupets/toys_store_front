@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export const MainBlock = ({ children }) => {
   const { pages, page, products, loading, language } = useSelector(
-    ({ counter, products, language }) => ({ ...counter, ...products, ...language }));
+    ({ pagination, products, language }) => ({ ...pagination, ...products, ...language }));
   const dispatch = useDispatch();
   const history = useHistory();
   const searchParams = useLocation().search.replace('?', '');

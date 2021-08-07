@@ -4,7 +4,7 @@ import { toastifyHelper } from "../toastify-helper"
 import { setLanguage, setLoading, setOneProduct, setPageData, setProducts } from "../../redux";
 import { constants } from "../../constants"; // for notify
 
-const loadProductsData = async (dispatch, searchParams, language) => {
+const loadProductsData = (searchParams, language) => async (dispatch) => {
   try {
     // dispatch(setLanguage('ru')); // first language after page refreshing - 'en'
     dispatch(setLoading(true));
@@ -26,7 +26,7 @@ const loadProductsData = async (dispatch, searchParams, language) => {
   }
 };
 
-const loadProductById = async (productId, dispatch, language) => {
+const loadProductById = (productId, language) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
 

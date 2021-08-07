@@ -1,6 +1,8 @@
 import { SET_PRODUCT_TO_CART } from '../action-types';
 
-const initialState = {
+const initFromLs = localStorage.getItem('product');
+
+const initialState = initFromLs ? JSON.parse(initFromLs) :{
   oneProductCountInCart: 1,
 };
 

@@ -16,7 +16,7 @@ export const MainBlock = ({ children }) => {
   const searchParams = useLocation().search.replace('?', '');
 
   useEffect(() => {
-    loadProductsData(dispatch, searchParams, language);
+    dispatch(loadProductsData(searchParams, language));
   }, [searchParams]);
 
   const onProductClick = (product) => {

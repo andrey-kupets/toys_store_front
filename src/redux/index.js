@@ -1,15 +1,14 @@
 import { reducer } from "./reducers";
 import { applyMiddleware, createStore } from "redux";
+import { logger, oneProductStorageSetter } from "./middlewares";
+import thunk from "redux-thunk";
 export * from './action-creators';
 
-const actionLogger = (store) => (next) => (action) => {
-  console.log(action);
-  // console.log(store.getState().products); // стор отрабатывает синхронно
-
-  next(action);
-};
-
-const middlewares = [actionLogger];
+const middlewares = [
+  thunk,
+  logger,
+  // oneProductStorageSetter
+];
 
 export const store = createStore(reducer,
   applyMiddleware(...middlewares)

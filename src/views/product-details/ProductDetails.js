@@ -22,7 +22,7 @@ export const ProductDetails = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    loadProductById(productId, dispatch, language);
+    dispatch(loadProductById(productId, language));
   }, []);
 
   if (loading === false && !product?.id) {

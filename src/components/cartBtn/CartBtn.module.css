@@ -1,4 +1,16 @@
+.cart_wishlist_btn_wrapper {
+    color: fuchsia;
+    font-weight: bold;
+    position: relative;
+}
+
 .cart_wishlist_icon {
     height: 24px;
     width: 3vw;
+}
+
+.span_wrapper {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }

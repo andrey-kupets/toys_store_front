@@ -1,13 +1,13 @@
 import { reducer } from "./reducers";
 import { applyMiddleware, createStore } from "redux";
-import { logger, oneProductStorageSetter } from "./middlewares";
+import { logger, productStorageSetter } from "./middlewares";
 import thunk from "redux-thunk";
 export * from './action-creators';
 
 const middlewares = [
   thunk,
   logger,
-  // oneProductStorageSetter
+  productStorageSetter
 ];
 
 export const store = createStore(reducer,

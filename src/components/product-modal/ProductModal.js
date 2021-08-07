@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setProductToCart } from "../../redux";
 import { useHistory, useParams } from "react-router-dom";
 
-export const ProductModal = ({ product, state, view }) => {
+export const ProductModal = ({ product, load, click }) => {
   const { oneProductCountInCart } = useSelector(({ cart }) => cart);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -20,8 +20,8 @@ export const ProductModal = ({ product, state, view }) => {
 
   return (
     <div className={styles.product_modal_wrapper}>
-      <button className={styles.btn_close} onClick={() => view(!state)}>X</button>
-      <h3 className={styles.h3}>ТОВАР ДОБАВЛЕН В КОРЗИНУ</h3>
+      <button className={styles.btn_close} onClick={() => click(!load)}>X</button>
+      <h3 className={styles.h3}>ДОБАВИТЬ ТОВАР В КОРЗИНУ</h3>
       <div className={styles.product_modal_main}>
         <div>
           <img className={styles.product_modal_image} src={product.img} alt={`${product.name} toy`}/>
@@ -29,7 +29,7 @@ export const ProductModal = ({ product, state, view }) => {
         <div className={styles.product_modal_info}>
           {product.name}
           <div className={styles.btn_count_wrapper}>
-            <button disabled={oneProductCountInCart === 1} className={styles.btn_minus} onClick={() => onCounterClick(-1)}>-</button>
+            <button disabled={oneProductCountInCart === 0} className={styles.btn_minus} onClick={() => onCounterClick(-1)}>-</button>
             <span className={styles.count_span}>{oneProductCountInCart}</span>
             <button className={styles.btn_plus} onClick={() => onCounterClick(+1)}>+</button>
           </div>

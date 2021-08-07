@@ -9,14 +9,14 @@ import { CartBtn } from "../../components/cartBtn";
 import { Loading } from "../../components/loading";
 import { PageNotFound } from "../page_not_found";
 import { useDispatch, useSelector } from "react-redux";
-import { loadProductById, showProductModal, toggleItemInWishlist } from "../../redux";
+import { loadProductById, setProductToCart, showProductModal, toggleItemInWishlist } from "../../redux";
 import { ProductModal } from "../../components/product-modal";
 
 export const ProductDetails = () => {
   // const { params: { productId } } = useRouteMatch(); // const match: {params : {id}}
   const { productId } = useParams(); // straight const params: {id}
-  const { loading, product, productModal, language } = useSelector(
-    ({ products, language }) => ({ ...products, ...language })
+  const { loading, product, productModal, language, productIdsInWishlist } = useSelector(
+    ({ products, language, wishlist }) => ({ ...products, ...language, ...wishlist })
   );
   const dispatch = useDispatch();
 
@@ -36,6 +36,8 @@ export const ProductDetails = () => {
     dispatch(toggleItemInWishlist(productId));
   };
 
+  const productExists = productIdsInWishlist.includes(product?.id);
+
   return (
     <div className={styles.product_details_wrapper}>
       {loading || loading === null && !product ? <Loading/> :(<>
@@ -46,15 +48,20 @@ export const ProductDetails = () => {
           <span>Category: <i><u>{product.category}</u></i></span><br/>
           <span>Type: <i>{product.type}</i></span>
           <p>{product.description}</p>
-          <WishlistBtn btnName={'Отложить'} click={onWishlistClick} state={product.id}/>
-          {/*<WishlistBtn btnName={'Закрыть'} view={onModalClick}/>*/}
-          {/* set close*/}
-          <CartBtn btnName={'Купить'} view={onModalClick} state={true}/>
+          <WishlistBtn
+            style={{
+              backgroundColor: productExists ? 'antiquewhite' : ''
+            }}
+            btnName={productExists ? 'Изъять' :'Отложить'}
+            click={onWishlistClick}
+            load={product.id}
+          />
+          <CartBtn btnName={'Купить'} click={onModalClick} load={true}/>
         </div>
         <div /*className={styles.cut}*/>
           <img className={styles.product_image} src={product.img} alt={`${product.name} toy`}/>
         </div>
-        {!!productModal && product && <ProductModal product={product} view={onModalClick} state={true}/>}
+        {!!productModal && product && <ProductModal product={product} click={onModalClick} load={true}/>}
       </>)}
     </div>
   )

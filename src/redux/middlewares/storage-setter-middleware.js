@@ -1,9 +1,9 @@
-export const oneProductStorageSetter = (store) => (next) => (action) => {
+export const productStorageSetter = (store) => (next) => (action) => {
   next(action);
 
-  const { oneProductCountInCart } = store.getState().cart;
-  const { product } = store.getState().products;
+  const { wishlist, cart } = store.getState();
 
-  product && localStorage.setItem(`${product.name}`, JSON.stringify(oneProductCountInCart));
-  // localStorage.setItem(`product`, JSON.stringify(oneProductCountInCart));
+  // product && localStorage.setItem(`${product.name}`, JSON.stringify(oneProductCountInCart));
+  localStorage.setItem('WISHLIST', JSON.stringify(wishlist));
+  localStorage.setItem('CART', JSON.stringify(cart));
 };

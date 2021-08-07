@@ -13,7 +13,7 @@ export const HeaderBlock = () => {
 
   const [namePhrase, setNamePhrase] = useState('');
 
-  const {productIdsInWishlist} = useSelector(({wishlist}) => wishlist);
+  const {productIdsInWishlist, oneProductCountInCart} = useSelector(({wishlist, cart}) => ({ ...wishlist, ...cart }));
 
   const onWishlistViewClick = () => {
     history.push('/users/:userId/wishlist');
@@ -51,9 +51,8 @@ export const HeaderBlock = () => {
       </div>
       <div><Link to='/auth'>Вход</Link></div>
       <div className={styles.cart_wishlist_block}>
-        <WishlistBtn click={onWishlistViewClick} title={'Отложенные'} count={productIdsInWishlist.length}/>
-        {/*{!!productIdsInWishlist.length && productIdsInWishlist.length}*/}
-        <CartBtn view={onCartViewClick} title={'Корзина'}/>
+        <WishlistBtn click={onWishlistViewClick} title={'Отложенные'} count={productIdsInWishlist?.length}/>
+        <CartBtn click={onCartViewClick} title={'Корзина'} count={oneProductCountInCart}/>
       </div>
     </div>
   );

@@ -1,8 +1,14 @@
 import { ADD_PRODUCT_TO_WISHLIST, REMOVE_PRODUCT_FROM_WISHLIST } from '../action-types';
 
-const initialState = {
-  productIdsInWishlist: []
-};
+const initFromLS = localStorage.getItem('WISHLIST');
+
+const initialState = initFromLS ? JSON.parse(initFromLS) : {
+  productIdsInWishlist: [],
+}
+
+// const initialState = {
+//   productIdsInWishlist: [],
+// }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

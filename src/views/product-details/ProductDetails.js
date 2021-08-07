@@ -4,13 +4,12 @@ import {
   useParams
 } from "react-router-dom";
 import styles from './ProductDetails.module.css';
-import { loadProductById } from "../../funtion-helpers";
 import { WishlistBtn } from "../../components/wishlistBtn";
 import { CartBtn } from "../../components/cartBtn";
 import { Loading } from "../../components/loading";
 import { PageNotFound } from "../page_not_found";
 import { useDispatch, useSelector } from "react-redux";
-import { showProductModal, toggleItem } from "../../redux";
+import { loadProductById, showProductModal, toggleItemInWishlist } from "../../redux";
 import { ProductModal } from "../../components/product-modal";
 
 export const ProductDetails = () => {
@@ -33,9 +32,9 @@ export const ProductDetails = () => {
     dispatch(showProductModal(payload));
   };
 
-  // const actWishlist = (payload) => {
-  //   dispatch(toggleItem(payload));
-  // };
+  const onWishlistClick = (productId) => {
+    dispatch(toggleItemInWishlist(productId));
+  };
 
   return (
     <div className={styles.product_details_wrapper}>
@@ -47,7 +46,7 @@ export const ProductDetails = () => {
           <span>Category: <i><u>{product.category}</u></i></span><br/>
           <span>Type: <i>{product.type}</i></span>
           <p>{product.description}</p>
-          <WishlistBtn btnName={'Отложить'} click={onModalClick}/>
+          <WishlistBtn btnName={'Отложить'} click={onWishlistClick} state={product.id}/>
           {/*<WishlistBtn btnName={'Закрыть'} view={onModalClick}/>*/}
           {/* set close*/}
           <CartBtn btnName={'Купить'} view={onModalClick} state={true}/>

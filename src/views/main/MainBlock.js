@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import styles from './Main.module.css';
-import { loadProductsData } from "../../funtion-helpers";
 import { LeftSideBar, ProductsList } from "../../components";
 import { useHistory, useLocation } from "react-router-dom";
 import { Loading } from "../../components/loading";
 import { PaginationWrapper } from "../../components/pagination-wrapper";
 import { NoSearchResults } from "../../components/noResults-search";
 import { useDispatch, useSelector } from "react-redux";
+import { loadProductsData } from "../../redux";
 
 export const MainBlock = ({ children }) => {
   const { pages, page, products, loading, language } = useSelector(

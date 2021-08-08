@@ -4,7 +4,7 @@ const initFromLs = localStorage.getItem('CART');
 
 const initialState = initFromLs ? JSON.parse(initFromLs) :{
   // oneProductCountInCart: 0,
-  productsIdsInCart: [],
+  // productsIdsInCart: [],
   productsInCart: [],
 };
 

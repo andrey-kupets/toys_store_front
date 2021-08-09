@@ -11,7 +11,6 @@ export const ProductModal = ({ product, load, click }) => {
   const { userId } = useParams();
 
   const onCounterClick = (payload) => {
-    // dispatch(addProductToCart(payload));
     dispatch(setProductToCart(payload));
   };
 

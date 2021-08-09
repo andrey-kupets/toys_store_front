@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './ProductModal.module.css';
 import { useDispatch, useSelector } from "react-redux";
-import { addProductToCart, setProductToCart } from "../../redux";
+import { setProductToCart } from "../../redux";
 import { useHistory, useParams } from "react-router-dom";
 
 export const ProductModal = ({ product, load, click }) => {
@@ -30,9 +30,9 @@ export const ProductModal = ({ product, load, click }) => {
         <div className={styles.product_modal_info}>
           {product.name}
           <div className={styles.btn_count_wrapper}>
-            {/*<button disabled={oneProductCountInCart === 0} className={styles.btn_minus} onClick={() => onCounterClick(-1)}>-</button>*/}
+            <button disabled={count === 1} className={styles.btn_minus} onClick={() => onCounterClick({ id: product.id, count: -1 })}>-</button>
             <span className={styles.count_span}>{productsInCart.length && count}</span>
-            <button className={styles.btn_plus} onClick={() => onCounterClick({ id:product.id, count: 1 })}>+</button>
+            <button className={styles.btn_plus} onClick={() => onCounterClick({ id: product.id, count: 1 })}>+</button>
           </div>
         </div>
       </div>

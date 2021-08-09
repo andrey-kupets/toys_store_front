@@ -15,8 +15,8 @@ import { ProductModal } from "../../components/product-modal";
 export const ProductDetails = () => {
   // const { params: { productId } } = useRouteMatch(); // const match: {params : {id}}
   const { productId } = useParams(); // straight const params: {id}
-  const { loading, product, productModal, language, productIdsInWishlist } = useSelector(
-    ({ products, language, wishlist }) => ({ ...products, ...language, ...wishlist })
+  const { loading, product, productModal, language, productIdsInWishlist, productsInCart } = useSelector(
+    ({ products, language, wishlist, cart }) => ({ ...products, ...language, ...wishlist, ...cart })
   );
   const dispatch = useDispatch();
 
@@ -28,8 +28,10 @@ export const ProductDetails = () => {
     return <PageNotFound/>
   }
 
+  const activeProduct = productsInCart.find(obj => obj.productId === product.id);
+
   const onModalClick = (payload) => {
-    if(payload) dispatch(setProductToCart(product.id));
+    if(payload && !activeProduct) dispatch(setProductToCart(product.id));
     dispatch(showProductModal(payload));
   };
 

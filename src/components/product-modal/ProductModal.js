@@ -15,6 +15,7 @@ export const ProductModal = ({ product, load, click }) => {
   };
 
   const count = productsInCart.find(el => el.productId === product.id)?.count || 1;
+
   const onCartPassClick = () => {
     history.push(`/users/${userId}/cart`);
   };
@@ -22,7 +23,7 @@ export const ProductModal = ({ product, load, click }) => {
   return (
     <div className={styles.product_modal_wrapper}>
       <button className={styles.btn_close} onClick={() => click(!load)}>X</button>
-      <h3 className={styles.h3}>ДОБАВИТЬ ТОВАР В КОРЗИНУ</h3>
+      <h3 className={styles.h3}>ТОВАР ДОБАВЛЕН В КОРЗИНУ</h3>
       <div className={styles.product_modal_main}>
         <div>
           <img className={styles.product_modal_image} src={product.img} alt={`${product.name} toy`}/>

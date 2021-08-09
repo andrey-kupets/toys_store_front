@@ -6,9 +6,9 @@ const removeProductFromWishlist = (id) => ({ type: REMOVE_PRODUCT_FROM_WISHLIST,
 export const toggleItemInWishlist = (id) => (dispatch, getState) => {
   const { wishlist: { productIdsInWishlist } } = getState();
 
-  const productExists = productIdsInWishlist.includes(id);
+  const productExistsInWishlist = productIdsInWishlist.includes(id);
 
-  dispatch(productExists
+  dispatch(productExistsInWishlist
     ? removeProductFromWishlist(id)
     : addProductToWishlist(id)
   );

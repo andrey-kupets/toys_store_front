@@ -19,6 +19,8 @@ export const ProductDetails = () => {
     ({ products, language, wishlist, cart }) => ({ ...products, ...language, ...wishlist, ...cart })
   );
   const dispatch = useDispatch();
+  const activeProductObj = productsInCart.find(obj => obj.productId === product.id);
+  const productExistsInWishlist = productIdsInWishlist.includes(product?.id);
 
   useEffect(() => {
     dispatch(loadProductById(productId, language));
@@ -28,18 +30,14 @@ export const ProductDetails = () => {
     return <PageNotFound/>
   }
 
-  const activeProduct = productsInCart.find(obj => obj.productId === product.id);
-
   const onModalClick = (payload) => {
-    if(payload && !activeProduct) dispatch(setProductToCart(product.id));
+    if(payload && !activeProductObj) dispatch(setProductToCart(product.id));
     dispatch(showProductModal(payload));
   };
 
   const onWishlistClick = (productId) => {
     dispatch(toggleItemInWishlist(productId));
   };
-
-  const productExists = productIdsInWishlist.includes(product?.id);
 
   return (
     <div className={styles.product_details_wrapper}>
@@ -53,9 +51,9 @@ export const ProductDetails = () => {
           <p>{product.description}</p>
           <WishlistBtn
             style={{
-              backgroundColor: productExists ? 'antiquewhite' : ''
+              backgroundColor: productExistsInWishlist ? 'antiquewhite' : ''
             }}
-            btnName={productExists ? 'Изъять' :'Отложить'}
+            btnName={productExistsInWishlist ? 'Изъять' :'Отложить'}
             click={onWishlistClick}
             load={product.id}
           />

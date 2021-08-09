@@ -6,10 +6,6 @@ const initialState = initFromLS ? JSON.parse(initFromLS) : {
   productIdsInWishlist: [],
 }
 
-// const initialState = {
-//   productIdsInWishlist: [],
-// }
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRODUCT_TO_WISHLIST: return {

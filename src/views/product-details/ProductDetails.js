@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   useRouteMatch,
-  useParams
+  useParams, useLocation
 } from "react-router-dom";
 import styles from './ProductDetails.module.css';
 import { WishlistBtn } from "../../components/wishlistBtn";
@@ -21,6 +21,8 @@ export const ProductDetails = () => {
   const dispatch = useDispatch();
   const activeProductObj = productsInCart.find(obj => obj.productId === product.id);
   const productExistsInWishlist = productIdsInWishlist.includes(product?.id);
+  const searchParams = useLocation().search.replace('?', '');
+
 
   useEffect(() => {
     dispatch(loadProductById(productId, language));

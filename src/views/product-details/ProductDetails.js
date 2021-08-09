@@ -29,6 +29,7 @@ export const ProductDetails = () => {
   }
 
   const onModalClick = (payload) => {
+    if(payload) dispatch(setProductToCart(product.id));
     dispatch(showProductModal(payload));
   };
 

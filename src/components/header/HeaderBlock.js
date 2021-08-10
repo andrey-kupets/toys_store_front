@@ -18,13 +18,11 @@ export const HeaderBlock = () => {
   const totals = useMemo(() => productsInCart.reduce((acc, el) => acc += el.count, 0), [productsInCart]);
 
   const onWishlistViewClick = () => {
-    history.push('/users/:userId/wishlist');
-    // history.push('/users/wishlist');
+    history.push("/wishlist");
   };
 
   const onCartViewClick = () => {
-    history.push('/users/:userId/cart');
-    // history.push('/users/cart');
+    history.push("/cart");
   };
 
   const onInputNamePhrase = (e) => {

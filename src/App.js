@@ -18,6 +18,12 @@ function App() {
             <Redirect to="/products"/>
           </Route>
 
+          {/*<Route path={["/", "/products"]} exact>*/}
+          <Route path={"/products"} exact>
+            {/*<Redirect to="/products?page=1"/>*/}
+            <MainBlock/>
+          </Route>
+
           <Route path="/products/:productId" exact>
             <ProductDetails/>
           </Route>
@@ -30,20 +36,12 @@ function App() {
             <Registration/>
           </Route>
 
-          <Route path="/users/:userId/wishlist" exact>
-            {/*<Route path="/users/wishlist" exact>*/}
+          <Route path="/wishlist" exact>
             <Wishlist/>
           </Route>
 
-          <Route path="/users/:userId/cart" exact>
-            {/*<Route path="/users/cart" exact>*/}
+          <Route path="/cart" exact>
             <Cart/>
-          </Route>
-
-          {/*<Route path={["/", "/products"]} exact>*/}
-          <Route path={"/products"} exact>
-            {/*<Redirect to="/products?page=1"/>*/}
-            <MainBlock/>
           </Route>
 
           <Route>

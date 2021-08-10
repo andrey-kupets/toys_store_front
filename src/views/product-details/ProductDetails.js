@@ -21,8 +21,6 @@ export const ProductDetails = () => {
   const dispatch = useDispatch();
   const activeProductObj = productsInCart.find(obj => obj.productId === product.id);
   const productExistsInWishlist = productIdsInWishlist.includes(product?.id);
-  const searchParams = useLocation().search.replace('?', '');
-
 
   useEffect(() => {
     dispatch(loadProductById(productId, language));

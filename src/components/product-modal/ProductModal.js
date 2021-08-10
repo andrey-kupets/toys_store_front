@@ -8,7 +8,7 @@ export const ProductModal = ({ product, load, click }) => {
   const { productsInCart } = useSelector(({ cart }) => cart);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { userId, productId } = useParams();
+  const { productId } = useParams();
 
   if (product.id !== productId) dispatch(showProductModal(!load)); // fix URL-passing bug with opened modal
 
@@ -20,7 +20,7 @@ export const ProductModal = ({ product, load, click }) => {
   // const count = productsInCart && productsInCart.find(el => el.productId === product.id).count || 1;
 
   const onCartPassClick = () => {
-    history.push(`/users/${userId}/cart`);
+    history.push("/cart");
   };
 
   return (

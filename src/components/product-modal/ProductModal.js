@@ -10,13 +10,14 @@ export const ProductModal = ({ product, load, click }) => {
   const history = useHistory();
   const { userId, productId } = useParams();
 
-  if (product.id !== productId) dispatch(showProductModal(false)); // fix URL-passing bug with opened modal
+  if (product.id !== productId) dispatch(showProductModal(!load)); // fix URL-passing bug with opened modal
 
   const onCounterClick = (payload) => {
     dispatch(setProductToCart(payload));
   };
 
   const count = productsInCart.find(el => el.productId === product.id)?.count || 1;
+  // const count = productsInCart && productsInCart.find(el => el.productId === product.id).count || 1;
 
   const onCartPassClick = () => {
     history.push(`/users/${userId}/cart`);

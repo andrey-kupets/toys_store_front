@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styles from './HeaderBlock.module.css';
 import { Logo } from "../logo";
 import { Link, useHistory, useLocation } from "react-router-dom";
@@ -13,7 +13,9 @@ export const HeaderBlock = () => {
 
   const [namePhrase, setNamePhrase] = useState('');
 
-  const {productIdsInWishlist, oneProductCountInCart} = useSelector(({wishlist, cart}) => ({ ...wishlist, ...cart }));
+  const {productIdsInWishlist, productsInCart} = useSelector(({wishlist, cart}) => ({ ...wishlist, ...cart }));
+
+  const totals = useMemo(() => productsInCart.reduce((acc, el) => acc += el.count, 0), [productsInCart]);
 
   const onWishlistViewClick = () => {
     history.push('/users/:userId/wishlist');
@@ -52,8 +54,11 @@ export const HeaderBlock = () => {
       <div><Link to='/auth'>Вход</Link></div>
       <div className={styles.cart_wishlist_block}>
         <WishlistBtn click={onWishlistViewClick} title={'Отложенные'} count={productIdsInWishlist?.length}/>
-        <CartBtn click={onCartViewClick} title={'Корзина'} count={oneProductCountInCart}/>
+        <CartBtn click={onCartViewClick} title={'Корзина'} count={totals}/>
       </div>
     </div>
   );
 };
+
+
+// count={productsInCart}

@@ -4,7 +4,7 @@ export const ProductInCart = ({activeProductObj}) => {
 
   return (
     <div>
-      {activeProductObj.productId} - {activeProductObj.count}
+      {activeProductObj._id} - {activeProductObj.count}
     </div>
   );
 };

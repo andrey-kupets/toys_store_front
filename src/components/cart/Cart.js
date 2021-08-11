@@ -6,12 +6,9 @@ import { ProductInCart } from "../product-in-cart";
 export const Cart = () => {
   const {productsInCart} = useSelector(({cart}) => cart);
 
-  console.log(productsInCart)
-
-
   return (
     <div className={styles.cart_wrapper}>
-      {!!productsInCart.length && productsInCart.map(el => <ProductInCart key={el.productId} activeProductObj={el}/>)}
+      {!!productsInCart.length && productsInCart.map(el => <ProductInCart key={el._id} activeProductObj={el}/>)}
     </div>
   );
 };

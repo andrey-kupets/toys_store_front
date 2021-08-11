@@ -16,7 +16,7 @@ export const ProductModal = ({ product, load, click }) => {
     dispatch(setProductToCart(payload));
   };
 
-  const count = productsInCart.find(el => el.productId === product.id)?.count || 1;
+  const count = productsInCart.find(el => el._id === product.id)?.count || 1;
   // const count = productsInCart && productsInCart.find(el => el.productId === product.id).count || 1;
 
   const onCartPassClick = () => {

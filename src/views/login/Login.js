@@ -39,7 +39,7 @@ export const Login = () => {
         password: ''
       });
 
-      const { access_token, refresh_token } = await authService.authUser(authData) || { };
+      const { tokens: {access_token, refresh_token}, user } = await authService.authUser(authData) || { };
       localStorage.setItem('access_token', JSON.stringify(access_token));
       localStorage.setItem('refresh_token', JSON.stringify(refresh_token));
 

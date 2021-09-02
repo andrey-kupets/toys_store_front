@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  useRouteMatch,
-  useParams, useLocation
-} from "react-router-dom";
+import React, { useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import styles from './ProductDetails.module.css';
 import { WishlistBtn } from "../../components/wishlistBtn";
 import { CartBtn } from "../../components/cartBtn";
@@ -13,13 +10,16 @@ import { loadProductById, setProductToCart, showProductModal, toggleItemInWishli
 import { ProductModal } from "../../components/product-modal";
 
 export const ProductDetails = () => {
-  // const { params: { productId } } = useRouteMatch(); // const match: {params : {id}}
   const { productId } = useParams(); // straight const params: {id}
   const { loading, product, productModal, language, productIdsInWishlist, productsInCart } = useSelector(
     ({ products, language, wishlist, cart }) => ({ ...products, ...language, ...wishlist, ...cart })
   );
+  // const { user } = useSelector(user => user); // TODO
+
   const dispatch = useDispatch();
-  const activeProductObj = productsInCart.find(obj => obj.productId === product.id);
+  const history = useHistory();
+
+  const activeProductObj = productsInCart.find(obj => obj._id === product?.id);
   const productExistsInWishlist = productIdsInWishlist.includes(product?.id);
 
   useEffect(() => {
@@ -31,6 +31,14 @@ export const ProductDetails = () => {
   }
 
   const onModalClick = (payload) => {
+    if (1) {
+      history.push("/auth");
+      return;
+    }
+    //TODO
+
+    //  todo send request to db
+
     if(payload && !activeProductObj) dispatch(setProductToCart(product.id));
     dispatch(showProductModal(payload));
   };

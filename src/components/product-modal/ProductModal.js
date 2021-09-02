@@ -14,6 +14,8 @@ export const ProductModal = ({ product, load, click }) => {
 
   const onCounterClick = (payload) => {
     dispatch(setProductToCart(payload));
+    //  todo send request to db
+
   };
 
   const count = productsInCart.find(el => el._id === product.id)?.count || 1;

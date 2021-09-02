@@ -3,30 +3,26 @@ import styles from './Login.module.css';
 import { authService } from "../../services";
 import { useHistory } from "react-router-dom";
 import { errorsEnum } from "../../errors";
-import { Error } from "../../components/error";
+import { Error } from "../../components";
 import { toastifyHelper } from "../../funtion-helpers";
 import { constants } from "../../constants";
-import { setLanguage } from "../../redux";
+import { setAuthData, setLanguage } from "../../redux";
 import { useDispatch, useSelector } from "react-redux";
 
 export const Login = () => {
-  const { language } = useSelector(({language}) => language);
+  const { language, authData } = useSelector(({language, auth}) => ({ ...language, ...auth }));
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [error, setError] = useState('');
-  const [authData, setAuthData] = useState({
-    email: '',
-    password: ''
-  });
 
-  const history = useHistory();
 
   const checkAuthData = (e) => {
     const { target: { value, name } } = e;
-    setAuthData({
+    dispatch(setAuthData({
       ...authData,
       [name]: value
-    })
+    }));
   };
 
   const onSubmitHandler = async () => {

@@ -1,6 +1,6 @@
 import { ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART } from '../action-types';
-
 const initFromLs = localStorage.getItem('CART');
+
 
 const initialState = initFromLs ? JSON.parse(initFromLs) :{
   productsInCart: [],

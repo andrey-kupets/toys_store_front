@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import styles from './ProductDetails.module.css';
-import { WishlistBtn } from "../../components/wishlistBtn";
-import { CartBtn } from "../../components/cartBtn";
-import { Loading } from "../../components/loading";
+import { CartBtn, Loading, ProductModal, WishlistBtn } from "../../components";
 import { PageNotFound } from "../page_not_found";
 import { useDispatch, useSelector } from "react-redux";
 import { loadProductById, setProductToCart, showProductModal, toggleItemInWishlist } from "../../redux";
-import { ProductModal } from "../../components/product-modal";
 
 export const ProductDetails = () => {
   const { productId } = useParams(); // straight const params: {id}

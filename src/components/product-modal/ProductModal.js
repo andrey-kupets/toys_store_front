@@ -14,7 +14,8 @@ export const ProductModal = ({ product, load, click }) => {
 
   const onCounterClick = (payload) => {
     dispatch(setProductToCart(payload));
-    //  todo send request to db
+
+    //  todo send request to db --- update user_cart (product count +-)
 
   };
 

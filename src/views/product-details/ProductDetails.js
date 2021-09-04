@@ -12,9 +12,6 @@ export const ProductDetails = () => {
     ({ products, language, wishlist, cart, auth }) => ({ ...products, ...language, ...wishlist, ...cart, ...auth })
   );
 
-  console.log(user, '---------user for cart')
-  // console.log(user.id, '---------userId for cart')
-
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -30,11 +27,12 @@ export const ProductDetails = () => {
   }
 
   const onModalClick = (payload) => {
-    if (!user) {
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
       history.push("/auth");
       return;
     }
-    //  todo send request to db --- set && update user_cart
+    //  todo send request to db --- set user_cart (product count +- )
 
     if(payload && !activeProductObj) dispatch(setProductToCart(product.id));
     dispatch(showProductModal(payload));

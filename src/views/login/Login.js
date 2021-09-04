@@ -28,16 +28,17 @@ export const Login = () => {
   const onSubmitHandler = async () => {
     dispatch(setLanguage('ru'));
     try {
-      // todo localeStorage and???
-      setAuthData({
-        ...authData,
-        email: '',
-        password: ''
-      });
+      const { tokens: { access_token, refresh_token }, user } = await authService.authUser(authData) || { };
 
-      const { tokens: {access_token, refresh_token}, user } = await authService.authUser(authData) || { };
       localStorage.setItem('access_token', JSON.stringify(access_token));
       localStorage.setItem('refresh_token', JSON.stringify(refresh_token));
+
+      dispatch(setAuthData({
+        ...authData,
+        email: '',
+        password: '',
+        user
+      }));
 
       setError(null);
       toastifyHelper.notify(constants.USER_IS_AUTHORIZED[language]);

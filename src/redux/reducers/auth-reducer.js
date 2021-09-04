@@ -3,7 +3,8 @@ import { SET_AUTH_DATA } from "../action-types";
 const initialState = {
   authData: {
       email: '',
-      password: ''
+      password: '',
+      user: null
     }
 };
 

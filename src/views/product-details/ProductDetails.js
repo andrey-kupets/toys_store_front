@@ -4,14 +4,16 @@ import styles from './ProductDetails.module.css';
 import { CartBtn, Loading, ProductModal, WishlistBtn } from "../../components";
 import { PageNotFound } from "../page_not_found";
 import { useDispatch, useSelector } from "react-redux";
-import { loadProductById, setProductToCart, showProductModal, toggleItemInWishlist } from "../../redux";
+import { loadProductById, setAuthData, setProductToCart, showProductModal, toggleItemInWishlist } from "../../redux";
 
 export const ProductDetails = () => {
   const { productId } = useParams(); // straight const params: {id}
-  const { loading, product, productModal, language, productIdsInWishlist, productsInCart } = useSelector(
-    ({ products, language, wishlist, cart }) => ({ ...products, ...language, ...wishlist, ...cart })
+  const { loading, product, productModal, language, productIdsInWishlist, productsInCart, authData: { user } } = useSelector(
+    ({ products, language, wishlist, cart, auth }) => ({ ...products, ...language, ...wishlist, ...cart, ...auth })
   );
-  // const { user } = useSelector(user => user); // TODO
+
+  console.log(user, '---------user for cart')
+  // console.log(user.id, '---------userId for cart')
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -28,13 +30,11 @@ export const ProductDetails = () => {
   }
 
   const onModalClick = (payload) => {
-    if (1) {
+    if (!user) {
       history.push("/auth");
       return;
     }
-    //TODO
-
-    //  todo send request to db
+    //  todo send request to db --- set && update user_cart
 
     if(payload && !activeProductObj) dispatch(setProductToCart(product.id));
     dispatch(showProductModal(payload));

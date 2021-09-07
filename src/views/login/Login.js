@@ -38,7 +38,6 @@ export const Login = () => {
         ...authData,
         email: '',
         password: '',
-        // user // what for?
       }));
 
       setError(null);

@@ -25,9 +25,8 @@ export const ProductDetails = () => {
     language,
     productIdsInWishlist,
     productsInCart,
-    authData: { user }
   } = useSelector(
-    ({ products, language, wishlist, cart, auth }) => ({ ...products, ...language, ...wishlist, ...cart, ...auth })
+    ({ products, language, wishlist, cart }) => ({ ...products, ...language, ...wishlist, ...cart })
   );
   const [error, setError] = useState(null);
 
@@ -49,7 +48,6 @@ export const ProductDetails = () => {
     dispatch(setLanguage('ru'));
     try {
       const userId = await JSON.parse(localStorage.getItem('userId'));
-      console.log(userId, 'userId')
       const access_token = await JSON.parse(localStorage.getItem('access_token'));
       if (!userId) {
         history.push("/auth");

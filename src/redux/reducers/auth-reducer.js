@@ -4,7 +4,6 @@ const initialState = {
   authData: {
       email: '',
       password: '',
-      _user: null
     }
 };
 

@@ -58,15 +58,14 @@ export const ProductDetails = () => {
       //  todo send request to db --- set user_cart (product count +- )
 
       if (payload && !activeProductObj) dispatch(setProductToCart(product.id));
+
       dispatch(showProductModal(payload));
-      await userService.updateOneUser(userId, { _id: userId, _cart: productsInCart }, access_token);
+      await userService.updateOneUser(userId, { _cart: productsInCart }, access_token);
+
     } catch ({ response: { data } }) {
-      console.log(data, 'data of error')
-      console.log(errorsEnum[data.customCode][language])
       setError(errorsEnum[data.customCode][language]);
 
       toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
-
     }
   };
 

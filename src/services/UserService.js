@@ -17,9 +17,9 @@ class UserService {
   }
 
   async updateOneUser(userId, reqBody, access_token) {
-    console.log(reqBody,'BODYYYYYYYYYYYYY')
     const { data } = await axiosDB.put(`/users/${userId}`, reqBody,
       {
+        // body: reqBody,
         headers: {
           Authorization: `${access_token}`
         },

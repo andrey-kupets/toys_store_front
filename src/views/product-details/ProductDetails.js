@@ -50,7 +50,7 @@ export const ProductDetails = () => {
     try {
       const userId = await JSON.parse(localStorage.getItem('userId'));
       console.log(userId, 'userId')
-      const access_token = await localStorage.getItem('access_token');
+      const access_token = await JSON.parse(localStorage.getItem('access_token'));
       if (!userId) {
         history.push("/auth");
         return;
@@ -62,10 +62,10 @@ export const ProductDetails = () => {
       await userService.updateOneUser(userId, { _id: userId, _cart: productsInCart }, access_token);
     } catch ({ response: { data } }) {
       console.log(data, 'data of error')
-      // console.log(errorsEnum[data.customCode][language])
-      // // setError(errorsEnum[data.customCode][language]);
+      console.log(errorsEnum[data.customCode][language])
+      setError(errorsEnum[data.customCode][language]);
 
-      // toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
+      toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
 
     }
   };

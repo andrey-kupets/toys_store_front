@@ -6,7 +6,6 @@ import { PageNotFound } from "../page_not_found";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loadProductById,
-  setAuthData,
   setLanguage,
   setProductToCart,
   showProductModal,

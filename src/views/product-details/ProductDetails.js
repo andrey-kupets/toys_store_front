@@ -1,16 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import styles from './ProductDetails.module.css';
-import { CartBtn, Loading, ProductModal, WishlistBtn } from "../../components";
+import { CartBtn, Error, Loading, ProductModal, WishlistBtn } from "../../components";
 import { PageNotFound } from "../page_not_found";
 import { useDispatch, useSelector } from "react-redux";
-import { loadProductById, setAuthData, setProductToCart, showProductModal, toggleItemInWishlist } from "../../redux";
+import {
+  loadProductById,
+  setAuthData,
+  setLanguage,
+  setProductToCart,
+  showProductModal,
+  toggleItemInWishlist
+} from "../../redux";
+import { userService } from "../../services";
+import { errorsEnum } from "../../errors";
+import { toastifyHelper } from "../../funtion-helpers";
 
 export const ProductDetails = () => {
   const { productId } = useParams(); // straight const params: {id}
-  const { loading, product, productModal, language, productIdsInWishlist, productsInCart, authData: { user } } = useSelector(
+  const {
+    loading,
+    product,
+    productModal,
+    language,
+    productIdsInWishlist,
+    productsInCart,
+    authData: { user }
+  } = useSelector(
     ({ products, language, wishlist, cart, auth }) => ({ ...products, ...language, ...wishlist, ...cart, ...auth })
   );
+  const [error, setError] = useState(null);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -26,16 +45,29 @@ export const ProductDetails = () => {
     return <PageNotFound/>
   }
 
-  const onModalClick = (payload) => {
-    const userId = localStorage.getItem('userId');
-    if (!userId) {
-      history.push("/auth");
-      return;
-    }
-    //  todo send request to db --- set user_cart (product count +- )
+  const onModalClick = async (payload) => {
+    dispatch(setLanguage('ru'));
+    try {
+      const userId = await JSON.parse(localStorage.getItem('userId'));
+      console.log(userId, 'userId')
+      const access_token = await localStorage.getItem('access_token');
+      if (!userId) {
+        history.push("/auth");
+        return;
+      }
+      //  todo send request to db --- set user_cart (product count +- )
 
-    if(payload && !activeProductObj) dispatch(setProductToCart(product.id));
-    dispatch(showProductModal(payload));
+      if (payload && !activeProductObj) dispatch(setProductToCart(product.id));
+      dispatch(showProductModal(payload));
+      await userService.updateOneUser(userId, { _id: userId, _cart: productsInCart }, access_token);
+    } catch ({ response: { data } }) {
+      console.log(data, 'data of error')
+      // console.log(errorsEnum[data.customCode][language])
+      // // setError(errorsEnum[data.customCode][language]);
+
+      // toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
+
+    }
   };
 
   const onWishlistClick = (productId) => {
@@ -54,13 +86,14 @@ export const ProductDetails = () => {
           <p>{product.description}</p>
           <WishlistBtn
             style={{
-              backgroundColor: productExistsInWishlist ? 'antiquewhite' : ''
+              backgroundColor: productExistsInWishlist ? 'antiquewhite' :''
             }}
             btnName={productExistsInWishlist ? 'Изъять' :'Отложить'}
             click={onWishlistClick}
             load={product.id}
           />
           <CartBtn btnName={'Купить'} click={onModalClick} load={true}/>
+          {!!error && <Error error={error}/>}
         </div>
         <div /*className={styles.cut}*/>
           <img className={styles.product_image} src={product.img} alt={`${product.name} toy`}/>

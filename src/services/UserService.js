@@ -15,6 +15,17 @@ class UserService {
     const { data } = await axiosDB.post('/users', reqBody);
     return data;
   }
+
+  async updateOneUser(userId, reqBody, access_token) {
+    console.log(reqBody,'BODYYYYYYYYYYYYY')
+    const { data } = await axiosDB.put(`/users/${userId}`, reqBody,
+      {
+        headers: {
+          Authorization: `${access_token}`
+        },
+      });
+    return data;
+  }
 }
 
 export const userService = new UserService();

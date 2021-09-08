@@ -3,9 +3,8 @@ import { useSelector } from "react-redux";
 
 export const ProductInCart = ({activeProductObj}) => {
   const { products, productsInCart } = useSelector(
-    ({ products, language, cart }) => ({ ...products, ...language, ...cart })
+    ({ products, cart }) => ({ ...products, ...cart })
   );
-
 
   return (
     <div>

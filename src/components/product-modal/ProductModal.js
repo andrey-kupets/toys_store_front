@@ -3,6 +3,7 @@ import styles from './ProductModal.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { setProductToCart, showProductModal } from "../../redux";
 import { useHistory, useParams } from "react-router-dom";
+import { userService } from "../../services";
 
 export const ProductModal = ({ product, load, click }) => {
   const { productsInCart } = useSelector(({ cart }) => cart);
@@ -12,11 +13,14 @@ export const ProductModal = ({ product, load, click }) => {
 
   if (product.id !== productId) dispatch(showProductModal(!load)); // fix URL-passing bug with opened modal
 
-  const onCounterClick = (payload) => {
+  const onCounterClick = async (payload) => {
     dispatch(setProductToCart(payload));
 
-    //  todo send request to db --- update user_cart (product count +-)
+    const userId = JSON.parse(localStorage.getItem('userId'));
+    const access_token = JSON.parse(localStorage.getItem('access_token'));
+    const cart = JSON.parse(localStorage.getItem('CART'));
 
+    await userService.updateOneUser(userId, { _cart: cart.productsInCart }, access_token);
   };
 
   const count = productsInCart.find(el => el._id === product.id)?.count || 1;

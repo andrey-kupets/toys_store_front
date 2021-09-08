@@ -2,21 +2,21 @@ import React, { useEffect } from "react";
 import styles from './Main.module.css';
 import { LeftSideBar, ProductsList } from "../../components";
 import { useHistory, useLocation } from "react-router-dom";
-import { Loading } from "../../components/loading";
-import { PaginationWrapper } from "../../components/pagination-wrapper";
-import { NoSearchResults } from "../../components/noResults-search";
+import { Loading } from "../../components";
+import { PaginationWrapper } from "../../components";
+import { NoSearchResults } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { loadProductsData } from "../../redux";
 
 export const MainBlock = ({ children }) => {
-  const { pages, page, products, loading, language } = useSelector(
-    ({ pagination, products, language }) => ({ ...pagination, ...products, ...language }));
+  const { pages, page, products, loading } = useSelector(
+    ({ pagination, products }) => ({ ...pagination, ...products }));
   const dispatch = useDispatch();
   const history = useHistory();
   const searchParams = useLocation().search.replace('?', '');
 
   useEffect(() => {
-    dispatch(loadProductsData(searchParams, language));
+    dispatch(loadProductsData(searchParams));
   }, [searchParams]);
 
   const onProductClick = (product) => {

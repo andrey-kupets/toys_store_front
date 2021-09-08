@@ -58,14 +58,14 @@ export const constants = {
   },
 
   USER_UPDATED: {
-    en: 'Your profile has been updated successfully',
-    ua: 'Ваш профіль успішно оновлено',
-    ru: 'Ваш профиль успешно обновлён'
+    en: 'Your data has been updated successfully',
+    ua: 'Ваші дані успішно оновлено',
+    ru: 'Ваши данные успешно обновлены'
   },
 
   USER_DELETED: {
-    en: 'Your profile has been removed successfully',
-    ua: 'Ваш профіль успішно видалено',
-    ru: 'Ваш профиль успешно удалён'
+    en: 'Your account has been removed successfully',
+    ua: 'Ваш аккаунт успішно видалено',
+    ru: 'Ваш аккаунт успешно удалён'
   },
 };

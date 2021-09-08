@@ -14,14 +14,15 @@ import {
 import { userService } from "../../services";
 import { errorsEnum } from "../../errors";
 import { toastifyHelper } from "../../funtion-helpers";
+import { constants } from "../../constants";
 
 export const ProductDetails = () => {
   const { productId } = useParams();
   const {
     loading,
+    language,
     product,
     productModal,
-    language,
     productIdsInWishlist,
     productsInCart,
   } = useSelector(
@@ -36,7 +37,7 @@ export const ProductDetails = () => {
   const productExistsInWishlist = productIdsInWishlist.includes(product?.id);
 
   useEffect(() => {
-    dispatch(loadProductById(productId, language));
+    dispatch(loadProductById(productId));
   }, []);
 
   if (loading === false && !product?.id) {
@@ -44,23 +45,21 @@ export const ProductDetails = () => {
   }
 
   const onModalClick = async (payload) => {
-    dispatch(setLanguage('ru'));
     try {
       const userId = JSON.parse(localStorage.getItem('userId'));
-      const access_token = JSON.parse(localStorage.getItem('access_token'));
+
       if (!userId) {
         history.push("/auth");
         return;
       }
-      //  todo send request to db --- set user_cart (product count +- )
 
       if (payload && !activeProductObj) dispatch(setProductToCart(product.id));
 
+      const access_token = JSON.parse(localStorage.getItem('access_token'));
       const cart = JSON.parse(localStorage.getItem('CART'));
-      dispatch(showProductModal(payload));
-
       await userService.updateOneUser(userId, { _cart: cart.productsInCart }, access_token);
 
+      dispatch(showProductModal(payload));
     } catch ({ response: { data } }) {
       setError(errorsEnum[data.customCode][language]);
 

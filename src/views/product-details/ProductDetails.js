@@ -16,7 +16,7 @@ import { errorsEnum } from "../../errors";
 import { toastifyHelper } from "../../funtion-helpers";
 
 export const ProductDetails = () => {
-  const { productId } = useParams(); // straight const params: {id}
+  const { productId } = useParams();
   const {
     loading,
     product,
@@ -46,8 +46,8 @@ export const ProductDetails = () => {
   const onModalClick = async (payload) => {
     dispatch(setLanguage('ru'));
     try {
-      const userId = await JSON.parse(localStorage.getItem('userId'));
-      const access_token = await JSON.parse(localStorage.getItem('access_token'));
+      const userId = JSON.parse(localStorage.getItem('userId'));
+      const access_token = JSON.parse(localStorage.getItem('access_token'));
       if (!userId) {
         history.push("/auth");
         return;
@@ -56,8 +56,10 @@ export const ProductDetails = () => {
 
       if (payload && !activeProductObj) dispatch(setProductToCart(product.id));
 
+      const cart = JSON.parse(localStorage.getItem('CART'));
       dispatch(showProductModal(payload));
-      await userService.updateOneUser(userId, { _cart: productsInCart }, access_token);
+
+      await userService.updateOneUser(userId, { _cart: cart.productsInCart }, access_token);
 
     } catch ({ response: { data } }) {
       setError(errorsEnum[data.customCode][language]);

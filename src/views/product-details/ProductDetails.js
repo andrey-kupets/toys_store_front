@@ -10,7 +10,7 @@ import {
   showProductModal,
   toggleItemInWishlist
 } from "../../redux";
-import { userService } from "../../services";
+import { authService, userService } from "../../services";
 import { errorsEnum } from "../../errors";
 import { toastifyHelper } from "../../funtion-helpers";
 import { axiosDB } from "../../services/axiosConfig";
@@ -47,9 +47,8 @@ export const ProductDetails = () => {
     const userId = JSON.parse(localStorage.getItem('userId'));
     const access_token = JSON.parse(localStorage.getItem('access_token'));
     try {
-
       if (!access_token) {
-        history.push("/auth");
+        history.push('/auth');
         return;
       }
 
@@ -61,25 +60,19 @@ export const ProductDetails = () => {
       dispatch(showProductModal(payload));
     } catch ({ response: { status } }) {
       if (status === 401) {
-        const refresh_token = JSON.parse(localStorage.getItem('refresh_token'));
-        const res = await axiosDB.post('/auth/refresh', {}, {
-          headers: {
-            Authorization: `${refresh_token}`
-          },
-        });
-
-        const cart = JSON.parse(localStorage.getItem('CART'));
         try {
-          await userService.updateOneUser(userId, { _cart: cart.productsInCart }, res.data.access_token);
+          const refresh_token = JSON.parse(localStorage.getItem('refresh_token'));
+          const data = await authService.refreshToken(refresh_token);
+          const cart = JSON.parse(localStorage.getItem('CART'));
+
+          await userService.updateOneUser(userId, { _cart: cart.productsInCart }, data.access_token);
 
           dispatch(showProductModal(payload));
         } catch ({ response: { data } }) {
-
-          setError(errorsEnum[data.customCode][language]);
-
           toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
-        }
 
+          history.push('/auth');
+        }
       }
     }
   };

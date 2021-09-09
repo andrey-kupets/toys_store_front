@@ -24,7 +24,6 @@ class UserService {
           Authorization: `${access_token}`
         },
       });
-    console.log(data, 'service')
     return data;
   }
 }

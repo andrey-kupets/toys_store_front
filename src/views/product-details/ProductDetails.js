@@ -44,7 +44,7 @@ export const ProductDetails = () => {
   }
 
   const onModalClick = async (payload) => {
-      const userId = JSON.parse(localStorage.getItem('userId'));
+    const userId = JSON.parse(localStorage.getItem('userId'));
     const access_token = JSON.parse(localStorage.getItem('access_token'));
     try {
 
@@ -59,25 +59,28 @@ export const ProductDetails = () => {
       await userService.updateOneUser(userId, { _cart: cart.productsInCart }, access_token);
 
       dispatch(showProductModal(payload));
-    } catch ({ response: { data, status } }) {
+    } catch ({ response: { status } }) {
       if (status === 401) {
         const refresh_token = JSON.parse(localStorage.getItem('refresh_token'));
-        const  res  = await axiosDB.post('/auth/refresh', {}, {
+        const res = await axiosDB.post('/auth/refresh', {}, {
           headers: {
             Authorization: `${refresh_token}`
           },
         });
 
-        console.log(res)
         const cart = JSON.parse(localStorage.getItem('CART'));
+        try {
+          await userService.updateOneUser(userId, { _cart: cart.productsInCart }, res.data.access_token);
 
-        await userService.updateOneUser(userId, { _cart: cart.productsInCart }, res.data.access_token);
-        dispatch(showProductModal(payload));
+          dispatch(showProductModal(payload));
+        } catch ({ response: { data } }) {
+
+          setError(errorsEnum[data.customCode][language]);
+
+          toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
+        }
 
       }
-      // setError(errorsEnum[data.customCode][language]);
-
-      // toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
     }
   };
 
@@ -109,7 +112,7 @@ export const ProductDetails = () => {
         <div /*className={styles.cut}*/>
           <img className={styles.product_image} src={product.img} alt={`${product.name} toy`}/>
         </div>
-        {!!productModal && product && <ProductModal product={product} click={onModalClick} load={true}/>}
+        {!!productModal && product && <ProductModal product={product} click={(payload) => dispatch(showProductModal(payload))} load={true}/>}
       </>)}
     </div>
   )

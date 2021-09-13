@@ -30,7 +30,6 @@ export const Registration = () => {
   };
 
   const onSubmitHandler = async () => {
-    dispatch(setLanguage('ru'));
     try {
       setUserData({
         ...userData,

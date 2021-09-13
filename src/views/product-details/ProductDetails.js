@@ -13,7 +13,6 @@ import {
 import { authService, userService } from "../../services";
 import { errorsEnum } from "../../errors";
 import { toastifyHelper } from "../../funtion-helpers";
-import { axiosDB } from "../../services/axiosConfig";
 
 export const ProductDetails = () => {
   const { productId } = useParams();
@@ -44,17 +43,18 @@ export const ProductDetails = () => {
   }
 
   const onModalClick = async (payload) => {
+    if (payload && !activeProductObj) dispatch(setProductToCart(product.id));
+
     const userId = JSON.parse(localStorage.getItem('userId'));
     const access_token = JSON.parse(localStorage.getItem('access_token'));
+    const cart = JSON.parse(localStorage.getItem('CART'));
     try {
       if (!access_token) {
         history.push('/auth');
         return;
       }
 
-      if (payload && !activeProductObj) dispatch(setProductToCart(product.id));
 
-      const cart = JSON.parse(localStorage.getItem('CART'));
       await userService.updateOneUser(userId, { _cart: cart.productsInCart }, access_token);
 
       dispatch(showProductModal(payload));
@@ -76,6 +76,7 @@ export const ProductDetails = () => {
       }
     }
   };
+
 
   const onWishlistClick = (productId) => {
     dispatch(toggleItemInWishlist(productId));
@@ -105,8 +106,11 @@ export const ProductDetails = () => {
         <div /*className={styles.cut}*/>
           <img className={styles.product_image} src={product.img} alt={`${product.name} toy`}/>
         </div>
-        {!!productModal && product && <ProductModal product={product} click={(payload) => dispatch(showProductModal(payload))} load={true}/>}
+        {!!productModal && product &&
+        <ProductModal product={product} click={(payload) => dispatch(showProductModal(payload))} load={true}/>}
       </>)}
     </div>
   )
 }
+
+

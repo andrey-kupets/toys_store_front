@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import styles from './ProductDetails.module.css';
-import { CartBtn, Error, Loading, ProductModal, WishlistBtn } from "../../components";
+import { CartBtn, Loading, ProductModal, WishlistBtn } from "../../components";
 import { PageNotFound } from "../page_not_found";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  loadProductById,
-  setProductToCart,
-  showProductModal,
-  toggleItemInWishlist
-} from "../../redux";
-import { authService, userService } from "../../services";
-import { errorsEnum } from "../../errors";
-import { toastifyHelper } from "../../funtion-helpers";
+import { loadProductById, setProductToCart, showProductModal, toggleItemInWishlist } from "../../redux";
+import { userService } from "../../services";
+import { checkAuth } from "../../funtion-helpers";
 
 export const ProductDetails = () => {
   const { productId } = useParams();
@@ -26,8 +20,6 @@ export const ProductDetails = () => {
   } = useSelector(
     ({ products, language, wishlist, cart }) => ({ ...products, ...language, ...wishlist, ...cart })
   );
-  const [error, setError] = useState(null);
-
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -46,35 +38,17 @@ export const ProductDetails = () => {
     if (payload && !activeProductObj) dispatch(setProductToCart(product.id));
 
     const userId = JSON.parse(localStorage.getItem('userId'));
-    const access_token = JSON.parse(localStorage.getItem('access_token'));
     const cart = JSON.parse(localStorage.getItem('CART'));
-    try {
-      if (!access_token) {
-        history.push('/auth');
-        return;
-      }
 
+    const updateUserItem = async (access_token) => {
+      return await userService.updateOneUser(userId, { _cart: cart.productsInCart }, access_token);
+    };
 
-      await userService.updateOneUser(userId, { _cart: cart.productsInCart }, access_token);
+    const trigger = (state) => {
+      return dispatch(showProductModal(state))
+    };
 
-      dispatch(showProductModal(payload));
-    } catch ({ response: { status } }) {
-      if (status === 401) {
-        try {
-          const refresh_token = JSON.parse(localStorage.getItem('refresh_token'));
-          const data = await authService.refreshToken(refresh_token);
-          const cart = JSON.parse(localStorage.getItem('CART'));
-
-          await userService.updateOneUser(userId, { _cart: cart.productsInCart }, data.access_token);
-
-          dispatch(showProductModal(payload));
-        } catch ({ response: { data } }) {
-          toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
-
-          history.push('/auth');
-        }
-      }
-    }
+    await checkAuth(updateUserItem, cart, language, history, trigger, payload);
   };
 
 
@@ -101,7 +75,6 @@ export const ProductDetails = () => {
             load={product.id}
           />
           <CartBtn btnName={'Купить'} click={onModalClick} load={true}/>
-          {!!error && <Error error={error}/>}
         </div>
         <div /*className={styles.cut}*/>
           <img className={styles.product_image} src={product.img} alt={`${product.name} toy`}/>

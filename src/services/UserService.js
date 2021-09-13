@@ -1,8 +1,4 @@
 import { axiosDB } from './axiosConfig';
-import { authService } from "./AuthService";
-import { showProductModal } from "../redux";
-import { toastifyHelper } from "../funtion-helpers";
-import { errorsEnum } from "../errors";
 
 class UserService {
   async getUsers() {
@@ -33,32 +29,3 @@ class UserService {
 }
 
 export const userService = new UserService();
-
-// const checkAuth = async (updateUserItem, userItem, language, trigger) => {
-//   const access_token = JSON.parse(localStorage.getItem('access_token'));
-//
-//   try {
-//     if (!access_token) {
-//       history.push('/auth');
-//       return;
-//     }
-//
-//     updateUserItem(access_token);
-//     trigger();
-//   } catch ({ response: { status } }) {
-//     if (status === 401) {
-//       try {
-//         const refresh_token = JSON.parse(localStorage.getItem('refresh_token'));
-//         const data = await authService.refreshToken(refresh_token);
-//
-//         await updateUserItem(data.access_token);
-//
-//       } catch ({ response: { data } }) {
-//         toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
-//
-//         history.push('/auth');
-//       }
-//     }
-//   }
-// }
-

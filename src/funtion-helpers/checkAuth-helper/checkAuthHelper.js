@@ -2,15 +2,11 @@ import { authService } from "../../services";
 import { toastifyHelper } from "../toastify-helper";
 import { errorsEnum } from "../../errors";
 
-export const checkAuth = async (userRequest, userItem, language, history, trigger, payload) => {
-  const access_token =  JSON.parse(localStorage.getItem('access_token'));
-
+export const checkAuth = async (userRequest, language, history, trigger) => {
   try {
-    if (!access_token) return history.push('/auth');
+    await userRequest();
 
-    await userRequest(access_token);
-
-    trigger(payload);
+    trigger();
   } catch ({ response: { status } }) {
     console.log(status)
     if (status === 401) {
@@ -20,7 +16,7 @@ export const checkAuth = async (userRequest, userItem, language, history, trigge
 
         await userRequest(data.access_token);
 
-        trigger(payload);
+        trigger();
       } catch ({ response: { data } }) {
         toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
 

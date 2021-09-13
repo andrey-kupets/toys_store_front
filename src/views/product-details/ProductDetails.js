@@ -35,20 +35,24 @@ export const ProductDetails = () => {
   }
 
   const onModalClick = async (payload) => {
+    const access_token = JSON.parse(localStorage.getItem('access_token'));
+
+    if (!access_token) return history.push('/auth');
+
     if (payload && !activeProductObj) dispatch(setProductToCart(product.id));
 
     const userId = JSON.parse(localStorage.getItem('userId'));
     const cart = JSON.parse(localStorage.getItem('CART'));
 
-    const updateUserItem = async (access_token) => {
-      return await userService.updateOneUser(userId, { _cart: cart.productsInCart }, access_token);
+    const updateUserItem = async (token = access_token) => {
+      return await userService.updateOneUser(userId, { _cart: cart.productsInCart }, token);
     };
 
-    const trigger = (state) => {
+    const trigger = (state = payload) => {
       return dispatch(showProductModal(state))
     };
 
-    await checkAuth(updateUserItem, cart, language, history, trigger, payload);
+    await checkAuth(updateUserItem, language, history, trigger);
   };
 
 
@@ -84,6 +88,6 @@ export const ProductDetails = () => {
       </>)}
     </div>
   )
-}
+};
 
 

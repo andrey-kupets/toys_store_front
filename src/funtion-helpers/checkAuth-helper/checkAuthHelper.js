@@ -2,13 +2,13 @@ import { authService } from "../../services";
 import { toastifyHelper } from "../toastify-helper";
 import { errorsEnum } from "../../errors";
 
-export const checkAuth = async (updateUserItem, userItem, language, history, trigger, payload) => {
+export const checkAuth = async (userRequest, userItem, language, history, trigger, payload) => {
   const access_token =  JSON.parse(localStorage.getItem('access_token'));
 
   try {
     if (!access_token) return history.push('/auth');
 
-    await updateUserItem(access_token);
+    await userRequest(access_token);
 
     trigger(payload);
   } catch ({ response: { status } }) {
@@ -18,7 +18,7 @@ export const checkAuth = async (updateUserItem, userItem, language, history, tri
         const refresh_token =  JSON.parse(localStorage.getItem('refresh_token'));
         const data = await authService.refreshToken(refresh_token);
 
-        await updateUserItem(data.access_token);
+        await userRequest(data.access_token);
 
         trigger(payload);
       } catch ({ response: { data } }) {

@@ -26,7 +26,6 @@ export const Login = () => {
   };
 
   const onSubmitHandler = async () => {
-    dispatch(setLanguage('ru'));
     try {
       const { tokens: { access_token, refresh_token }, user } = await authService.authUser(authData) || { };
 

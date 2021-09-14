@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { setProductToCart, showProductModal } from "../../redux";
 import { useHistory, useParams } from "react-router-dom";
 import { userService } from "../../services";
+import { checkAuth } from "../../funtion-helpers";
 
 export const ProductModal = ({ product, load, click }) => {
-  const { productsInCart } = useSelector(({ cart }) => cart);
+  const { productsInCart, language } = useSelector(({ cart, language }) => ({ ...cart, ...language }));
   const dispatch = useDispatch();
   const history = useHistory();
   const { productId } = useParams();
@@ -14,14 +15,32 @@ export const ProductModal = ({ product, load, click }) => {
   if (product.id !== productId) dispatch(showProductModal(!load)); // fix URL-passing bug with opened modal
 
   const onCounterClick = async (payload) => {
+    const access_token = JSON.parse(localStorage.getItem('access_token'));
+
+    if (!access_token) return history.push('/auth');
+
     dispatch(setProductToCart(payload));
 
     const userId = JSON.parse(localStorage.getItem('userId'));
-    const access_token = JSON.parse(localStorage.getItem('access_token'));
     const cart = JSON.parse(localStorage.getItem('CART'));
 
-    await userService.updateOneUser(userId, { _cart: cart.productsInCart }, access_token);
+    const updateUserItem = async (token = access_token) => {
+      return await userService.updateOneUser(userId, { _cart: cart.productsInCart }, token);
+    };
+
+    await checkAuth(updateUserItem, language, history);
+
   };
+
+  // const onCounterClick = async (payload) => {
+  //   dispatch(setProductToCart(payload));
+  //
+  //   const userId = JSON.parse(localStorage.getItem('userId'));
+  //   const access_token = JSON.parse(localStorage.getItem('access_token'));
+  //   const cart = JSON.parse(localStorage.getItem('CART'));
+  //
+  //   await userService.updateOneUser(userId, { _cart: cart.productsInCart }, access_token);
+  // };
 
   const count = productsInCart.find(el => el._id === product.id)?.count || 1;
   // const count = productsInCart && productsInCart.find(el => el.productId === product.id).count || 1;
@@ -59,3 +78,13 @@ export const ProductModal = ({ product, load, click }) => {
     </div>
   );
 };
+
+// const onCounterClick = async (payload) => {
+//   dispatch(setProductToCart(payload));
+//
+//   const userId = JSON.parse(localStorage.getItem('userId'));
+//   const access_token = JSON.parse(localStorage.getItem('access_token'));
+//   const cart = JSON.parse(localStorage.getItem('CART'));
+//
+//   await userService.updateOneUser(userId, { _cart: cart.productsInCart }, access_token);
+// };

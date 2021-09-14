@@ -48,11 +48,8 @@ export const ProductDetails = () => {
       return await userService.updateOneUser(userId, { _cart: cart.productsInCart }, token);
     };
 
-    const trigger = (state = payload) => {
-      return dispatch(showProductModal(state))
-    };
-
-    await checkAuth(updateUserItem, language, history, trigger);
+    await checkAuth(updateUserItem, language, history);
+    dispatch(showProductModal(payload));
   };
 
 

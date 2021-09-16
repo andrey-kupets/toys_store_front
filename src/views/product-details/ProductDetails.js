@@ -39,6 +39,7 @@ export const ProductDetails = () => {
 
     if (!access_token) return history.push('/auth');
 
+    // if (payload && !activeProductObj) dispatch(setProductToCart(product.id));
     if (payload && !activeProductObj) dispatch(setProductToCart(product.id));
 
     const cart = JSON.parse(localStorage.getItem('CART'));
@@ -46,7 +47,7 @@ export const ProductDetails = () => {
       return await userService.updateOneUser(userId, { _cart: cart.productsInCart }, token);
     };
 
-    await checkAuth(updateUserItem, language, history);
+    await checkAuth(updateUserItem, language, history, dispatch);
     dispatch(showProductModal(payload));
   };
 

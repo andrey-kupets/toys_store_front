@@ -1,8 +1,9 @@
 import { authService } from "../../services";
 import { toastifyHelper } from "../toastify-helper";
 import { errorsEnum } from "../../errors";
+import { emptyCart, setUser } from "../../redux";
 
-export const checkAuth = async (userRequest, language, history) => {
+export const checkAuth = async (userRequest, language, history, dispatch) => {
   const userId = JSON.parse(localStorage.getItem('userId'));
   try {
     await userRequest(userId);
@@ -19,6 +20,9 @@ export const checkAuth = async (userRequest, language, history) => {
         await userRequest(userId, data.access_token);
       } catch ({ response: { data } }) {
         toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
+
+        dispatch(setUser(false));
+        dispatch(emptyCart());
 
         history.push('/auth');
       }

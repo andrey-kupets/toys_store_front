@@ -1,4 +1,4 @@
-import { ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART } from '../action-types';
+import { ADD_PRODUCT_TO_CART, EMPTY_CART, REMOVE_PRODUCT_FROM_CART } from '../action-types';
 const initFromLs = localStorage.getItem('CART');
 
 
@@ -26,6 +26,11 @@ const reducer = (state = initialState, action) => {
       const otherProductsArr = state.productsInCart.filter(obj => obj._id !== id);
 
       return { ...state, productsInCart: [...otherProductsArr, { ...activeProductObj, count: activeProductObj.count - count }]}
+    }
+
+    case EMPTY_CART: return {
+      ...state,
+      productsInCart: []
     }
 
     default:

@@ -26,7 +26,7 @@ export const ProductModal = ({ product, load, click }) => {
       return await userService.updateOneUser(userId, { _cart: cart.productsInCart }, token);
     };
 
-    await checkAuth(updateUserItem, language, history);
+    await checkAuth(updateUserItem, language, history, dispatch);
 
   };
 

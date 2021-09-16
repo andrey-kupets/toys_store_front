@@ -29,10 +29,11 @@ export const Login = () => {
       const { tokens: { access_token, refresh_token }, user } = await authService.authUser(authData) || { };
 
       dispatch(setUser(user));
+      console.log(user, 'user from DB');
 
       localStorage.setItem('access_token', JSON.stringify(access_token));
       localStorage.setItem('refresh_token', JSON.stringify(refresh_token));
-      localStorage.setItem('userId', JSON.stringify(user.id)); // what for? there is access_token
+      localStorage.setItem('userId', JSON.stringify(user.id));
 
       dispatch(setAuthData({
         ...authData,

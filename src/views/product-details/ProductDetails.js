@@ -51,7 +51,6 @@ export const ProductDetails = () => {
     dispatch(showProductModal(payload));
   };
 
-
   const onWishlistClick = (productId) => {
     dispatch(toggleItemInWishlist(productId));
   };

@@ -1,6 +1,5 @@
-import { ADD_PRODUCT_TO_CART, EMPTY_CART, REMOVE_PRODUCT_FROM_CART } from '../action-types';
+import { TRANSFER_DATA_TO_CART_FROM_DB, ADD_PRODUCT_TO_CART, EMPTY_CART, REMOVE_PRODUCT_FROM_CART } from '../action-types';
 const initFromLs = localStorage.getItem('CART');
-
 
 const initialState = initFromLs ? JSON.parse(initFromLs) :{
   productsInCart: [],
@@ -16,7 +15,7 @@ const reducer = (state = initialState, action) => {
       const otherProductsArr = state.productsInCart.filter(obj => obj._id !== id);
 
       return !activeProductObj
-        ? { ...state, productsInCart: [...state.productsInCart, { _id: action.payload, count: 1 }] }
+        ? { ...state, productsInCart: [...state.productsInCart, { _id: payload, count: 1 }] }
         : { ...state, productsInCart: [...otherProductsArr, { ...activeProductObj, count: activeProductObj.count + count }]}
     }
 
@@ -27,6 +26,8 @@ const reducer = (state = initialState, action) => {
 
       return { ...state, productsInCart: [...otherProductsArr, { ...activeProductObj, count: activeProductObj.count - count }]}
     }
+
+    case TRANSFER_DATA_TO_CART_FROM_DB: return { ...state, productsInCart: payload }
 
     case EMPTY_CART: return {
       ...state,

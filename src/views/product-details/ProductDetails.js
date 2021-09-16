@@ -41,10 +41,8 @@ export const ProductDetails = () => {
 
     if (payload && !activeProductObj) dispatch(setProductToCart(product.id));
 
-    const userId = JSON.parse(localStorage.getItem('userId'));
     const cart = JSON.parse(localStorage.getItem('CART'));
-
-    const updateUserItem = async (token = access_token) => {
+    const updateUserItem = async (userId, token = access_token) => {
       return await userService.updateOneUser(userId, { _cart: cart.productsInCart }, token);
     };
 

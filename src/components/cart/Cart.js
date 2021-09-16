@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from './Cart.module.css';
 import { useSelector } from "react-redux";
 import { ProductInCart } from "../product-in-cart";
+import { userService } from "../../services";
 
 export const Cart = () => {
-  const {productsInCart} = useSelector(({cart}) => cart);
+  const [user, setUser] = useState(null);
+  const { productsInCart } = useSelector(({ cart }) => cart);
+  const userId = JSON.parse(localStorage.getItem('userId'));
+
+  const getUser = async (userId) => {
+    try {
+      const resp = await userService.getUserById(userId);
+      setUser(resp)
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getUser(userId);
+  }, [])
+
+  console.log(user);
 
   return (
     <div className={styles.cart_wrapper}>

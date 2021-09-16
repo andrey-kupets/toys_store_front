@@ -6,7 +6,7 @@ import { errorsEnum } from "../../errors";
 import { Error } from "../../components";
 import { toastifyHelper } from "../../funtion-helpers";
 import { constants } from "../../constants";
-import { setAuthData, setLanguage } from "../../redux";
+import { setAuthData, setUser } from "../../redux";
 import { useDispatch, useSelector } from "react-redux";
 
 export const Login = () => {
@@ -15,7 +15,6 @@ export const Login = () => {
   const history = useHistory();
 
   const [error, setError] = useState('');
-
 
   const checkAuthData = (e) => {
     const { target: { value, name } } = e;
@@ -28,6 +27,8 @@ export const Login = () => {
   const onSubmitHandler = async () => {
     try {
       const { tokens: { access_token, refresh_token }, user } = await authService.authUser(authData) || { };
+
+      dispatch(setUser(user));
 
       localStorage.setItem('access_token', JSON.stringify(access_token));
       localStorage.setItem('refresh_token', JSON.stringify(refresh_token));

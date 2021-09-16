@@ -8,14 +8,17 @@ import { transformQuery } from '../../funtion-helpers';
 import { useSelector } from "react-redux";
 
 export const HeaderBlock = () => {
+  const access_token = JSON.parse(localStorage.getItem('access_token'));
   const history = useHistory();
   const searchParams = useLocation().search.replace('?', '');
 
   const [namePhrase, setNamePhrase] = useState('');
 
-  const {productIdsInWishlist, productsInCart} = useSelector(({wishlist, cart}) => ({ ...wishlist, ...cart }));
+  const {productIdsInWishlist, productsInCart, user} = useSelector(({wishlist, cart, users}) => ({ ...wishlist, ...cart, ...users }));
 
   const totals = useMemo(() => productsInCart.reduce((acc, el) => acc += el.count, 0), [productsInCart]);
+
+
 
   const onWishlistViewClick = () => {
     history.push("/wishlist");
@@ -49,7 +52,11 @@ export const HeaderBlock = () => {
           onKeyDown={onInputNamePhrase}
         />
       </div>
-      <div><Link to='/auth'>Вход</Link></div>
+      {
+        user
+        ? <div>PROFILE</div>
+        : <div><Link to='/auth'>Вход</Link></div>
+      }
       <div className={styles.cart_wishlist_block}>
         <WishlistBtn click={onWishlistViewClick} title={'Отложенные'} count={productIdsInWishlist?.length}/>
         <CartBtn click={onCartViewClick} title={'Корзина'} count={totals}/>

@@ -3,8 +3,9 @@ import { toastifyHelper } from "../toastify-helper";
 import { errorsEnum } from "../../errors";
 
 export const checkAuth = async (userRequest, language, history) => {
+  const userId = JSON.parse(localStorage.getItem('userId'));
   try {
-    await userRequest();
+    await userRequest(userId);
   } catch ({ response: { status } }) {
     console.log(status)
     if (status === 401) {
@@ -15,7 +16,7 @@ export const checkAuth = async (userRequest, language, history) => {
         localStorage.setItem('access_token', JSON.stringify(data.access_token));
         localStorage.setItem('refresh_token', JSON.stringify(data.refresh_token));
 
-        await userRequest(data.access_token);
+        await userRequest(userId, data.access_token);
       } catch ({ response: { data } }) {
         toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
 

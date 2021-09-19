@@ -1,0 +1,9 @@
+.product_card_wrapper {
+    display: flex;
+}
+
+.product_card_image {
+    height: 120px;
+    width: 120px;
+    margin-right: 8px;
+}

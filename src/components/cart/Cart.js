@@ -23,10 +23,13 @@ export const Cart = () => {
     getUser(userId);
   }, [])
 
+  console.log(user)
+
   return (
     <div className={styles.cart_wrapper}>
       {!!user?._productsInCart.length
-        ? user._productsInCart.map(el => <ProductInCart key={el._id} {...el}/>)
+        ? user._productsInCart
+          .map(el => <ProductInCart key={el._id} {...el} item={user?._cart.find((item) => item._id === el._id)}/>)
         : 'ЗДЕСЬ МОГУТ БЫТЬ ВАШИ ПРОДУКТЫ'
       }
     </div>

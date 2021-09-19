@@ -30,16 +30,6 @@ export const ProductModal = ({ product, load, click }) => {
 
   };
 
-  // const onCounterClick = async (payload) => {
-  //   dispatch(setProductToCart(payload));
-  //
-  //   const userId = JSON.parse(localStorage.getItem('userId'));
-  //   const access_token = JSON.parse(localStorage.getItem('access_token'));
-  //   const cart = JSON.parse(localStorage.getItem('CART'));
-  //
-  //   await userService.updateOneUser(userId, { _cart: cart.productsInCart }, access_token);
-  // };
-
   const count = productsInCart.find(el => el._id === product.id)?.count || 1;
   // const count = productsInCart && productsInCart.find(el => el.productId === product.id).count || 1;
 
@@ -76,13 +66,3 @@ export const ProductModal = ({ product, load, click }) => {
     </div>
   );
 };
-
-// const onCounterClick = async (payload) => {
-//   dispatch(setProductToCart(payload));
-//
-//   const userId = JSON.parse(localStorage.getItem('userId'));
-//   const access_token = JSON.parse(localStorage.getItem('access_token'));
-//   const cart = JSON.parse(localStorage.getItem('CART'));
-//
-//   await userService.updateOneUser(userId, { _cart: cart.productsInCart }, access_token);
-// };

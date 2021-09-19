@@ -1,14 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
-export const ProductInCart = ({activeProductObj}) => {
-  const { products, productsInCart } = useSelector(
-    ({ products, cart }) => ({ ...products, ...cart })
-  );
-
+export const ProductInCart = ({ image, name, price }) => {
   return (
     <div>
-      {activeProductObj._id} - {activeProductObj.count}
+      { image } - { name } - { price }
     </div>
   );
 };

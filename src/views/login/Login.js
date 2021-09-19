@@ -31,7 +31,7 @@ export const Login = () => {
       dispatch(setUser(user));
       dispatch(transferDataToCartFromDB(user._cart))
       // dispatch(setUser(user._wishlist)); // TODO _wishlist
-      console.log(user, 'user from DB');
+      console.log(user, 'user from DB - Login');
 
       localStorage.setItem('access_token', JSON.stringify(access_token));
       localStorage.setItem('refresh_token', JSON.stringify(refresh_token));
@@ -46,7 +46,7 @@ export const Login = () => {
       setError(null);
       toastifyHelper.notify(constants.USER_IS_AUTHORIZED[language]);
 
-      history.push('/'); // pass to '/' || products when authorized
+      history.push('/'); // pass to '/' || products when authorized TODO pass to previous url
     } catch ({ response: { data } }) {
       setError(errorsEnum[data.customCode][language]);
 

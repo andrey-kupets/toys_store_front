@@ -39,7 +39,6 @@ export const ProductDetails = () => {
 
     if (!access_token) return history.push('/auth');
 
-    // if (payload && !activeProductObj) dispatch(setProductToCart(product.id));
     if (payload && !activeProductObj) dispatch(setProductToCart(product.id));
 
     const cart = JSON.parse(localStorage.getItem('CART'));

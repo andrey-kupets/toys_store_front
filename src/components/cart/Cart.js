@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import styles from './Cart.module.css';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ProductInCart } from "../product-in-cart";
 import { userService } from "../../services";
+import { setUser } from "../../redux";
 
 export const Cart = () => {
-  const [user, setUser] = useState(null);
-  const { productsInCart } = useSelector(({ cart }) => cart);
   const userId = JSON.parse(localStorage.getItem('userId'));
+  const { user } = useSelector(({ users }) => users);
+  const dispatch = useDispatch();
 
   const getUser = async (userId) => {
     try {
-      const resp = await userService.getUserById(userId);
-      setUser(resp)
+      const res = await userService.getUserById(userId);
+      dispatch(setUser(res));
     } catch (e) {
       console.log(e);
     }
@@ -22,11 +23,12 @@ export const Cart = () => {
     getUser(userId);
   }, [])
 
-  console.log(user);
-
   return (
     <div className={styles.cart_wrapper}>
-      {!!productsInCart.length && productsInCart.map(el => <ProductInCart key={el._id} activeProductObj={el}/>)}
+      {!!user?._productsInCart.length
+        ? user._productsInCart.map(el => <ProductInCart key={el._id} {...el}/>)
+        : 'ЗДЕСЬ МОГУТ БЫТЬ ВАШИ ПРОДУКТЫ'
+      }
     </div>
   );
 };

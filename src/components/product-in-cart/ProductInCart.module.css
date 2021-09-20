@@ -1,9 +1,24 @@
 .product_card_wrapper {
+    width: 800px;
     display: flex;
+    border: solid #9bc4f6 1px;
+    border-radius: 8px;
+    margin: 2px 0 0 12px;
 }
 
 .product_card_image {
     height: 120px;
     width: 120px;
-    margin-right: 8px;
+    margin: 0 8px;
+}
+
+.product_card_info {
+    display: flex;
+    /*align-items: center;*/
+    justify-content: space-evenly;
+    padding: 6px 20px 0 20px;
+}
+
+.product_card_name {
+    width: 400px;
 }

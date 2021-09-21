@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import styles from './Cart.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { ProductInCart } from "../product-in-cart";
@@ -7,7 +7,7 @@ import { setUser } from "../../redux";
 
 export const Cart = () => {
   const userId = JSON.parse(localStorage.getItem('userId'));
-  const { user } = useSelector(({ users }) => users);
+  const { user, productsInCart } = useSelector(({ users, cart }) => ({ ...users, ...cart }));
   const dispatch = useDispatch();
 
   const getUser = async (userId) => {
@@ -23,7 +23,7 @@ export const Cart = () => {
     getUser(userId);
   }, [])
 
-  console.log(user)
+  const quantityTotals = useMemo(() => productsInCart.reduce((acc, el) => acc += el.count, 0), [productsInCart]);
 
   return (
     <div className={styles.flex}>
@@ -35,7 +35,7 @@ export const Cart = () => {
         }
       </div>
       <div className={styles.order_modal_wrapper}>
-        Всего 16 товаров на сумму 8 918 грн.
+        Всего {quantityTotals} товаров на сумму 8 918 грн.
       </div>
     </div>
   );

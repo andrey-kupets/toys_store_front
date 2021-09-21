@@ -1,10 +1,10 @@
 .flex {
     display: flex;
     padding-top: 20px;
+    overflow-y: auto;
 }
 
 .product_cards_wrapper {
-    overflow-y: auto;
     margin-right: 12px;
 }
 

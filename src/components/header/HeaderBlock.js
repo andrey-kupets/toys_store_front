@@ -8,7 +8,7 @@ import { transformQuery } from '../../funtion-helpers';
 import { useSelector } from "react-redux";
 
 export const HeaderBlock = () => {
-  const access_token = JSON.parse(localStorage.getItem('access_token'));
+  // const access_token = JSON.parse(localStorage.getItem('access_token'));
   const history = useHistory();
   const searchParams = useLocation().search.replace('?', '');
 
@@ -64,6 +64,3 @@ export const HeaderBlock = () => {
     </div>
   );
 };
-
-
-// count={productsInCart}

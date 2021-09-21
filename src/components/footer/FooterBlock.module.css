@@ -1,5 +1,5 @@
 .footer {
-    width: 1536px;
+    width: 1519px;
     background: antiquewhite;
     color: fuchsia;
 }
@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 10px 0 10px;
+    padding: 0 10px;
 }
 
 

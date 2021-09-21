@@ -4,7 +4,6 @@
 }
 
 .product_cards_wrapper {
-    /*width: 980px;*/
     overflow-y: auto;
     margin-right: 12px;
 }

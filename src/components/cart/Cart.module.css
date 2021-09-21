@@ -38,4 +38,11 @@
     text-align: center;
 }
 
+hr {
+    background-color: #898989;
+    height: 120px;
+    transform: rotate(90deg);
+    margin: -44px 0;
+}
+
 

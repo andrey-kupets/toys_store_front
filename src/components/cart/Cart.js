@@ -40,6 +40,7 @@ export const Cart = () => {
         <span><b>ИТОГО</b> с доставкой <b>{ sumTotals < 500 ? sumTotals + 50 : sumTotals }</b> грн.</span>
         <button className={styles.order_modal_button}>ОФОРМИТЬ ЗАКАЗ</button>
         <span className={styles.center}>Стоимость доставки вы сможете узнать в разделе "Условия оплаты и доставки"</span>
+        <hr/>
         <button className={styles.order_modal_button}>ОЧИСТИТЬ КОРЗИНУ</button>
       </div>
     </div>

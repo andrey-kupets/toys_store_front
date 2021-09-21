@@ -54,7 +54,7 @@ export const HeaderBlock = () => {
       </div>
       {
         user
-        ? <div>PROFILE</div>
+        ? <div className={styles.user_name}>{user.name}</div>
         : <div><Link to='/auth'>Вход</Link></div>
       }
       <div className={styles.cart_wishlist_block}>

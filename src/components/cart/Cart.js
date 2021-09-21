@@ -24,6 +24,7 @@ export const Cart = () => {
   }, [])
 
   const quantityTotals = useMemo(() => productsInCart.reduce((acc, el) => acc += el.count, 0), [productsInCart]);
+  const sumTotals = useMemo(() => user?._productsInCart.reduce((acc, el) => acc += el.price * user?._cart.find((item) => item._id === el._id).count, 0), [user?._productsInCart]);
 
   return (
     <div className={styles.flex}>
@@ -35,7 +36,7 @@ export const Cart = () => {
         }
       </div>
       <div className={styles.order_modal_wrapper}>
-        Всего {quantityTotals} товаров на сумму 8 918 грн.
+        Всего { quantityTotals } товаров на сумму { sumTotals } грн.
       </div>
     </div>
   );

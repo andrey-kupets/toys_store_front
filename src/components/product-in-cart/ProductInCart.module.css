@@ -3,7 +3,7 @@
     display: flex;
     border: solid #9bc4f6 1px;
     border-radius: 8px;
-    margin: 2px 0 0 12px;
+    margin: 2px 0 0 180px;
 }
 
 .product_card_image {
@@ -21,4 +21,19 @@
 
 .product_card_name {
     width: 60%;
+    display: flex;
+    flex-direction: column;
+    color: #505aa5;
+}
+
+.product_card_div {
+    display: flex;
+    flex-direction: column;
+    color: #505aa5;
+}
+
+.product_card_title {
+    font-size: 14px;
+    color: #898989;
+    margin-bottom: 8px;
 }

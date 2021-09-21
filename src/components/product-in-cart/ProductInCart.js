@@ -8,10 +8,20 @@ export const ProductInCart = ({ img, name, price, item: { count } }) => {
         <img className={styles.product_card_image} src={img}/>
       </div>
       <div className={styles.product_card_info}>
-        <div className={styles.product_card_name}>{name}</div>
-        <div>{price}</div>
-        <div>{count}</div>
-        <div>{price*count}</div>
+        <div className={styles.product_card_name}>
+          <span className={styles.product_card_title}>Товар</span>
+          <span>{name}</span>
+        </div>
+        <div className={styles.product_card_div}>
+          <span className={styles.product_card_title}>Цена</span>
+          <span>{price} грн.</span></div>
+        <div className={styles.product_card_div}>
+          <span className={styles.product_card_title}>Кол-во</span>
+          <span>{count}</span></div>
+        <div className={styles.product_card_div}>
+          <span className={styles.product_card_title}>Сумма</span>
+          <span>{price*count} грн.</span>
+        </div>
       </div>
     </div>
   );

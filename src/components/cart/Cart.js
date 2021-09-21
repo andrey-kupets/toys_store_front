@@ -7,7 +7,7 @@ import { setUser } from "../../redux";
 
 export const Cart = () => {
   const userId = JSON.parse(localStorage.getItem('userId'));
-  const { user, productsInCart } = useSelector(({ users, cart }) => ({ ...users, ...cart }));
+  const { user } = useSelector(({ users }) => users);
   const dispatch = useDispatch();
 
   const getUser = async (userId) => {
@@ -23,7 +23,7 @@ export const Cart = () => {
     getUser(userId);
   }, [])
 
-  const quantityTotals = useMemo(() => productsInCart.reduce((acc, el) => acc += el.count, 0), [productsInCart]);
+  const quantityTotals = useMemo(() => user?._cart.reduce((acc, el) => acc += el.count, 0), [user?._cart]);
   const sumTotals = useMemo(() => user?._productsInCart.reduce((acc, el) => acc += el.price * user?._cart.find((item) => item._id === el._id).count, 0), [user?._productsInCart]);
 
   return (

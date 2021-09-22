@@ -5,6 +5,16 @@
     flex: 1;
 }
 
+.empty_cart {
+    margin-right: 12px;
+    width: 800px;
+    color: #505aa5;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    align-items: center;
+}
+
 .product_cards_wrapper {
     margin-right: 12px;
 }

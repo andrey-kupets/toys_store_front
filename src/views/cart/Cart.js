@@ -59,7 +59,7 @@ export const Cart = () => {
                 ? user._productsInCart
                   .map(el => <ProductInCart key={el._id} {...el}
                                             item={user?._cart.find((item) => item._id === el._id)}/>)
-                :'ЗДЕСЬ МОГУТ БЫТЬ ВАШИ ПРОДУКТЫ'
+                : <div className={styles.empty_cart}>ЗДЕСЬ МОГУТ БЫТЬ ВАШИ ПРОДУКТЫ</div>
               }
             </div>
             <div className={styles.order_modal_wrapper}>

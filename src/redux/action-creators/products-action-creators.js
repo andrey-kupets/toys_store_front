@@ -49,6 +49,7 @@ const loadProductById = (productId) => async (dispatch, getState) => {
 };
 
 export {
+  setLoading,
   showProductModal,
   showWishlistModal,
   loadProductsData,

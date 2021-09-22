@@ -3,11 +3,11 @@ import React from "react";
 import { BaseLayout } from "./layouts";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { MainBlock, ProductDetails } from "./views";
-import { PageNotFound } from "./views/page_not_found";
-import { Login } from "./views/login";
-import { Registration } from "./views/registration";
-import { Cart } from "./components/cart";
-import { Wishlist } from "./components/wishlist";
+import { PageNotFound } from "./views";
+import { Login } from "./views";
+import { Registration } from "./views";
+import { Cart } from "./views";
+import { Wishlist } from "./views";
 
 function App() {
   return (

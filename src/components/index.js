@@ -1,4 +1,3 @@
-export * from './cart';
 export * from './cartBtn';
 export * from './error';
 export * from './footer';
@@ -12,5 +11,4 @@ export * from './product-in-cart';
 export * from './product-item';
 export * from './product-modal';
 export * from './products-list';
-export * from './wishlist';
 export * from './wishlistBtn';

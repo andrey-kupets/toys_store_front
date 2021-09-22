@@ -27,7 +27,6 @@ export const ProductModal = ({ product, load, click }) => {
     };
 
     await checkAuth(updateUserItem, language, history, dispatch);
-
   };
 
   const count = productsInCart.find(el => el._id === product.id)?.count || 1;

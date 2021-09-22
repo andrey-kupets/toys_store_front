@@ -47,8 +47,6 @@ export const Cart = () => {
     };
 
     checkAuth(updateUserItem, language, history, dispatch);
-    history.push("/cart");
-
   };
 
   return (

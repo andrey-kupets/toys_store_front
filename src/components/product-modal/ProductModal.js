@@ -32,6 +32,7 @@ export const ProductModal = ({ product, load, click }) => {
   const count = productsInCart.find(el => el._id === product.id)?.count || 1;
 
   const onCartPassClick = () => {
+    dispatch(showProductModal(false));
     history.push("/cart");
   };
 

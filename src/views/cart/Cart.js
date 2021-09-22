@@ -3,15 +3,15 @@ import styles from './Cart.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { ProductInCart } from "../../components";
 import { userService } from "../../services";
-import { emptyCart, setLoading, setUser } from "../../redux";
+import { emptyCart, setLoading, setUser, showProductModal } from "../../redux";
 import { checkAuth } from "../../funtion-helpers";
 import { useHistory } from "react-router-dom";
 import { Loading } from "../../components";
 
 export const Cart = () => {
   const userId = JSON.parse(localStorage.getItem('userId'));
-  const { user, language, loading } =
-    useSelector(({ users, language, products }) => ({ ...users, ...language, ...products }));
+  const { user, language, loading, productsInCart } =
+    useSelector(({ users, language, products, cart }) => ({ ...users, ...language, ...products, ...cart }));
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -29,7 +29,7 @@ export const Cart = () => {
 
   useEffect(() => {
     getUser(userId);
-  }, [])
+  }, [productsInCart])
 
   const quantityTotals = useMemo(() => user?._cart.reduce((acc, el) => acc + el.count, 0), [user?._cart]);
   const sumTotals = useMemo(() => user?._productsInCart.reduce((acc, el) => acc + el.price * user?._cart.find((item) => item._id === el._id).count, 0), [user?._productsInCart]);
@@ -47,32 +47,34 @@ export const Cart = () => {
     };
 
     checkAuth(updateUserItem, language, history, dispatch);
+    history.push("/cart");
+
   };
 
   return (
     <div className={styles.flex}>
       {(loading || loading === null)
         ? <Loading/>
-        :(<div className={styles.flex}>
-            <div className={styles.product_cards_wrapper}>
-              {!!user?._productsInCart.length
-                ? user._productsInCart
-                  .map(el => <ProductInCart key={el._id} {...el}
-                                            item={user?._cart.find((item) => item._id === el._id)}/>)
-                : <div className={styles.empty_cart}>ЗДЕСЬ МОГУТ БЫТЬ ВАШИ ПРОДУКТЫ</div>
-              }
-            </div>
-            <div className={styles.order_modal_wrapper}>
-              <span>Всего {quantityTotals} товаров на сумму <b>{sumTotals}</b> грн.</span>
-              <span><b>ИТОГО</b> с доставкой <b>{sumTotals < 500 ? sumTotals + 50 :sumTotals}</b> грн.</span>
-              <button className={styles.order_modal_button}>ОФОРМИТЬ ЗАКАЗ</button>
-              <span
-                className={styles.center}>Стоимость доставки вы сможете узнать в разделе "Условия оплаты и доставки"</span>
-              <hr/>
-              <button className={styles.order_modal_button} onClick={clearCart}>ОЧИСТИТЬ КОРЗИНУ</button>
-            </div>
-          </div>
-        )
+        :!!user?._productsInCart.length
+          ? (<div className={styles.flex}>
+              <div className={styles.product_cards_wrapper}>
+                {
+                  user._productsInCart
+                    .map(el => <ProductInCart key={el._id} {...el}
+                                              item={user?._cart.find((item) => item._id === el._id)}/>)
+                }
+              </div>
+              <div className={styles.order_modal_wrapper}>
+                <span>Всего {quantityTotals} товаров на сумму <b>{sumTotals}</b> грн.</span>
+                <span><b>ИТОГО</b> с доставкой <b>{sumTotals < 500 ? sumTotals + 50 :sumTotals}</b> грн.</span>
+                <button className={styles.order_modal_button}>ОФОРМИТЬ ЗАКАЗ</button>
+                <span
+                  className={styles.center}>Стоимость доставки вы сможете узнать в разделе "Условия оплаты и доставки"</span>
+                <hr/>
+                <button className={styles.order_modal_button} onClick={clearCart}>ОЧИСТИТЬ КОРЗИНУ</button>
+              </div>
+             </div>)
+          :<div className={styles.empty_cart}>ЗДЕСЬ МОГУТ БЫТЬ ВАШИ ПРОДУКТЫ</div>
       }
     </div>
   );

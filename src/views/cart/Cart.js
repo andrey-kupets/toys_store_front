@@ -34,7 +34,20 @@ export const Cart = () => {
   const quantityTotals = useMemo(() => user?._cart.reduce((acc, el) => acc + el.count, 0), [user?._cart]);
   const sumTotals = useMemo(() => user?._productsInCart.reduce((acc, el) => acc + el.price * user?._cart.find((item) => item._id === el._id).count, 0), [user?._productsInCart]);
 
+  const clearCart = async () => {
+    const access_token = JSON.parse(localStorage.getItem('access_token'));
 
+    if (!access_token) return history.push('/auth');
+
+    dispatch(emptyCart());
+
+    const cart = JSON.parse(localStorage.getItem('CART'));
+    const updateUserItem = async (userId, token = access_token) => {
+      return await userService.updateOneUser(userId, { _cart: cart.productsInCart }, token);
+    };
+
+    checkAuth(updateUserItem, language, history, dispatch);
+  };
 
   return (
     <div className={styles.flex}>
@@ -56,7 +69,7 @@ export const Cart = () => {
               <span
                 className={styles.center}>Стоимость доставки вы сможете узнать в разделе "Условия оплаты и доставки"</span>
               <hr/>
-              <button className={styles.order_modal_button}>ОЧИСТИТЬ КОРЗИНУ</button>
+              <button className={styles.order_modal_button} onClick={clearCart}>ОЧИСТИТЬ КОРЗИНУ</button>
             </div>
           </div>
         )

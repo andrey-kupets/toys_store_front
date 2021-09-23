@@ -12,3 +12,4 @@ export * from './product-item';
 export * from './product-modal';
 export * from './products-list';
 export * from './wishlistBtn';
+export * from './categoriesFilter';

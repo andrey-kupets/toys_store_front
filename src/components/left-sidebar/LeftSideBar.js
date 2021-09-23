@@ -3,6 +3,8 @@ import styles from './LeftSideBar.module.css';
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { constants } from '../../constants';
 import { transformQuery } from '../../funtion-helpers';
+import { CategoriesFilter } from "../categoriesFilter";
+import MultipleSelectCheckmarks from "../categoriesFilter/CategoriesFilter";
 
 export const LeftSideBar = () => {
   const history = useHistory();
@@ -94,6 +96,7 @@ export const LeftSideBar = () => {
           <button onClick={onSubmitHandler}>Подтвердить</button>
         </div>
       </div>
+      <MultipleSelectCheckmarks/>
     </div>
   );
 };

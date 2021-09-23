@@ -19,6 +19,7 @@ export const Cart = () => {
     try {
       dispatch(setLoading(true));
       const res = await userService.getUserById(userId);
+      console.log(res)
       dispatch(setUser(res));
     } catch (e) {
       console.log(e);
@@ -29,7 +30,7 @@ export const Cart = () => {
 
   useEffect(() => {
     getUser(userId);
-  }, [productsInCart])
+  }, [productsInCart]);
 
   const quantityTotals = useMemo(() => user?._cart.reduce((acc, el) => acc + el.count, 0), [user?._cart]);
   const sumTotals = useMemo(() => user?._productsInCart.reduce((acc, el) => acc + el.price * user?._cart.find((item) => item._id === el._id).count, 0), [user?._productsInCart]);
@@ -39,14 +40,13 @@ export const Cart = () => {
 
     if (!access_token) return history.push('/auth');
 
-    dispatch(emptyCart());
-
-    const cart = JSON.parse(localStorage.getItem('CART'));
     const updateUserItem = async (userId, token = access_token) => {
-      return await userService.updateOneUser(userId, { _cart: cart.productsInCart }, token);
+      return await userService.updateOneUser(userId, { _cart: [] }, token);
     };
 
-    checkAuth(updateUserItem, language, history, dispatch);
+    await checkAuth(updateUserItem, language, history, dispatch);
+
+    dispatch(emptyCart());
   };
 
   return (

@@ -4,7 +4,6 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { constants } from '../../constants';
 import { transformQuery } from '../../funtion-helpers';
 import { CategoriesFilter } from "../categoriesFilter";
-import MultipleSelectCheckmarks from "../categoriesFilter/CategoriesFilter";
 
 export const LeftSideBar = () => {
   const history = useHistory();
@@ -58,15 +57,19 @@ export const LeftSideBar = () => {
     <div className={styles.left_sideBar}>
       <div className={styles.left_sideBar_category}>
         <h1>Категория</h1>
-        <ul>
-          {categories.map((item) => (
-            <li key={item}>
-              <Link
-                to={`/products?${transformQuery(searchParams, { category: item, page: 1 })}`}>{item}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {/*1st var*/}
+        {/*<ul>*/}
+        {/*  {categories.map((item) => (*/}
+        {/*    <li key={item}>*/}
+        {/*      <Link*/}
+        {/*        to={`/products?${transformQuery(searchParams, { category: item, page: 1 })}`}>{item}*/}
+        {/*      </Link>*/}
+        {/*    </li>*/}
+        {/*  ))}*/}
+        {/*</ul>*/}
+
+        {/*2nd var - with Matherial Ui*/}
+      <CategoriesFilter/>
       </div>
 
 
@@ -96,7 +99,6 @@ export const LeftSideBar = () => {
           <button onClick={onSubmitHandler}>Подтвердить</button>
         </div>
       </div>
-      <MultipleSelectCheckmarks/>
     </div>
   );
 };

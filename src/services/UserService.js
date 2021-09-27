@@ -24,7 +24,7 @@ class UserService {
           Authorization: `${access_token}`
         },
       });
-    console.log(data, 'data ')
+    console.log(data, 'updateOneUser response');
     return data;
   }
 }

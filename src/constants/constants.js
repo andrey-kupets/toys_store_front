@@ -71,7 +71,7 @@ export const constants = {
 
   // ORDER
 
-  ORDER_CREATED: {
+  ORDER_GENERATED: {
     en: 'Your order has been accepted for processing',
     ua: 'Ваше замовлення прийняте в обробку',
     ru: 'Ваш заказ принят в обработку'

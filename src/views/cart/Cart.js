@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { ProductInCart } from "../../components";
 import { orderService, userService } from "../../services";
 import { emptyCart, setLoading, setUser, showProductModal } from "../../redux";
-import { checkAuth } from "../../funtion-helpers";
+import { checkAuth, toastifyHelper } from "../../funtion-helpers";
 import { useHistory } from "react-router-dom";
 import { Loading } from "../../components";
+import { constants } from "../../constants";
 
 export const Cart = () => {
   const userId = JSON.parse(localStorage.getItem('userId'));
@@ -54,7 +55,7 @@ export const Cart = () => {
     };
 
     await checkAuth(updateUserItem, language, history, dispatch);
-    !!order && order();
+    !!order && order() && toastifyHelper.notify(constants.ORDER_GENERATED[language]);
 
     dispatch(emptyCart());
   };

@@ -1,6 +1,6 @@
 .header_wrapper {
     min-height: 50px;
-    width: 1536px;
+    width: 100vw;
     padding: 0 10px;
     background: antiquewhite;
     color: fuchsia;
@@ -26,6 +26,12 @@
 .user_name {
     font-weight: bold;
     color: #ee0f04;
+}
+
+@media (max-width: 800px) {
+    .header_wrapper {
+        flex-wrap: wrap;
+    }
 }
 
 

@@ -17,7 +17,8 @@ export const ProductInCart = ({ img, name, price, item: { count } }) => {
           <span>{price} грн.</span></div>
         <div className={styles.product_card_div}>
           <span className={styles.product_card_title}>Кол-во</span>
-          <span>{count}</span></div>
+          <span>{count}</span>
+        </div>
         <div className={styles.product_card_div}>
           <span className={styles.product_card_title}>Сумма</span>
           <span>{price*count} грн.</span>

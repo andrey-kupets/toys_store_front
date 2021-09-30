@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setLoading, setUser } from "../../redux";
 import { userService } from "../../services";
+import { Loading, ProductInWishlist } from "../../components";
 
 export const Wishlist = () => {
   const userId = JSON.parse(localStorage.getItem('userId'));
@@ -28,11 +29,30 @@ export const Wishlist = () => {
 
   useEffect(() => {
     getUser(userId);
-  }, []);
+  }, [productIdsInWishlist]);
 
   return (
-    <div className={styles.wishlist_wrapper}>
-      WISHLIST IS HERE
+    <div className={styles.flex}>
+      {(loading || loading === null)
+        ? <Loading/>
+        :!!user?._productsInWishlist.length
+          ? (<div className={styles.flex}>
+            <div className={styles.product_cards_wrapper}>
+              {
+                user._productsInWishlist
+                  .map(el => <ProductInWishlist key={el._id} {...el}/>)
+              }
+            </div>
+            <div className={styles.order_modal_wrapper}>
+              <button className={styles.order_modal_button} onClick={() => clearCart(makeOrder)}>ОФОРМИТЬ ЗАКАЗ</button>
+              <span
+                className={styles.center}>Стоимость доставки вы сможете узнать в разделе "Условия оплаты и доставки"</span>
+              <hr/>
+              <button className={styles.order_modal_button} onClick={() => clearCart()}>ОЧИСТИТЬ КОРЗИНУ</button>
+            </div>
+          </div>)
+          :<div className={styles.empty_cart}>ЗДЕСЬ МОГУТ БЫТЬ ВАШИ ПРОДУКТЫ</div>
+      }
     </div>
   );
 };

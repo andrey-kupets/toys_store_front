@@ -1,4 +1,4 @@
-import { ADD_PRODUCT_TO_WISHLIST, REMOVE_PRODUCT_FROM_WISHLIST } from '../action-types';
+import { ADD_PRODUCT_TO_WISHLIST, EMPTY_WISHLIST, REMOVE_PRODUCT_FROM_WISHLIST } from '../action-types';
 
 const addProductToWishlist = (id) => ({ type: ADD_PRODUCT_TO_WISHLIST, payload: id });
 const removeProductFromWishlist = (id) => ({ type: REMOVE_PRODUCT_FROM_WISHLIST, payload: id });
@@ -13,3 +13,6 @@ export const toggleItemInWishlist = (id) => (dispatch, getState) => {
     : addProductToWishlist(id)
   );
 };
+
+export const emptyWishlist = () => ({ type: EMPTY_WISHLIST });
+

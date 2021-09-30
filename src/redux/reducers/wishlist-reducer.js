@@ -1,4 +1,4 @@
-import { ADD_PRODUCT_TO_WISHLIST, REMOVE_PRODUCT_FROM_WISHLIST } from '../action-types';
+import { ADD_PRODUCT_TO_WISHLIST, EMPTY_WISHLIST, REMOVE_PRODUCT_FROM_WISHLIST } from '../action-types';
 
 const initFromLS = localStorage.getItem('WISHLIST');
 
@@ -16,6 +16,11 @@ const reducer = (state = initialState, action) => {
     case REMOVE_PRODUCT_FROM_WISHLIST: return {
       ...state,
       productIdsInWishlist: state.productIdsInWishlist.filter((id) => id !== action.payload)
+    };
+
+    case EMPTY_WISHLIST: return {
+      ...state,
+      productIdsInWishlist: []
     };
 
     default: return state;

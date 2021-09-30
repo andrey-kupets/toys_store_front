@@ -47,11 +47,23 @@ export const ProductDetails = () => {
     };
 
     await checkAuth(updateUserItem, language, history, dispatch);
+
     dispatch(showProductModal(payload));
   };
 
-  const onWishlistClick = (productId) => {
+  const onWishlistClick = async (productId) => {
+    const access_token = JSON.parse(localStorage.getItem('access_token'));
+
+    if (!access_token) return history.push('/auth');
+
     dispatch(toggleItemInWishlist(productId));
+
+    const wishlist = JSON.parse(localStorage.getItem('WISHLIST'));
+    const updateUserItem = async  (userId, token = access_token) => {
+      return await userService.updateOneUser(userId, { _wishlist: wishlist.productIdsInWishlist }, token);
+    }
+
+    await checkAuth(updateUserItem, language, history, dispatch);
   };
 
   return (

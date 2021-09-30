@@ -60,23 +60,6 @@ export const Cart = () => {
     dispatch(emptyCart());
   };
 
-  // const clearCartAndMakeOrder = async () => {
-  //   const access_token = JSON.parse(localStorage.getItem('access_token'));
-  //
-  //   if (!access_token) return history.push('/auth');
-  //
-  //
-  //   const updateUserItem = async (userId, token = access_token) => {
-  //     return await userService.updateOneUser(userId, { _cart: [] }, token);
-  //   };
-  //
-  //   await checkAuth(updateUserItem, language, history, dispatch);
-  //   await orderService.makeOrder({ order: productsInCart, _user_id: userId }, access_token);
-  //
-  //   dispatch(emptyCart());
-  // };
-
-
   return (
     <div className={styles.flex}>
       {(loading || loading === null)

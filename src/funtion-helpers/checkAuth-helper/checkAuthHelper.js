@@ -1,7 +1,7 @@
 import { authService } from "../../services";
 import { toastifyHelper } from "../toastify-helper";
 import { errorsEnum } from "../../errors";
-import { emptyCart, setUser, showProductModal } from "../../redux";
+import { emptyCart, emptyWishlist, setUser, showProductModal } from "../../redux";
 
 export const checkAuth = async (userRequest, language, history, dispatch) => {
   const userId = JSON.parse(localStorage.getItem('userId'));
@@ -23,6 +23,7 @@ export const checkAuth = async (userRequest, language, history, dispatch) => {
 
         dispatch(setUser(false));
         dispatch(emptyCart());
+        dispatch(emptyWishlist());
         dispatch(showProductModal(false));
         history.push('/auth');
       }

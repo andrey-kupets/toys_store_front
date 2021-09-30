@@ -19,8 +19,9 @@ export const Cart = () => {
   const getUser = async (userId) => {
     try {
       dispatch(setLoading(true));
+
       const res = await userService.getUserById(userId);
-      console.log(res)
+
       dispatch(setUser(res));
     } catch (e) {
       console.log(e);
@@ -66,23 +67,23 @@ export const Cart = () => {
         ? <Loading/>
         :!!user?._productsInCart.length
           ? (<div className={styles.flex}>
-              <div className={styles.product_cards_wrapper}>
-                {
-                  user._productsInCart
-                    .map(el => <ProductInCart key={el._id} {...el}
-                                              item={user?._cart.find((item) => item._id === el._id)}/>)
-                }
-              </div>
-              <div className={styles.order_modal_wrapper}>
-                <span>Всего {quantityTotals} товаров на сумму <b>{sumTotals}</b> грн.</span>
-                <span><b>ИТОГО</b> с доставкой <b>{sumTotals < 500 ? sumTotals + 50 :sumTotals}</b> грн.</span>
-                <button className={styles.order_modal_button} onClick={() => clearCart(makeOrder)}>ОФОРМИТЬ ЗАКАЗ</button>
-                <span
-                  className={styles.center}>Стоимость доставки вы сможете узнать в разделе "Условия оплаты и доставки"</span>
-                <hr/>
-                <button className={styles.order_modal_button} onClick={() => clearCart()}>ОЧИСТИТЬ КОРЗИНУ</button>
-              </div>
-             </div>)
+            <div className={styles.product_cards_wrapper}>
+              {
+                user._productsInCart
+                  .map(el => <ProductInCart key={el._id} {...el}
+                                            item={user?._cart.find((item) => item._id === el._id)}/>)
+              }
+            </div>
+            <div className={styles.order_modal_wrapper}>
+              <span>Всего {quantityTotals} товаров на сумму <b>{sumTotals}</b> грн.</span>
+              <span><b>ИТОГО</b> с доставкой <b>{sumTotals < 500 ? sumTotals + 50 :sumTotals}</b> грн.</span>
+              <button className={styles.order_modal_button} onClick={() => clearCart(makeOrder)}>ОФОРМИТЬ ЗАКАЗ</button>
+              <span
+                className={styles.center}>Стоимость доставки вы сможете узнать в разделе "Условия оплаты и доставки"</span>
+              <hr/>
+              <button className={styles.order_modal_button} onClick={() => clearCart()}>ОЧИСТИТЬ КОРЗИНУ</button>
+            </div>
+          </div>)
           :<div className={styles.empty_cart}>ЗДЕСЬ МОГУТ БЫТЬ ВАШИ ПРОДУКТЫ</div>
       }
     </div>

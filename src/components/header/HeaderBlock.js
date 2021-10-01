@@ -8,17 +8,13 @@ import { transformQuery } from '../../funtion-helpers';
 import { useSelector } from "react-redux";
 
 export const HeaderBlock = () => {
-  // const access_token = JSON.parse(localStorage.getItem('access_token'));
   const history = useHistory();
   const searchParams = useLocation().search.replace('?', '');
-
   const [namePhrase, setNamePhrase] = useState('');
-
-  const {productIdsInWishlist, productsInCart, user} = useSelector(({wishlist, cart, users}) => ({ ...wishlist, ...cart, ...users }));
+  const { productIdsInWishlist, productsInCart, user } = useSelector(
+    ({ wishlist, cart, users }) => ({ ...wishlist, ...cart, ...users }));
 
   const totals = useMemo(() => productsInCart.reduce((acc, el) => acc += el.count, 0), [productsInCart]);
-
-
 
   const onWishlistViewClick = () => {
     history.push("/wishlist");
@@ -35,7 +31,7 @@ export const HeaderBlock = () => {
       history.push(`/products?page=1&${transformQuery(searchParams, { name: namePhrase })}`) // ignore Lower/UpperCase in 'back'
       setNamePhrase('');
     }
-  }
+  };
 
   return (
     <div className={styles.header_wrapper}>
@@ -53,9 +49,10 @@ export const HeaderBlock = () => {
         />
       </div>
       {
-        user
-        ? <div className={styles.user_name}>{user.name}</div>
-        : <div><Link to='/auth'>Вход</Link></div>
+        !!user
+          // ? <div className={styles.user_name}>{userName}</div>
+          ? <div className={styles.user_name}>{user.name}</div>
+          :<div><Link to='/auth'>Вход</Link></div>
       }
       <div className={styles.cart_wishlist_block}>
         <WishlistBtn click={onWishlistViewClick} title={'Отложенные'} count={productIdsInWishlist?.length}/>

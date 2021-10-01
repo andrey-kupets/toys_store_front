@@ -1,14 +1,13 @@
 import { authService } from "../../services";
 import { toastifyHelper } from "../toastify-helper";
 import { errorsEnum } from "../../errors";
-import { emptyCart, emptyWishlist, setUser, showProductModal } from "../../redux";
+import { emptyCart, emptyWishlist, setUser, showProductModal, transferDataToCartFromDB } from "../../redux";
 
 export const checkAuth = async (userRequest, language, history, dispatch) => {
   const userId = JSON.parse(localStorage.getItem('userId'));
   try {
-    await userRequest(userId);
+    const { user } = await userRequest(userId) || {};
   } catch ({ response: { status } }) {
-    console.log(status)
     if (status === 401) {
       try {
         const refresh_token = JSON.parse(localStorage.getItem('refresh_token'));
@@ -17,7 +16,7 @@ export const checkAuth = async (userRequest, language, history, dispatch) => {
         localStorage.setItem('access_token', JSON.stringify(data.access_token));
         localStorage.setItem('refresh_token', JSON.stringify(data.refresh_token));
 
-        await userRequest(userId, data.access_token);
+        const { user } = await userRequest(userId, data.access_token) || {};
       } catch ({ response: { data } }) {
         toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
 

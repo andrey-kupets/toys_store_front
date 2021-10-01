@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import styles from './Wishlist.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { setLoading, setUser } from "../../redux";
+import { emptyCart, emptyWishlist, setLoading, setUser } from "../../redux";
 import { userService } from "../../services";
 import { Loading, ProductInWishlist } from "../../components";
+import { checkAuth, toastifyHelper } from "../../funtion-helpers";
+import { constants } from "../../constants";
 
 export const Wishlist = () => {
   const userId = JSON.parse(localStorage.getItem('userId'));
@@ -31,6 +33,20 @@ export const Wishlist = () => {
     getUser(userId);
   }, [productIdsInWishlist]);
 
+  const clearWishlist = async () => {
+    const access_token = JSON.parse(localStorage.getItem('access_token'));
+
+    if (!access_token) return history.push('/auth');
+
+    const updateUserItem = async (userId, token = access_token) => {
+      return await userService.updateOneUser(userId, { _wishlist: [] }, token);
+    };
+
+    await checkAuth(updateUserItem, language, history, dispatch);
+
+    dispatch(emptyWishlist());
+  };
+
   return (
     <div className={styles.flex}>
       {(loading || loading === null)
@@ -44,7 +60,7 @@ export const Wishlist = () => {
               }
             </div>
             <div className={styles.modal_wrapper}>
-              <button className={styles.modal_button} onClick={() => clearCart()}>ОЧИСТИТЬ КОРЗИНУ</button>
+              <button className={styles.modal_button} onClick={clearWishlist}>ОЧИСТИТЬ СПИСОК ЖЕЛАНИЙ</button>
             </div>
           </div>)
           :<div className={styles.empty_wishlist}>ЗДЕСЬ МОГУТ БЫТЬ ВАШИ ПРОДУКТЫ</div>

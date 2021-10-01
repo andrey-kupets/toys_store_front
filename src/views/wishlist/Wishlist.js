@@ -43,15 +43,11 @@ export const Wishlist = () => {
                   .map(el => <ProductInWishlist key={el._id} {...el}/>)
               }
             </div>
-            <div className={styles.order_modal_wrapper}>
-              <button className={styles.order_modal_button} onClick={() => clearCart(makeOrder)}>ОФОРМИТЬ ЗАКАЗ</button>
-              <span
-                className={styles.center}>Стоимость доставки вы сможете узнать в разделе "Условия оплаты и доставки"</span>
-              <hr/>
-              <button className={styles.order_modal_button} onClick={() => clearCart()}>ОЧИСТИТЬ КОРЗИНУ</button>
+            <div className={styles.modal_wrapper}>
+              <button className={styles.modal_button} onClick={() => clearCart()}>ОЧИСТИТЬ КОРЗИНУ</button>
             </div>
           </div>)
-          :<div className={styles.empty_cart}>ЗДЕСЬ МОГУТ БЫТЬ ВАШИ ПРОДУКТЫ</div>
+          :<div className={styles.empty_wishlist}>ЗДЕСЬ МОГУТ БЫТЬ ВАШИ ПРОДУКТЫ</div>
       }
     </div>
   );

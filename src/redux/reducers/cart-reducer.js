@@ -1,10 +1,9 @@
 import { TRANSFER_DATA_TO_CART_FROM_DB, ADD_PRODUCT_TO_CART, EMPTY_CART, REMOVE_PRODUCT_FROM_CART } from '../action-types';
-const initFromLs = localStorage.getItem('CART');
 
+const initFromLs = localStorage.getItem('CART');
 const initialState = initFromLs ? JSON.parse(initFromLs) :{
   productsInCart: [],
 };
-
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
 

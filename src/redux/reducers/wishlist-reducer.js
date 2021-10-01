@@ -1,10 +1,15 @@
-import { ADD_PRODUCT_TO_WISHLIST, EMPTY_WISHLIST, REMOVE_PRODUCT_FROM_WISHLIST } from '../action-types';
+import {
+  ADD_PRODUCT_TO_WISHLIST,
+  EMPTY_WISHLIST,
+  REMOVE_PRODUCT_FROM_WISHLIST,
+  TRANSFER_DATA_TO_WISHLIST_FROM_DB
+} from '../action-types';
 
 const initFromLS = localStorage.getItem('WISHLIST');
 
 const initialState = initFromLS ? JSON.parse(initFromLS) : {
   productIdsInWishlist: [],
-}
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -23,8 +28,11 @@ const reducer = (state = initialState, action) => {
       productIdsInWishlist: []
     };
 
+    case TRANSFER_DATA_TO_WISHLIST_FROM_DB: return { ...state, productsInCart: payload };
+
     default: return state;
   }
+
 };
 
 export default reducer;

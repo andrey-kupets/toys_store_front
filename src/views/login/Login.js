@@ -6,7 +6,7 @@ import { errorsEnum } from "../../errors";
 import { Error } from "../../components";
 import { toastifyHelper } from "../../funtion-helpers";
 import { constants } from "../../constants";
-import { setAuthData, setUser, transferDataToCartFromDB } from "../../redux";
+import { setAuthData, setUser, transferDataToCartFromDB, transferDataToWishlistFromDB } from "../../redux";
 import { useDispatch, useSelector } from "react-redux";
 
 export const Login = () => {
@@ -29,9 +29,8 @@ export const Login = () => {
       const { tokens: { access_token, refresh_token }, user } = await authService.authUser(authData) || { };
 
       dispatch(setUser(user));
-      dispatch(transferDataToCartFromDB(user._cart))
-      // dispatch(setUser(user._wishlist)); // TODO _wishlist
-      console.log(user, 'user from DB - Login');
+      dispatch(transferDataToCartFromDB(user._cart));
+      dispatch(transferDataToWishlistFromDB(user._wishlist));
 
       localStorage.setItem('access_token', JSON.stringify(access_token));
       localStorage.setItem('refresh_token', JSON.stringify(refresh_token));

@@ -1,9 +1,9 @@
 import React from "react";
-import { constants } from '../../constants';
+import { imagesEnum } from '../../constants';
 import styles from './Logo.module.css';
 
-export const Logo = () => ( // early return pattern
+export const Logo = () => (
   <div>
-    <img className={styles.logo} src={constants.LOGO_1} alt="logo"/>
+    <img className={styles.logo} src={imagesEnum.LOGO_1} alt="logo"/>
   </div>
 );

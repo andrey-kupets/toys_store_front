@@ -6,7 +6,7 @@ import { emptyCart, emptyWishlist, setUser, showProductModal, transferDataToCart
 export const checkAuth = async (userRequest, language, history, dispatch) => {
   const userId = JSON.parse(localStorage.getItem('userId'));
   try {
-    const e = await userRequest(userId) || {};
+    const e = await userRequest(userId);
     console.log(e, 'ttttttttttttttttttttttttt')
     // dispatch(transferDataToCartFromDB(await userRequest(userId)?._cart));
     // dispatch(transferDataToWishlistFromDB(await userRequest(userId)?._wishlist));
@@ -21,7 +21,7 @@ export const checkAuth = async (userRequest, language, history, dispatch) => {
         localStorage.setItem('access_token', JSON.stringify(data.access_token));
         localStorage.setItem('refresh_token', JSON.stringify(data.refresh_token));
 
-        const e = await userRequest(userId, data.access_token) || {};
+        const e = await userRequest(userId, data.access_token);
         console.log(e, 'ttttttttttttttttttttttttt')
         // dispatch(transferDataToCartFromDB(e?._cart));
         // dispatch(transferDataToWishlistFromDB(await userRequest(userId)?._wishlist));

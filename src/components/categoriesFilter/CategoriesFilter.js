@@ -4,14 +4,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useHistory, useLocation } from "react-router-dom";
 import { transformQuery } from "../../funtion-helpers";
-import { constants } from '../../constants';
+import { categoriesEnum } from '../../constants';
 
 export const CategoriesFilter = () => {
   const history = useHistory();
   const searchParams = useLocation().search.replace('?', '');
 
   const handleChangeMultiple = ({ target: { options: { selectedIndex } } }) => {
-    history.push(`/products?${transformQuery(searchParams, { category: constants.categoryList[selectedIndex], page: 1 })}`)
+    history.push(`/products?${transformQuery(searchParams, { category: categoriesEnum[selectedIndex], page: 1 })}`)
   };
 
   return (
@@ -26,7 +26,7 @@ export const CategoriesFilter = () => {
           onChange={handleChangeMultiple}
           label="Категория"
         >
-          {constants.categoryList.map((category) => (
+          {categoriesEnum.map((category) => (
             <option key={category} value={category}>{category}</option>
           ))}
         </Select>

@@ -7,7 +7,7 @@ import { emptyCart, setLoading, setUser, showProductModal } from "../../redux";
 import { checkAuth, toastifyHelper } from "../../funtion-helpers";
 import { useHistory } from "react-router-dom";
 import { Loading } from "../../components";
-import { constants } from "../../constants";
+import { messagesEnum } from "../../constants";
 
 export const Cart = () => {
   const userId = JSON.parse(localStorage.getItem('userId'));
@@ -21,6 +21,8 @@ export const Cart = () => {
       dispatch(setLoading(true));
 
       const res = await userService.getUserById(userId);
+
+      console.log(res, 'USER FROM DB in CART')
 
       dispatch(setUser(res));
     } catch (e) {
@@ -36,7 +38,7 @@ export const Cart = () => {
 
   const quantityTotals = useMemo(() => user?._cart
     .reduce((acc, el) => acc + el.count, 0), [user?._cart]);
-  const sumTotals = useMemo(() => user?._productsInCart
+  const sumTotals = useMemo(() => user?._productsInCart && user?._productsInCart
     .reduce((acc, el) => acc + el.price * user?._cart
       .find((item) => item._id === el._id).count, 0), [user?._productsInCart]);
 
@@ -56,7 +58,7 @@ export const Cart = () => {
     };
 
     await checkAuth(updateUserItem, language, history, dispatch);
-    !!order && order() && toastifyHelper.notify(constants.ORDER_GENERATED[language]);
+    !!order && order() && toastifyHelper.notify(messagesEnum.ORDER_GENERATED[language]);
 
     dispatch(emptyCart());
   };
@@ -65,13 +67,13 @@ export const Cart = () => {
     <div className={styles.flex}>
       {(loading || loading === null)
         ? <Loading/>
-        :!!user?._productsInCart.length
+        :!!user._productsInCart?.length
           ? (<div className={styles.flex}>
             <div className={styles.product_cards_wrapper}>
               {
                 user._productsInCart
                   .map(el => <ProductInCart key={el._id} {...el}
-                                            item={user?._cart.find((item) => item._id === el._id)}/>)
+                                            item={user._cart.find((item) => item._id === el._id)}/>)
               }
             </div>
             <div className={styles.order_modal_wrapper}>

@@ -4,9 +4,8 @@ import { userService } from "../../services";
 import { useHistory } from "react-router-dom";
 import { toastifyHelper } from "../../funtion-helpers";
 import { errorsEnum } from "../../errors";
-import { Error } from "../../components/error";
+import { Error } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { setLanguage } from "../../redux";
 
 export const Registration = () => {
   const { language } = useSelector(({language}) => language);
@@ -42,7 +41,7 @@ export const Registration = () => {
       const resData = await userService.createUser(userData);
 
       setError(null);
-      toastifyHelper.notify(resData[language]);
+      toastifyHelper.notify(resData[language]); // or through msg.enum
 
       history.push('/');
     } catch ({ response: { data } }) {

@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { errorsEnum } from "../../errors";
 import { Error } from "../../components";
 import { toastifyHelper } from "../../funtion-helpers";
-import { constants } from "../../constants";
+import { messagesEnum } from "../../constants";
 import { setAuthData, setUser, transferDataToCartFromDB, transferDataToWishlistFromDB } from "../../redux";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -43,7 +43,7 @@ export const Login = () => {
       }));
 
       setError(null);
-      toastifyHelper.notify(constants.USER_IS_AUTHORIZED[language]);
+      toastifyHelper.notify(messagesEnum.USER_IS_AUTHORIZED[language]);
 
       history.push('/'); // pass to '/' || products when authorized TODO pass to previous url
     } catch ({ response: { data } }) {

@@ -51,7 +51,7 @@ export const Wishlist = () => {
     <div className={styles.flex}>
       {(loading || loading === null)
         ? <Loading/>
-        :!!user?._productsInWishlist.length
+        :!!user._productsInWishlist?.length
           ? (<div className={styles.flex}>
             <div className={styles.product_cards_wrapper}>
               {

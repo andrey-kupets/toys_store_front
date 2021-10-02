@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import styles from './LeftSideBar.module.css';
 import { Link, useHistory, useLocation } from "react-router-dom";
-import { constants } from '../../constants';
+import { categoriesEnum } from '../../constants';
 import { transformQuery } from '../../funtion-helpers';
 import { CategoriesFilter } from "../categoriesFilter";
 
 export const LeftSideBar = () => {
   const history = useHistory();
   const searchParams = useLocation().search.replace('?', '');
-  const categories = constants.categoryList;
 
   // Uncontrolled inputs
   // const onFormSubmit = (e) => {
@@ -59,7 +58,7 @@ export const LeftSideBar = () => {
         <h1>Категория</h1>
         {/*1st var*/}
         {/*<ul>*/}
-        {/*  {categories.map((item) => (*/}
+        {/*  {categoriesEnum.map((item) => (*/}
         {/*    <li key={item}>*/}
         {/*      <Link*/}
         {/*        to={`/products?${transformQuery(searchParams, { category: item, page: 1 })}`}>{item}*/}

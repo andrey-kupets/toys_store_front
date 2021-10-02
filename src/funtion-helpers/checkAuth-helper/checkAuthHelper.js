@@ -7,6 +7,7 @@ export const checkAuth = async (userRequest, language, history, dispatch) => {
   const userId = JSON.parse(localStorage.getItem('userId'));
   try {
     const user = await userRequest(userId);
+
     // dispatch(transferDataToCartFromDB(user._cart));
     // dispatch(transferDataToWishlistFromDB(user._wishlist));
     dispatch(setUser(user));
@@ -21,9 +22,12 @@ export const checkAuth = async (userRequest, language, history, dispatch) => {
         localStorage.setItem('access_token', JSON.stringify(data.access_token));
         localStorage.setItem('refresh_token', JSON.stringify(data.refresh_token));
 
-        const e = await userRequest(userId, data.access_token);
-        // dispatch(transferDataToCartFromDB(e._cart));
-        // dispatch(transferDataToWishlistFromDB(e._wishlist));
+        const user = await userRequest(userId, data.access_token);
+
+        // dispatch(transferDataToCartFromDB(user._cart));
+        // dispatch(transferDataToWishlistFromDB(user._wishlist));
+        dispatch(setUser(user));
+        localStorage.setItem('USER', JSON.stringify(user));
       } catch ({ response: { data } }) {
         toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
 

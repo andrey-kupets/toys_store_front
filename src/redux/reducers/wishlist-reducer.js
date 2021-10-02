@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
       productIdsInWishlist: []
     };
 
-    case TRANSFER_DATA_TO_WISHLIST_FROM_DB: return { ...state, productsInCart: payload };
+    case TRANSFER_DATA_TO_WISHLIST_FROM_DB: return { ...state, productIdsInWishlist: action.payload };
 
     default: return state;
   }

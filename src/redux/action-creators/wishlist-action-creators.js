@@ -2,7 +2,7 @@ import {
   ADD_PRODUCT_TO_WISHLIST,
   EMPTY_WISHLIST,
   REMOVE_PRODUCT_FROM_WISHLIST,
-  TRANSFER_DATA_TO_CART_FROM_DB
+  TRANSFER_DATA_TO_WISHLIST_FROM_DB
 } from '../action-types';
 
 const addProductToWishlist = (id) => ({ type: ADD_PRODUCT_TO_WISHLIST, payload: id });
@@ -20,6 +20,6 @@ export const toggleItemInWishlist = (id) => (dispatch, getState) => {
 };
 
 export const emptyWishlist = () => ({ type: EMPTY_WISHLIST });
-export const transferDataToWishlistFromDB = (payload) => ({ type: TRANSFER_DATA_TO_CART_FROM_DB, payload });
+export const transferDataToWishlistFromDB = (payload) => ({ type: TRANSFER_DATA_TO_WISHLIST_FROM_DB, payload });
 
 

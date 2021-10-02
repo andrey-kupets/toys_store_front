@@ -4,7 +4,13 @@ import styles from './ProductDetails.module.css';
 import { CartBtn, Loading, ProductModal, WishlistBtn } from "../../components";
 import { PageNotFound } from "../page_not_found";
 import { useDispatch, useSelector } from "react-redux";
-import { loadProductById, setProductToCart, showProductModal, toggleItemInWishlist } from "../../redux";
+import {
+  loadProductById,
+  setProductToCart,
+  showProductModal,
+  toggleItemInWishlist,
+  transferDataToCartFromDB
+} from "../../redux";
 import { userService } from "../../services";
 import { checkAuth } from "../../funtion-helpers";
 
@@ -17,8 +23,9 @@ export const ProductDetails = () => {
     productModal,
     productIdsInWishlist,
     productsInCart,
+    user
   } = useSelector(
-    ({ products, language, wishlist, cart }) => ({ ...products, ...language, ...wishlist, ...cart })
+    ({ products, language, wishlist, cart, users }) => ({ ...products, ...language, ...wishlist, ...cart, ...users })
   );
   const dispatch = useDispatch();
   const history = useHistory();
@@ -38,6 +45,9 @@ export const ProductDetails = () => {
     const access_token = JSON.parse(localStorage.getItem('access_token'));
 
     if (!access_token) return history.push('/auth');
+    console.log(user._cart, 'user cart from db')
+
+    // dispatch(transferDataToCartFromDB(user._cart))
 
     if (payload && !activeProductObj) dispatch(setProductToCart(product.id));
 

@@ -1,7 +1,7 @@
 import { SET_USER } from "../action-types";
 
 const initialState = {
-  user: null
+  user: null // todo || JSON.parse(localStorage.getItem('')) - set into LS user in checkauth
 };
 
 const reducer = (state = initialState, action) => {

@@ -1,15 +1,27 @@
 import './App.css';
-import React from "react";
+import React, { useEffect } from "react";
 import { BaseLayout } from "./layouts";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import { MainBlock, ProductDetails } from "./views";
 import { PageNotFound } from "./views";
 import { Login } from "./views";
 import { Registration } from "./views";
 import { Cart } from "./views";
 import { Wishlist } from "./views";
+import { checkAuth } from "./funtion-helpers";
+import { userService } from "./services";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
+  const { language } = useSelector(({ language }) => language);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  useEffect(async () => {
+    const access_token = JSON.parse(localStorage.getItem('access_token'));
+
+    !!access_token && checkAuth(await userService.getUserById, language, history, dispatch);
+  }, [])
   return (
     <div className="main-wrapper">
       <BaseLayout>

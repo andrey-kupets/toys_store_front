@@ -6,10 +6,11 @@ import { emptyCart, emptyWishlist, setUser, showProductModal, transferDataToCart
 export const checkAuth = async (userRequest, language, history, dispatch) => {
   const userId = JSON.parse(localStorage.getItem('userId'));
   try {
-    const e = await userRequest(userId);
-    // dispatch(transferDataToCartFromDB(e._cart));
-    // dispatch(transferDataToWishlistFromDB(e._wishlist));
-    dispatch(setUser(e));
+    const user = await userRequest(userId);
+    // dispatch(transferDataToCartFromDB(user._cart));
+    // dispatch(transferDataToWishlistFromDB(user._wishlist));
+    dispatch(setUser(user));
+    localStorage.setItem('USER', JSON.stringify(user));
 
   } catch ({ response: { status } }) {
     if (status === 401) {

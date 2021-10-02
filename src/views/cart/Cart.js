@@ -3,7 +3,7 @@ import styles from './Cart.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { ProductInCart } from "../../components";
 import { orderService, userService } from "../../services";
-import { emptyCart, setLoading, setUser, showProductModal } from "../../redux";
+import { emptyCart, setLoading, setUser } from "../../redux";
 import { checkAuth, toastifyHelper } from "../../funtion-helpers";
 import { useHistory } from "react-router-dom";
 import { Loading } from "../../components";
@@ -11,7 +11,7 @@ import { messagesEnum } from "../../constants";
 
 export const Cart = () => {
   const userId = JSON.parse(localStorage.getItem('userId'));
-  const { user, language, loading, productsInCart } =
+  const { user = {}, language, loading, productsInCart } =
     useSelector(({ users, language, products, cart }) => ({ ...users, ...language, ...products, ...cart }));
   const dispatch = useDispatch();
   const history = useHistory();
@@ -21,6 +21,7 @@ export const Cart = () => {
       dispatch(setLoading(true));
 
       const res = await userService.getUserById(userId);
+      console.log(res, 'response from getUser');
 
       dispatch(setUser(res));
     } catch (e) {
@@ -34,7 +35,9 @@ export const Cart = () => {
     getUser(userId);
   }, [productsInCart]);
 
-  const quantityTotals = useMemo(() => !!user && user._cart
+  console.log(user)
+
+  const quantityTotals = useMemo(() => !!user?._cart && user._cart
     .reduce((acc, el) => acc + el.count, 0), [user._cart]);
   const sumTotals = useMemo(() => !!user._productsInCart && user._productsInCart
     .reduce((acc, el) => acc + el.price * user?._cart
@@ -65,7 +68,7 @@ export const Cart = () => {
     <div className={styles.flex}>
       {(loading || loading === null)
         ? <Loading/>
-        :!!user._productsInCart?.length
+        :!!user?._productsInCart?.length
           ? (<div className={styles.flex}>
             <div className={styles.product_cards_wrapper}>
               {

@@ -35,6 +35,7 @@ export const Login = () => {
       localStorage.setItem('access_token', JSON.stringify(access_token));
       localStorage.setItem('refresh_token', JSON.stringify(refresh_token));
       localStorage.setItem('userId', JSON.stringify(user.id));
+      localStorage.setItem('USER', JSON.stringify(user));
 
       dispatch(setAuthData({
         ...authData,

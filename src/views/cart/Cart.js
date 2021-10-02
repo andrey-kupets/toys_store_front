@@ -22,8 +22,6 @@ export const Cart = () => {
 
       const res = await userService.getUserById(userId);
 
-      console.log(res, 'USER FROM DB in CART')
-
       dispatch(setUser(res));
     } catch (e) {
       console.log(e);
@@ -36,11 +34,11 @@ export const Cart = () => {
     getUser(userId);
   }, [productsInCart]);
 
-  const quantityTotals = useMemo(() => user?._cart
-    .reduce((acc, el) => acc + el.count, 0), [user?._cart]);
-  const sumTotals = useMemo(() => user?._productsInCart && user?._productsInCart
+  const quantityTotals = useMemo(() => !!user && user._cart
+    .reduce((acc, el) => acc + el.count, 0), [user._cart]);
+  const sumTotals = useMemo(() => !!user._productsInCart && user._productsInCart
     .reduce((acc, el) => acc + el.price * user?._cart
-      .find((item) => item._id === el._id).count, 0), [user?._productsInCart]);
+      .find((item) => item._id === el._id).count, 0), [user._productsInCart]);
 
   const makeOrder = async () => {
     const { productsInCart } = JSON.parse(localStorage.getItem('CART'));

@@ -21,7 +21,8 @@ function App() {
     const access_token = JSON.parse(localStorage.getItem('access_token'));
 
     !!access_token && checkAuth(await userService.getUserById, language, history, dispatch);
-  }, [])
+  }, []);
+
   return (
     <div className="main-wrapper">
       <BaseLayout>

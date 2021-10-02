@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import styles from './Wishlist.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { emptyCart, emptyWishlist, setLoading, setUser } from "../../redux";
+import { emptyWishlist, setLoading, setUser } from "../../redux";
 import { userService } from "../../services";
 import { Loading, ProductInWishlist } from "../../components";
-import { checkAuth, toastifyHelper } from "../../funtion-helpers";
-import { constants } from "../../constants";
+import { checkAuth } from "../../funtion-helpers";
 
 export const Wishlist = () => {
   const userId = JSON.parse(localStorage.getItem('userId'));

@@ -16,13 +16,15 @@ const setOneProduct = (payload) => ({ type: SET_ONE_PRODUCT, payload });
 const showProductModal = (payload) => ({ type: SHOW_PRODUCT_MODAL, payload });
 const showWishlistModal = (payload) => ({ type: SHOW_WISHLIST_MODAL, payload });
 
-
 const loadProductsData = (searchParams) => async (dispatch, getState) => {
   const { language } = getState();
   try {
     dispatch(setLoading(true));
 
     const { data, page, pages } = await productService.getProducts(!!searchParams ? searchParams :'');
+
+    console.log(page, 'PAGE');
+    console.log(pages, 'PAGES');
 
     dispatch(setProducts(data));
     dispatch(setPageData({ page, pages }));

@@ -3,13 +3,14 @@ import styles from './HeaderBlock.module.css';
 import { Logo } from "../logo";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { WishlistBtn } from "../wishlistBtn";
+import queryString from "query-string";
 import { CartBtn } from "../cartBtn";
-import { transformQuery } from '../../funtion-helpers';
 import { useSelector } from "react-redux";
 
 export const HeaderBlock = () => {
   const history = useHistory();
-  const searchParams = useLocation().search.replace('?', '');
+  // const searchParams = useLocation().search.replace('?', '');
+  const location = useLocation();
   const [namePhrase, setNamePhrase] = useState('');
   const { productIdsInWishlist, productsInCart, user } = useSelector(
     ({ wishlist, cart, users }) => ({ ...wishlist, ...cart, ...users }));
@@ -28,7 +29,15 @@ export const HeaderBlock = () => {
     const { target: { value }, key } = e;
     setNamePhrase(value);
     if (key === 'Enter') {
-      history.push(`/products?page=1&${transformQuery(searchParams, { name: namePhrase })}`) // ignore Lower/UpperCase in 'back'
+      const parsed = queryString.parse(location.search);
+
+      delete parsed.page;
+      parsed.name = namePhrase;
+
+      const string = queryString.stringify(parsed);
+
+      history.push(`/products?${string}`);
+      // history.push(`/products?${transformQuery(searchParams, { name: namePhrase })}`) // ignore Lower/UpperCase in 'back'
       setNamePhrase('');
     }
   };

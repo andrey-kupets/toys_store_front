@@ -12,13 +12,14 @@ export const PaginationWrapper = ({ children, page, pages, searchParams }) => {
 
   return (
     <div className={styles.pagination_wrapper}>
-      <div className={styles.button_wrapper}>
+      {!!page && !!pages && pages > 1 && // todo right pag-n
+      (<div className={styles.button_wrapper}>
         <button disabled={page <= 1} onClick={() => onClickHandler(1)}>Первая</button>
         <button disabled={page <= 1} onClick={() => onClickHandler(page - 1)}>Предыдущая</button>
         <span>Страница <b>{page}</b> из <b>{pages}</b></span>
         <button disabled={page >= pages} onClick={() => onClickHandler(page + 1)}>Следующая</button>
         <button disabled={page >= pages} onClick={() => onClickHandler(pages)}>Последняя</button>
-      </div>
+      </div>)}
       {children}
     </div>
   );

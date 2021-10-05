@@ -49,7 +49,7 @@ export const HeaderBlock = () => {
         />
       </div>
       {
-        !!user
+        !!user.name
           // ? <div className={styles.user_name}>{userName}</div>
           ? <div className={styles.user_name}>{user.name}</div>
           :<div><Link to='/auth'>Вход</Link></div>

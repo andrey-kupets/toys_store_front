@@ -34,9 +34,9 @@ export const HeaderBlock = () => {
       delete parsed.page;
       parsed.name = namePhrase;
 
-      const string = queryString.stringify(parsed);
+      const stringified = queryString.stringify(parsed);
 
-      history.push(`/products?${string}`);
+      history.push(`/products?${stringified}`);
       // history.push(`/products?${transformQuery(searchParams, { name: namePhrase })}`) // ignore Lower/UpperCase in 'back'
       setNamePhrase('');
     }

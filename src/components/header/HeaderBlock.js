@@ -6,6 +6,8 @@ import { WishlistBtn } from "../wishlistBtn";
 import { CartBtn } from "../cartBtn";
 import { useSelector } from "react-redux";
 import queryString from "query-string";
+import { authService } from "../../services";
+import { checkAuth } from "../../funtion-helpers";
 
 export const HeaderBlock = () => {
   const history = useHistory();
@@ -42,6 +44,15 @@ export const HeaderBlock = () => {
     }
   };
 
+  const logout = async () => {
+    const access_token = JSON.parse(localStorage.getItem('access_token'));
+    const logoutUser = await authService.logout(access_token);
+    // await checkAuth(logoutUser); // todo check for rotten token
+
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('access_token');
+  };
+
   return (
     <div className={styles.header_wrapper}>
       <Logo/>
@@ -60,7 +71,10 @@ export const HeaderBlock = () => {
       {
         !!user.name
           // ? <div className={styles.user_name}>{userName}</div>
-          ? <div className={styles.user_name}>{user.name}</div>
+          ? <div className={styles.flex}>
+              <div className={styles.user_name}>{user.name}</div>
+              <div onClick={logout}><Link to='/'>Выход</Link></div>
+            </div>
           :<div><Link to='/auth'>Вход</Link></div>
       }
       <div className={styles.cart_wishlist_block}>

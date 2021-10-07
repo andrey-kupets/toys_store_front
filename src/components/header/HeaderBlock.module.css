@@ -28,6 +28,12 @@
     color: #ee0f04;
 }
 
+.flex {
+    min-width: 100px;
+    display: flex;
+    justify-content: space-around;
+}
+
 @media (max-width: 800px) {
     .header_wrapper {
         flex-wrap: wrap;

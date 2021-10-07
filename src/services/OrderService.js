@@ -9,7 +9,6 @@ class OrderService {
       //   },
       // }
       );
-    console.log(data, 'makeOrder response');
     return data;
   }
 }

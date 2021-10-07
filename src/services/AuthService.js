@@ -14,6 +14,14 @@ class AuthService {
     });
     return data;
   }
+
+  async logout(access_token) {
+    await axiosDB.post('/auth/logout', {}, {
+      headers: {
+        Authorization: `${access_token}`
+      },
+    });
+  }
 }
 
 export const authService = new AuthService();

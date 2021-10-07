@@ -21,7 +21,6 @@ export const Cart = () => {
       dispatch(setLoading(true));
 
       const res = await userService.getUserById(userId);
-      console.log(res, 'response from getUser');
 
       dispatch(setUser(res));
     } catch (e) {

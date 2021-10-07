@@ -12,7 +12,7 @@ export const PaginationWrapper = ({ children, page, pages, searchParams }) => {
 
   return (
     <div className={styles.pagination_wrapper}>
-      {!!page && !!pages && pages > 1 && // todo right pag-n
+      {!!page && !!pages && pages > 1 &&
       (<div className={styles.button_wrapper}>
         <button disabled={page <= 1} onClick={() => onClickHandler(1)}>Первая</button>
         <button disabled={page <= 1} onClick={() => onClickHandler(page - 1)}>Предыдущая</button>

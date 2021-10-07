@@ -3,9 +3,9 @@ import styles from './HeaderBlock.module.css';
 import { Logo } from "../logo";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { WishlistBtn } from "../wishlistBtn";
-import queryString from "query-string";
 import { CartBtn } from "../cartBtn";
 import { useSelector } from "react-redux";
+import queryString from "query-string";
 
 export const HeaderBlock = () => {
   const history = useHistory();

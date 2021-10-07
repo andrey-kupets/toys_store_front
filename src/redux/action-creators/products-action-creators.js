@@ -23,9 +23,6 @@ const loadProductsData = (searchParams) => async (dispatch, getState) => {
 
     const { data, page, pages } = await productService.getProducts(!!searchParams ? searchParams :'');
 
-    console.log(page, 'PAGE');
-    console.log(pages, 'PAGES');
-
     dispatch(setProducts(data));
     dispatch(setPageData({ page, pages }));
   } catch (e) {

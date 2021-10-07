@@ -4,10 +4,12 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { categoriesEnum } from '../../constants';
 import { transformQuery } from '../../funtion-helpers';
 import { CategoriesFilter } from "../categoriesFilter";
+import queryString from "query-string";
 
 export const LeftSideBar = () => {
   const history = useHistory();
-  const searchParams = useLocation().search.replace('?', '');
+  // const searchParams = useLocation().search.replace('?', '');
+  const location = useLocation();
 
   // Uncontrolled inputs
   // const onFormSubmit = (e) => {
@@ -41,15 +43,26 @@ export const LeftSideBar = () => {
       priceTo: ''
     });
 
-    const priceGte = priceData.priceFrom;
-    const priceLte = priceData.priceTo;
+    let parsed = queryString.parse(location.search);
 
-    let newQuery;
-    if (!!priceGte) newQuery = { priceGte };
-    if (!!priceLte) newQuery = { priceLte };
-    if (!!priceGte && !!priceLte) newQuery = { priceGte, priceLte };
+    delete parsed.page;
+    parsed.priceGte = priceData.priceFrom;
+    parsed.priceLte = priceData.priceTo;
+    if (priceData.priceFrom === '') delete parsed.priceGte;
+    if (priceData.priceTo === '') delete parsed.priceLte;
 
-    history.push(`/products?${transformQuery(searchParams, newQuery)}`);
+    const stringified = queryString.stringify(parsed);
+
+    // const priceGte = priceData.priceFrom;
+    // const priceLte = priceData.priceTo;
+
+    // let newQuery;
+    // if (!!priceGte) newQuery = { priceGte };
+    // if (!!priceLte) newQuery = { priceLte };
+    // if (!!priceGte && !!priceLte) newQuery = { priceGte, priceLte };
+
+    // history.push(`/products?${transformQuery(searchParams, newQuery)}`);
+    history.push(`/products?${stringified}`);
   };
 
   return (
@@ -68,7 +81,7 @@ export const LeftSideBar = () => {
         {/*</ul>*/}
 
         {/*2nd var - with Matherial Ui*/}
-      <CategoriesFilter/>
+        <CategoriesFilter/>
       </div>
 
 

@@ -28,7 +28,6 @@ export const Login = () => {
     try {
       const { tokens: { access_token, refresh_token }, user } = await authService.authUser(authData) || { };
 
-      console.log(user, 'user at auth')
       dispatch(setUser(user));
       dispatch(transferDataToCartFromDB(user._cart));
       dispatch(transferDataToWishlistFromDB(user._wishlist));

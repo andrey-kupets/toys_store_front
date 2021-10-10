@@ -45,7 +45,6 @@ export const ProductDetails = () => {
     const access_token = JSON.parse(localStorage.getItem('access_token'));
 
     if (!access_token) return history.push('/auth');
-    console.log(user._cart, 'user cart from db')
 
     // dispatch(transferDataToCartFromDB(user._cart))
 

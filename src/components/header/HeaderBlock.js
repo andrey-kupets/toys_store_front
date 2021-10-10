@@ -4,18 +4,20 @@ import { Logo } from "../logo";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { WishlistBtn } from "../wishlistBtn";
 import { CartBtn } from "../cartBtn";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import queryString from "query-string";
 import { authService } from "../../services";
 import { checkAuth } from "../../funtion-helpers";
+import { setUser, showProductModal } from "../../redux";
 
 export const HeaderBlock = () => {
   const history = useHistory();
   // const searchParams = useLocation().search.replace('?', '');
   const location = useLocation();
+  const dispatch = useDispatch();
   const [namePhrase, setNamePhrase] = useState('');
-  const { productIdsInWishlist, productsInCart, user } = useSelector(
-    ({ wishlist, cart, users }) => ({ ...wishlist, ...cart, ...users }));
+  const { productIdsInWishlist, productsInCart, user, productModal } = useSelector(
+    ({ wishlist, cart, users, products }) => ({ ...wishlist, ...cart, ...users, ...products }));
 
   const totals = useMemo(() => productsInCart.reduce((acc, el) => acc += el.count, 0), [productsInCart]);
 
@@ -46,11 +48,15 @@ export const HeaderBlock = () => {
 
   const logout = async () => {
     const access_token = JSON.parse(localStorage.getItem('access_token'));
+    !!productModal && dispatch(showProductModal(false));
+
     const logoutUser = await authService.logout(access_token);
     // await checkAuth(logoutUser); // todo check for rotten token
 
     localStorage.removeItem('access_token');
-    localStorage.removeItem('access_token');
+    dispatch(setUser(false));
+    localStorage.removeItem('USER');
+    history.push('/');
   };
 
   return (

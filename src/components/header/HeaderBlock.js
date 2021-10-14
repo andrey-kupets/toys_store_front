@@ -10,6 +10,7 @@ import { authService } from "../../services";
 import { checkAuth, toastifyHelper } from "../../funtion-helpers";
 import { emptyCart, emptyWishlist, setUser, showProductModal } from "../../redux";
 import { errorsEnum } from "../../errors";
+import { userRoles } from "../../constants";
 
 export const HeaderBlock = () => {
   const history = useHistory();
@@ -93,10 +94,14 @@ export const HeaderBlock = () => {
     }
   };
 
+  const { ADMIN, SUPER_ADMIN } = userRoles;
+  console.log(user.role)
+
   return (
     <div className={styles.header_wrapper}>
       <Logo/>
       <div><Link to='/'>Главная</Link></div>
+      {(!!user.role && user.role === (ADMIN || SUPER_ADMIN)) && <div><Link to='/admin'>Админ</Link></div>}
       <div>Контакты</div>
       <div>
         <label>Поиск</label>

@@ -2,12 +2,16 @@ import './App.css';
 import React, { useEffect } from "react";
 import { BaseLayout } from "./layouts";
 import { Redirect, Route, Switch, useHistory } from "react-router-dom";
-import { MainBlock, ProductDetails } from "./views";
-import { PageNotFound } from "./views";
-import { Login } from "./views";
-import { Registration } from "./views";
-import { Cart } from "./views";
-import { Wishlist } from "./views";
+import {
+  Admin,
+  Cart,
+  Login,
+  MainBlock,
+  PageNotFound,
+  ProductDetails,
+  Registration,
+  Wishlist
+} from "./views";
 import { checkAuth } from "./funtion-helpers";
 import { userService } from "./services";
 import { useDispatch, useSelector } from "react-redux";
@@ -55,6 +59,10 @@ function App() {
 
           <Route path="/cart" exact>
             <Cart/>
+          </Route>
+
+          <Route path="/admin" exact>
+            <Admin/>
           </Route>
 
           <Route>

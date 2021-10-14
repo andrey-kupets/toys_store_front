@@ -1,0 +1,6 @@
+.flex {
+    display: flex;
+    padding-top: 20px;
+    overflow-y: auto;
+    flex: 1;
+}

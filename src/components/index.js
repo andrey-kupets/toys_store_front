@@ -1,4 +1,6 @@
+export * from './admin';
 export * from './cartBtn';
+export * from './categoriesFilter';
 export * from './error';
 export * from './footer';
 export * from './header';
@@ -13,4 +15,3 @@ export * from './product-item';
 export * from './product-modal';
 export * from './products-list';
 export * from './wishlistBtn';
-export * from './categoriesFilter';

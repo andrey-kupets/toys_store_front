@@ -1,20 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from './Admin.module.css';
+import { ProductCreate } from "../../components";
 
 export const Admin = () => {
+  const [window, setWindow] = useState({
+    productCreate: false,
+    productUpdate: false,
+    productDelete: false,
+  });
+
+  const openWindow = (name) => {
+    setWindow({
+      ...window,
+      [name]: true
+    });
+  }
+
   return (
     <div className={styles.flex}>
       <ul>
         <li>
-          <button>Добавить продукт в базу</button>
+          <button onClick={() => openWindow('productCreate')}>Добавить продукт в базу</button>
         </li>
         <li>
-          <button>Изменить продукт в базе</button>
+          <button onClick={() => openWindow('productUpdate')}>Изменить продукт в базе</button>
         </li>
         <li>
-          <button>Удалить продукт</button>
+          <button onClick={() => openWindow('productDelete')}>Удалить продукт</button>
         </li>
       </ul>
+      {!!window.productCreate === true && <ProductCreate/>}
     </div>
   )
-}
+};

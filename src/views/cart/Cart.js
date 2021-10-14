@@ -34,8 +34,6 @@ export const Cart = () => {
     getUser(userId);
   }, [productsInCart]);
 
-  console.log(user)
-
   const quantityTotals = useMemo(() => !!user?._cart && user._cart
     .reduce((acc, el) => acc + el.count, 0), [user._cart]);
   const sumTotals = useMemo(() => !!user._productsInCart && user._productsInCart

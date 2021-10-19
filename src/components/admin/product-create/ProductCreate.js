@@ -1,9 +1,101 @@
-import React from "react";
+import React, { useState } from "react";
+import styles from "../../../views/registration/Registration.module.css";
+import { Error } from "../../error";
+import { productService, userService } from "../../../services";
+import { toastifyHelper } from "../../../funtion-helpers";
+import { errorsEnum } from "../../../errors";
+import { useSelector } from "react-redux";
 
 export const ProductCreate = () => {
+  const { language } = useSelector(({language}) => language);
+  const [error, setError] = useState(null);
+  const [productData, setProductData] = useState({
+    name: '',
+    category: '',
+    price: '',
+    description: '',
+    type: '',
+    img: '',
+  });
+
+
+  const createProduct = (e) => {
+    const { target: { name, value } } = e;
+
+    setProductData({
+      ...productData,
+      [name]: value
+    });
+  }
+
+  const onSubmitHandler = async () => {
+    try {
+      setProductData({
+        ...productData,
+        name: '',
+        category: '',
+        price: '',
+        description: '',
+        type: '',
+        img: '',
+      });
+
+      // const resData = await productService.createProduct(productData); // TODO CREATE-SERVICE
+
+      setError(null);
+      toastifyHelper.notify(resData[language]); // or through msg.enum
+
+      history.push('/');
+    } catch ({ response: { data } }) {
+      setError(errorsEnum[data.customCode][language]);
+
+      toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
+    }
+  };
+
   return (
-    <div>
-      ProductCreate
+    <div className={styles.create_product_wrapper}>
+      <div className={styles.create_product_window}>
+        <h2>Создать продукт</h2>
+        <input
+          name='name'
+          value={productData.name}
+          onChange={createProduct}
+          type="text"
+          placeholder='Название'/>
+        <input
+          name='category'
+          value={productData.category}
+          onChange={createProduct}
+          type="text"
+          placeholder='Категория'/>
+        <input
+          name='price'
+          value={productData.price}
+          onChange={createProduct}
+          type="number"
+          placeholder='Цена'/>
+        <input
+          name='description'
+          value={productData.description}
+          onChange={createProduct}
+          type="text"
+          placeholder='Описание'/>
+        <input
+          name='type'
+          value={productData.type}
+          onChange={createProduct}
+          type="text"
+          placeholder='Тип'/>
+        <input
+          name='img'
+          value={productData.img}
+          onChange={createProduct}
+          type="file"
+          placeholder='Загрузить фото'/>
+        {!!error && <Error error={error}/>}
+        <button onClick={onSubmitHandler}>Создать</button>
+      </div>
     </div>
   )
 };

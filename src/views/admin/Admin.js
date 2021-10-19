@@ -22,12 +22,12 @@ export const Admin = () => {
         <li>
           <button onClick={() => openWindow('productCreate')}>Добавить продукт в базу</button>
         </li>
-        <li>
-          <button onClick={() => openWindow('productUpdate')}>Изменить продукт в базе</button>
-        </li>
-        <li>
-          <button onClick={() => openWindow('productDelete')}>Удалить продукт</button>
-        </li>
+        {/*<li>*/}
+        {/*  <button onClick={() => openWindow('productUpdate')}>Изменить продукт в базе</button>*/}
+        {/*</li>*/}
+        {/*<li>*/}
+        {/*  <button onClick={() => openWindow('productDelete')}>Удалить продукт</button>*/}
+        {/*</li>*/}
       </ul>
       {!!window.productCreate === true && <ProductCreate/>}
     </div>

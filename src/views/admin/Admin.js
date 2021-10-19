@@ -12,9 +12,9 @@ export const Admin = () => {
   const openWindow = (name) => {
     setWindow({
       ...window,
-      [name]: true
+      [name]: !window[name]
     });
-  }
+  };
 
   return (
     <div className={styles.flex}>
@@ -29,7 +29,7 @@ export const Admin = () => {
         {/*  <button onClick={() => openWindow('productDelete')}>Удалить продукт</button>*/}
         {/*</li>*/}
       </ul>
-      {!!window.productCreate === true && <ProductCreate/>}
+      {!!window.productCreate && <ProductCreate status={openWindow}/>}
     </div>
   )
 };

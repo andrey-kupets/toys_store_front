@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import styles from "../../../views/registration/Registration.module.css";
+import styles from './ProductCreate.module.css';
 import { Error } from "../../error";
-import { productService, userService } from "../../../services";
+import { productService } from "../../../services";
 import { toastifyHelper } from "../../../funtion-helpers";
 import { errorsEnum } from "../../../errors";
 import { useSelector } from "react-redux";
 
-export const ProductCreate = () => {
+export const ProductCreate = ({status}) => {
   const { language } = useSelector(({language}) => language);
   const [error, setError] = useState(null);
   const [productData, setProductData] = useState({
@@ -54,8 +54,9 @@ export const ProductCreate = () => {
   };
 
   return (
-    <div className={styles.create_product_wrapper}>
-      <div className={styles.create_product_window}>
+    <div className={styles.product_create_wrapper}>
+      <div className={styles.product_create_window}>
+        <button className={styles.product_create_btn_close} onClick={() => status('productCreate')}>X</button>
         <h2>Создать продукт</h2>
         <input
           name='name'

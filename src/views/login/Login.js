@@ -6,7 +6,13 @@ import { errorsEnum } from "../../errors";
 import { Error } from "../../components";
 import { toastifyHelper } from "../../funtion-helpers";
 import { messagesEnum } from "../../constants";
-import { setAuthData, setUser, transferDataToCartFromDB, transferDataToWishlistFromDB } from "../../redux";
+import {
+  setAuthData,
+  setUser,
+  showProductModal,
+  transferDataToCartFromDB,
+  transferDataToWishlistFromDB
+} from "../../redux";
 import { useDispatch, useSelector } from "react-redux";
 
 export const Login = () => {
@@ -31,6 +37,7 @@ export const Login = () => {
       dispatch(setUser(user));
       dispatch(transferDataToCartFromDB(user._cart));
       dispatch(transferDataToWishlistFromDB(user._wishlist));
+      // dispatch(showProductModal(false));
 
       localStorage.setItem('access_token', JSON.stringify(access_token));
       localStorage.setItem('refresh_token', JSON.stringify(refresh_token));

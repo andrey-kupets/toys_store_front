@@ -40,7 +40,7 @@ export const ProductCreate = ({status}) => {
         img: '',
       });
 
-      // const resData = await productService.createProduct(productData); // TODO CREATE-SERVICE
+      // const resData = await productService.createProduct(productData); // TODO CREATE-SERVICE + access_token
 
       setError(null);
       toastifyHelper.notify(resData[language]); // or through msg.enum
@@ -76,11 +76,10 @@ export const ProductCreate = ({status}) => {
           onChange={createProduct}
           type="number"
           placeholder='Цена'/>
-        <input
+        <textarea
           name='description'
           value={productData.description}
           onChange={createProduct}
-          type="text"
           placeholder='Описание'/>
         <input
           name='type'
@@ -88,6 +87,7 @@ export const ProductCreate = ({status}) => {
           onChange={createProduct}
           type="text"
           placeholder='Тип'/>
+        <label>Загрузить фото</label>
         <input
           name='img'
           value={productData.img}

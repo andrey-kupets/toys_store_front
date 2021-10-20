@@ -4,3 +4,9 @@
     overflow-y: auto;
     flex: 1;
 }
+
+li button {
+    background: springgreen;
+    color: white;
+    font-weight: bold;
+}

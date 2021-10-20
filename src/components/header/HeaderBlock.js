@@ -6,8 +6,11 @@ import { WishlistBtn } from "../wishlistBtn";
 import { CartBtn } from "../cartBtn";
 import { useDispatch, useSelector } from "react-redux";
 import queryString from "query-string";
-import { logout } from "../../funtion-helpers";
+import { logout, toastifyHelper } from "../../funtion-helpers";
 import { userRoles } from "../../constants";
+import { authService } from "../../services";
+import { emptyCart, emptyWishlist, setUser, showProductModal } from "../../redux";
+import { errorsEnum } from "../../errors";
 
 export const HeaderBlock = () => {
   const history = useHistory();
@@ -45,6 +48,52 @@ export const HeaderBlock = () => {
     }
   };
 
+  // const logout = async (language, productModal, dispatch) => {
+  //   const access_token = JSON.parse(localStorage.getItem('access_token'));
+  //   try {
+  //     await authService.logout(access_token);
+  //     !!productModal && dispatch(showProductModal(false));
+  //     dispatch(setUser(false));
+  //
+  //     localStorage.removeItem('access_token');
+  //     localStorage.removeItem('USER');
+  //
+  //     history.push('/');
+  //   } catch ({ response: { status } }) {
+  //     if (status === 401) {
+  //       try {
+  //         const refresh_token = JSON.parse(localStorage.getItem('refresh_token'));
+  //         const data = refresh_token && await authService.refreshToken(refresh_token);
+  //
+  //         localStorage.setItem('access_token', JSON.stringify(data.access_token));
+  //         localStorage.setItem('refresh_token', JSON.stringify(data.refresh_token));
+  //
+  //         await authService.logout(data.access_token);
+  //
+  //         !!productModal && dispatch(showProductModal(false));
+  //         dispatch(setUser(false));
+  //
+  //         localStorage.removeItem('access_token');
+  //         localStorage.removeItem('USER');
+  //
+  //         history.push('/');
+  //       } catch (e) {
+  //         console.log(e);
+  //         toastifyHelper.notifyError(errorsEnum["4010"][language]);
+  //
+  //         dispatch(setUser(false));
+  //         dispatch(emptyCart());
+  //         dispatch(emptyWishlist());
+  //         !!productModal && dispatch(showProductModal(false));
+  //
+  //         localStorage.clear();
+  //
+  //         history.push('/auth');
+  //       }
+  //     }
+  //   }
+  // };
+
   const { ADMIN, SUPER_ADMIN } = userRoles;
 
   return (
@@ -68,7 +117,7 @@ export const HeaderBlock = () => {
           // ? <div className={styles.user_name}>{userName}</div>
           ? <div className={styles.flex}>
             <div className={styles.user_name}>{user.name}</div>
-            <div onClick={logout}><Link to='/'>Выход</Link></div>
+            <div onClick={() => logout(language, productModal, dispatch, history)}><Link to='/'>Выход</Link></div>
           </div>
           :<div><Link to='/auth'>Вход</Link></div>
       }

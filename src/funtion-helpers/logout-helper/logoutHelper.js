@@ -3,7 +3,7 @@ import { emptyCart, emptyWishlist, setUser, showProductModal } from "../../redux
 import { toastifyHelper } from "../toastify-helper";
 import { errorsEnum } from "../../errors";
 
-export const logout = async () => {
+export const logout = async (language, productModal, dispatch, history) => {
   const access_token = JSON.parse(localStorage.getItem('access_token'));
   try {
     await authService.logout(access_token);
@@ -14,7 +14,7 @@ export const logout = async () => {
     localStorage.removeItem('USER');
 
     history.push('/');
-  } catch ({ response: { status } }) {
+  } catch (e) {
     if (status === 401) {
       try {
         const refresh_token = JSON.parse(localStorage.getItem('refresh_token'));

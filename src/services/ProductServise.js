@@ -11,6 +11,14 @@ class ProductService {
     const { data } = await axiosDB.get(`/products/${productId}`);
     return data;
   }
+
+  async createProduct(reqBody, access_token) {
+    await axiosDB.post('/products', reqBody, {
+      headers: {
+        Authorization: `${access_token}`
+      },
+    })
+  }
 }
 
 export const productService = new ProductService();

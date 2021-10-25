@@ -14,15 +14,14 @@ class ProductService {
 
   async createProduct(productData, file, access_token) {
     let reqBody = new FormData();
-    console.log(file)
-
     console.log(productData);
+    console.log(file)
 
     for (const field in productData) {
       reqBody.append(field, productData[field]);
-      // console.log(field);
-      // console.log(productData[field]);
-      // console.log(reqBody);
+      console.log(field);
+      console.log(productData[field]);
+      console.log(reqBody);
     }
 
     reqBody.append('img', file);

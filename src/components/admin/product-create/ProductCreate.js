@@ -9,18 +9,31 @@ import { useSelector } from "react-redux";
 export const ProductCreate = ({status}) => {
   const { language } = useSelector(({language}) => language);
   const [error, setError] = useState(null);
+  const [file, setFile] = useState(null);
   const [productData, setProductData] = useState({
     name: '',
     category: '',
     price: '',
     description: '',
     type: '',
-    img: '',
+    // img: null
   });
 
 
   const createProduct = (e) => {
-    const { target: { name, value } } = e;
+    const { target: { name, value, type, files } } = e;
+    if (type === 'number') {
+      setProductData({
+        ...productData,
+        [name]: +value
+      });
+      return;
+    }
+
+    if (type === 'file') {
+      setFile(files[0])
+      return;
+    }
 
     setProductData({
       ...productData,
@@ -29,6 +42,8 @@ export const ProductCreate = ({status}) => {
   }
 
   const onSubmitHandler = async () => {
+    const access_token = JSON.parse(localStorage.getItem('access_token'));
+
     try {
       setProductData({
         ...productData,
@@ -40,16 +55,19 @@ export const ProductCreate = ({status}) => {
         img: '',
       });
 
-      // const resData = await productService.createProduct(productData); // TODO CREATE-SERVICE + access_token
+      const resData = await productService.createProduct(productData, file, access_token) || {};
+      console.log(resData)
 
-      setError(null);
-      toastifyHelper.notify(resData[language]); // or through msg.enum
+      // setError(null);
+      // toastifyHelper.notify(resData[language]); // or through msg.enum
 
-      history.push('/');
-    } catch ({ response: { data } }) {
-      setError(errorsEnum[data.customCode][language]);
-
-      toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
+      // history.push('/');
+    // } catch ({ response: { data } }) {
+    } catch (e) {
+      console.log(e)
+      // setError(errorsEnum[data.customCode][language]);
+      //
+      // toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
     }
   };
 
@@ -90,11 +108,11 @@ export const ProductCreate = ({status}) => {
         <label>Загрузить фото</label>
         <input
           name='img'
-          value={productData.img}
+          // value={productData.img}
           onChange={createProduct}
           type="file"
           placeholder='Загрузить фото'/>
-        {!!error && <Error error={error}/>}
+        {/*{!!error && <Error error={error}/>}*/}
         <button onClick={onSubmitHandler}>Создать</button>
       </div>
     </div>

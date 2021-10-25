@@ -22,6 +22,7 @@ export const Registration = () => {
 
   const register = (e) => {
     const { target: { value, name } } = e;
+
     setUserData({
       ...userData,
       [name]: value

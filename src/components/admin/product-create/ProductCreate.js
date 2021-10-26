@@ -34,7 +34,6 @@ export const ProductCreate = ({status}) => {
         ...productData,
         [name]: files[0]
       })
-      console.log(files[0])
       return;
     }
 

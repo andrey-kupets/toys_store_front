@@ -9,14 +9,13 @@ import { useSelector } from "react-redux";
 export const ProductCreate = ({status}) => {
   const { language } = useSelector(({language}) => language);
   const [error, setError] = useState(null);
-  const [file, setFile] = useState(null);
   const [productData, setProductData] = useState({
     name: '',
     category: '',
     price: '',
     description: '',
     type: '',
-    // img: null
+    img: ''
   });
 
 
@@ -31,7 +30,11 @@ export const ProductCreate = ({status}) => {
     }
 
     if (type === 'file') {
-      setFile(files[0])
+      setProductData({
+        ...productData,
+        [name]: files[0]
+      })
+      console.log(files[0])
       return;
     }
 
@@ -52,11 +55,10 @@ export const ProductCreate = ({status}) => {
         price: '',
         description: '',
         type: '',
-        img: '',
+        img: '', // isn't to be cleared
       });
 
-      const resData = await productService.createProduct(productData, file, access_token) || {};
-      console.log(resData)
+      const resData = await productService.createProduct(productData, access_token) || {};
 
       // setError(null);
       // toastifyHelper.notify(resData[language]); // or through msg.enum
@@ -108,7 +110,6 @@ export const ProductCreate = ({status}) => {
         <label>Загрузить фото</label>
         <input
           name='img'
-          // value={productData.img}
           onChange={createProduct}
           type="file"
           placeholder='Загрузить фото'/>

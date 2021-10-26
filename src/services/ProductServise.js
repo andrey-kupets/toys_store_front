@@ -12,20 +12,12 @@ class ProductService {
     return data;
   }
 
-  async createProduct(productData, file, access_token) {
-    let reqBody = new FormData();
-    console.log(productData);
-    console.log(file)
+  async createProduct(productData, access_token) {
+    const reqBody = new FormData();
 
     for (const field in productData) {
       reqBody.append(field, productData[field]);
-      console.log(field);
-      console.log(productData[field]);
-      console.log(reqBody);
     }
-
-    reqBody.append('img', file);
-    console.log(reqBody);
 
     const { data } = await axiosDB.post('/products', reqBody, {
       headers: {

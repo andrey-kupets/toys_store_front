@@ -5,6 +5,8 @@ import { productService } from "../../../services";
 import { toastifyHelper } from "../../../funtion-helpers";
 import { errorsEnum } from "../../../errors";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { messagesEnum } from "../../../constants";
 
 export const ProductCreate = ({status}) => {
   const { language } = useSelector(({language}) => language);
@@ -59,16 +61,16 @@ export const ProductCreate = ({status}) => {
 
       const resData = await productService.createProduct(productData, access_token) || {};
 
-      // setError(null);
-      // toastifyHelper.notify(resData[language]); // or through msg.enum
+      setError(null);
+      // toastifyHelper.notify(resData[language]);
+      toastifyHelper.notify(messagesEnum.PRODUCT_CREATED[language]); // or through msg.enum if back return object but not msg
 
-      // history.push('/');
-    // } catch ({ response: { data } }) {
-    } catch (e) {
-      console.log(e)
-      // setError(errorsEnum[data.customCode][language]);
-      //
-      // toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
+    } catch ({ response: { data } }) {
+    // } catch (e) {
+    //   console.log(e)
+      setError(errorsEnum[data.customCode][language]);
+
+      toastifyHelper.notifyError(errorsEnum[data.customCode][language]);
     }
   };
 
@@ -112,7 +114,7 @@ export const ProductCreate = ({status}) => {
           onChange={createProduct}
           type="file"
           placeholder='Загрузить фото'/>
-        {/*{!!error && <Error error={error}/>}*/}
+        {!!error && <Error error={error}/>}
         <button onClick={onSubmitHandler}>Создать</button>
       </div>
     </div>

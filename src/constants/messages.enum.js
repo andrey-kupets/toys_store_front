@@ -48,4 +48,12 @@ export const messagesEnum = {
     ua: 'Ваше замовлення прийняте в обробку',
     ru: 'Ваш заказ принят в обработку'
   },
+
+  // PRODUCT
+
+  PRODUCT_CREATED: {
+    en: 'New product has been set to database',
+    ua: 'Новий продукт було додано до бази даних',
+    ru: 'Новый продукт был добавлен в базу данных'
+  },
 };

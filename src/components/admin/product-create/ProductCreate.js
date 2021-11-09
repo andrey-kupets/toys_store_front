@@ -8,8 +8,8 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { messagesEnum } from "../../../constants";
 
-export const ProductCreate = ({status}) => {
-  const { language } = useSelector(({language}) => language);
+export const ProductCreate = ({ status }) => {
+  const { language } = useSelector(({ language }) => language);
   const [error, setError] = useState(null);
   const [productData, setProductData] = useState({
     name: '',
@@ -20,9 +20,9 @@ export const ProductCreate = ({status}) => {
     img: ''
   });
 
-
   const createProduct = (e) => {
     const { target: { name, value, type, files } } = e;
+
     if (type === 'number') {
       setProductData({
         ...productData,
@@ -59,15 +59,23 @@ export const ProductCreate = ({status}) => {
         img: '', // isn't to be cleared
       });
 
-      const resData = await productService.createProduct(productData, access_token) || {};
+      const data = { ...productData };
+
+      for (const key in data) {
+        if (!data[key]) {
+          delete data[key]
+        }
+      }
+
+      const resData = await productService.createProduct(data, access_token) || {};
 
       setError(null);
       // toastifyHelper.notify(resData[language]);
       toastifyHelper.notify(messagesEnum.PRODUCT_CREATED[language]); // or through msg.enum if back return object but not msg
 
     } catch ({ response: { data } }) {
-    // } catch (e) {
-    //   console.log(e)
+      // } catch (e) {
+      //   console.log(e)
       setError(errorsEnum[data.customCode][language]);
 
       toastifyHelper.notifyError(errorsEnum[data.customCode][language]);

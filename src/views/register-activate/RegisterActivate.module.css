@@ -1,0 +1,37 @@
+.register_activate_wrapper {
+    flex: 1;
+    background: url("https://img.freepik.com/free-vector/logo-design-kids-toys_29937-4737.jpg?size=626&ext=jpg&ga=GA1.2.1783114487.1627084800") center no-repeat;
+    -webkit-background-size: 100vh; /* Safari 3.1+ и Chrome 4.0+ */
+    position: relative;
+}
+
+.register_activate_window {
+    min-height: 300px;
+    width: 320px;
+    position: absolute;
+    top: 8%;
+    left: 2%;
+    /*background-color: transparent;*/
+    background-color: rgba(240, 248, 1, 0.96);
+    border: solid 2px lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.register_activate_window h2 {
+    text-align: center;
+    color: #0551f6;
+}
+
+.register_activate_window button {
+    width: 50%;
+    height: 50px;
+    background: rgba(81, 231, 40, 0.94);
+    font-weight: bold;
+}
+
+.register_activate_window button:hover {
+    background: #04f6ca;
+}

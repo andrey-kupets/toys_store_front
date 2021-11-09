@@ -35,6 +35,12 @@ export const errorsEnum = {
     ru: 'Необходим токен обновления',
   },
 
+  40019: {
+    en: 'Action token is required',
+    ua: 'Необхідний токен дії',
+    ru: 'Необходим токен действия',
+  },
+
   4005: {
     en: 'Incorrect action',
     ua: 'Невірна дія',
@@ -134,6 +140,12 @@ export const errorsEnum = {
     ru: 'Невалидный токен обновления',
   },
 
+  4013: {
+    en: 'Action token is not valid',
+    ua: 'Невалідний токен дії',
+    ru: 'Невалидный токен действия',
+  },
+
   // PRODUCT
 
   40017: {
@@ -158,8 +170,14 @@ export const errorsEnum = {
 
   4032: {
     en: 'Refresh token is not verified',
-    ua: 'Не варифіковано токен оновлення',
+    ua: 'Неварифіковано токен оновлення',
     ru: 'Неварифицирован токен обновления',
+  },
+
+  4034: {
+    en: 'Action token is not verified',
+    ua: 'Неварифіковано токен дії',
+    ru: 'Неварифицирован токен действия',
   },
 
   4033: {

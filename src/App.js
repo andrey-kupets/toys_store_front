@@ -15,6 +15,7 @@ import {
 import { checkAuth } from "./funtion-helpers";
 import { userService } from "./services";
 import { useDispatch, useSelector } from "react-redux";
+import { RegisterActivate } from "./views/register-activate/RegisterActivate";
 
 function App() {
   const { language } = useSelector(({ language }) => language);
@@ -63,6 +64,10 @@ function App() {
 
           <Route path="/admin" exact>
             <Admin/>
+          </Route>
+
+          <Route path="/register/activate" exact>
+            <RegisterActivate/>
           </Route>
 
           <Route>

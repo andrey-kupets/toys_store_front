@@ -9,6 +9,8 @@ export const logout = async (language, productModal, dispatch, history) => {
     await authService.logout(access_token);
     !!productModal && dispatch(showProductModal(false));
     dispatch(setUser(false));
+    dispatch(emptyCart());
+    dispatch(emptyWishlist());
 
     localStorage.removeItem('access_token');
     localStorage.removeItem('USER');

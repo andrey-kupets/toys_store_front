@@ -26,6 +26,17 @@ class UserService {
       });
     return data;
   }
+
+  async activateOneUser(action_token) {
+    const { data } = await axiosDB.put('/users/register/activate', {},
+      {
+        // body: reqBody,
+        headers: {
+          Register: `${action_token}`
+        },
+      });
+    return data;
+  }
 }
 
 export const userService = new UserService();

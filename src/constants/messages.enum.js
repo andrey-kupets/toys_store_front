@@ -41,6 +41,12 @@ export const messagesEnum = {
     ru: 'Ваш аккаунт успешно удалён'
   },
 
+  USER_ACTIVATED: {
+    en: 'Your profile has been activated successfully',
+    ua: 'Ваш профіль успішно активовано',
+    ru: 'Ваш профиль успешно активирован'
+  },
+
   // ORDER
 
   ORDER_GENERATED: {

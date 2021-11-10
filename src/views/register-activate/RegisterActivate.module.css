@@ -12,12 +12,13 @@
     top: 8%;
     left: 2%;
     /*background-color: transparent;*/
-    background-color: rgba(240, 248, 1, 0.96);
+    background-color: rgba(218, 186, 16, 0.96);
     border: solid 2px lightblue;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    padding: 0 8px;
 }
 
 .register_activate_window h2 {

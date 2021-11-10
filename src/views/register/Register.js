@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from './Registration.module.css';
+import styles from './Register.module.css';
 import { userService } from "../../services";
 import { useHistory } from "react-router-dom";
 import { toastifyHelper } from "../../funtion-helpers";
@@ -8,7 +8,7 @@ import { Error } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { messagesEnum } from "../../constants";
 
-export const Registration = () => {
+export const Register = () => {
   const { language } = useSelector(({language}) => language);
   const dispatch = useDispatch();
   const history = useHistory();

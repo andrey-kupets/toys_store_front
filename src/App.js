@@ -9,7 +9,7 @@ import {
   MainBlock,
   PageNotFound,
   ProductDetails,
-  Registration,
+  Register,
   Wishlist
 } from "./views";
 import { checkAuth } from "./funtion-helpers";
@@ -51,7 +51,7 @@ function App() {
           </Route>
 
           <Route path="/users" exact>
-            <Registration/>
+            <Register/>
           </Route>
 
           <Route path="/wishlist" exact>

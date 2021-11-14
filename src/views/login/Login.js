@@ -16,7 +16,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 export const Login = () => {
-  const { language, authData } = useSelector(({language, auth}) => ({ ...language, ...auth }));
+  const { language, authData } = useSelector(({ language, auth }) => ({ ...language, ...auth }));
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -32,33 +32,34 @@ export const Login = () => {
 
   const onSubmitHandler = async () => {
     try {
-      const { tokens: { access_token, refresh_token }, user } = await authService.authUser(authData) || { };
+      const { tokens: { access_token, refresh_token }, user } = await authService.authUser(authData) || {};
 
-      if (user.status === userStatusesEnum.ACTIVATED) {
-        dispatch(setUser(user));
-        dispatch(transferDataToCartFromDB(user._cart));
-        dispatch(transferDataToWishlistFromDB(user._wishlist));
-        // dispatch(showProductModal(false));
-
-        localStorage.setItem('access_token', JSON.stringify(access_token));
-        localStorage.setItem('refresh_token', JSON.stringify(refresh_token));
-        localStorage.setItem('userId', JSON.stringify(user.id));
-        localStorage.setItem('USER', JSON.stringify(user));
-
-        dispatch(setAuthData({
-          ...authData,
-          email: '',
-          password: '',
-        }));
-
-        setError(null);
-        toastifyHelper.notify(messagesEnum.USER_IS_AUTHORIZED[language]);
-
-        history.push('/'); // pass to '/' || products when authorized TODO pass to previous url
+      if (user.status !== userStatusesEnum.ACTIVATED) {
+        setError(errorsEnum["4035"][language]);
+        toastifyHelper.notifyError(errorsEnum["4035"][language]);
+        return;
       }
-      setError(errorsEnum["4035"][language]);
 
-      toastifyHelper.notifyError(errorsEnum["4035"][language]);
+      dispatch(setUser(user));
+      dispatch(transferDataToCartFromDB(user._cart));
+      dispatch(transferDataToWishlistFromDB(user._wishlist));
+      // dispatch(showProductModal(false));
+
+      localStorage.setItem('access_token', JSON.stringify(access_token));
+      localStorage.setItem('refresh_token', JSON.stringify(refresh_token));
+      localStorage.setItem('userId', JSON.stringify(user.id));
+      localStorage.setItem('USER', JSON.stringify(user));
+
+      dispatch(setAuthData({
+        ...authData,
+        email: '',
+        password: '',
+      }));
+
+      setError(null);
+      toastifyHelper.notify(messagesEnum.USER_IS_AUTHORIZED[language]);
+
+      history.push('/'); // pass to '/' || products when authorized TODO pass to previous url
     } catch ({ response: { data } }) {
       setError(errorsEnum[data.customCode][language]);
 

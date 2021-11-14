@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { errorsEnum } from "../../errors";
 import { Error } from "../../components";
 import { toastifyHelper } from "../../funtion-helpers";
-import { messagesEnum } from "../../constants";
+import { messagesEnum, userStatusesEnum } from "../../constants";
 import {
   setAuthData,
   setUser,
@@ -34,26 +34,31 @@ export const Login = () => {
     try {
       const { tokens: { access_token, refresh_token }, user } = await authService.authUser(authData) || { };
 
-      dispatch(setUser(user));
-      dispatch(transferDataToCartFromDB(user._cart));
-      dispatch(transferDataToWishlistFromDB(user._wishlist));
-      // dispatch(showProductModal(false));
+      if (user.status === userStatusesEnum.ACTIVATED) {
+        dispatch(setUser(user));
+        dispatch(transferDataToCartFromDB(user._cart));
+        dispatch(transferDataToWishlistFromDB(user._wishlist));
+        // dispatch(showProductModal(false));
 
-      localStorage.setItem('access_token', JSON.stringify(access_token));
-      localStorage.setItem('refresh_token', JSON.stringify(refresh_token));
-      localStorage.setItem('userId', JSON.stringify(user.id));
-      localStorage.setItem('USER', JSON.stringify(user));
+        localStorage.setItem('access_token', JSON.stringify(access_token));
+        localStorage.setItem('refresh_token', JSON.stringify(refresh_token));
+        localStorage.setItem('userId', JSON.stringify(user.id));
+        localStorage.setItem('USER', JSON.stringify(user));
 
-      dispatch(setAuthData({
-        ...authData,
-        email: '',
-        password: '',
-      }));
+        dispatch(setAuthData({
+          ...authData,
+          email: '',
+          password: '',
+        }));
 
-      setError(null);
-      toastifyHelper.notify(messagesEnum.USER_IS_AUTHORIZED[language]);
+        setError(null);
+        toastifyHelper.notify(messagesEnum.USER_IS_AUTHORIZED[language]);
 
-      history.push('/'); // pass to '/' || products when authorized TODO pass to previous url
+        history.push('/'); // pass to '/' || products when authorized TODO pass to previous url
+      }
+      setError(errorsEnum["4035"][language]);
+
+      toastifyHelper.notifyError(errorsEnum["4035"][language]);
     } catch ({ response: { data } }) {
       setError(errorsEnum[data.customCode][language]);
 

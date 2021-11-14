@@ -186,6 +186,12 @@ export const errorsEnum = {
     ru: 'Нет прав доступа',
   },
 
+  4035: {
+    en: 'Your profile is not activated yet' ,
+    ua: 'Ваш профіль ще неактивовано',
+    ru: 'Ваш профиль еще неактивирован',
+  },
+
   // NOT FOUND
 
   4041: {

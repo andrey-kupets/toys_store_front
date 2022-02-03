@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import styles from './LeftSideBar.module.css';
-import { Link, useHistory, useLocation } from "react-router-dom";
-import { categoriesEnum } from '../../constants';
-import { transformQuery } from '../../funtion-helpers';
+import { useHistory, useLocation } from "react-router-dom";
 import { CategoriesFilter } from "../categoriesFilter";
 import queryString from "query-string";
 
 export const LeftSideBar = () => {
   const history = useHistory();
-  // const searchParams = useLocation().search.replace('?', '');
   const location = useLocation();
 
-  // Uncontrolled inputs
+  // 1 var - Uncontrolled inputs
   // const onFormSubmit = (e) => {
   //   e.preventDefault();
   //
@@ -21,7 +18,7 @@ export const LeftSideBar = () => {
   //   history.push(`/products?gte=${priceGte}&lte=${priceLte}`);
   // }
 
-  // Controlled inputs
+  // 2 var - ontrolled inputs
 
   const [priceData, setPriceData] = useState({
     priceFrom: '',
@@ -53,15 +50,6 @@ export const LeftSideBar = () => {
 
     const stringified = queryString.stringify(parsed);
 
-    // const priceGte = priceData.priceFrom;
-    // const priceLte = priceData.priceTo;
-
-    // let newQuery;
-    // if (!!priceGte) newQuery = { priceGte };
-    // if (!!priceLte) newQuery = { priceLte };
-    // if (!!priceGte && !!priceLte) newQuery = { priceGte, priceLte };
-
-    // history.push(`/products?${transformQuery(searchParams, newQuery)}`);
     history.push(`/products?${stringified}`);
   };
 
@@ -69,16 +57,6 @@ export const LeftSideBar = () => {
     <div className={styles.left_sideBar}>
       <div className={styles.left_sideBar_category}>
         <h1>Категория</h1>
-        {/*1st var*/}
-        {/*<ul>*/}
-        {/*  {categoriesEnum.map((item) => (*/}
-        {/*    <li key={item}>*/}
-        {/*      <Link*/}
-        {/*        to={`/products?${transformQuery(searchParams, { category: item, page: 1 })}`}>{item}*/}
-        {/*      </Link>*/}
-        {/*    </li>*/}
-        {/*  ))}*/}
-        {/*</ul>*/}
 
         {/*2nd var - with Matherial Ui*/}
         <CategoriesFilter/>

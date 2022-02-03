@@ -3,13 +3,11 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useHistory, useLocation } from "react-router-dom";
-import { transformQuery } from "../../funtion-helpers";
 import { categoriesEnum } from '../../constants';
 import queryString from "query-string";
 
 export const CategoriesFilter = () => {
   const history = useHistory();
-  // const searchParams = useLocation().search.replace('?', '');
   const location = useLocation();
 
   const handleChangeMultiple = ({ target: { options: { selectedIndex } } }) => {

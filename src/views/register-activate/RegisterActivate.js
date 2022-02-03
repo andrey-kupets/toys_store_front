@@ -2,7 +2,6 @@ import React from "react";
 import styles from './RegisterActivate.module.css';
 import { userService } from "../../services";
 import { toastifyHelper } from "../../funtion-helpers";
-import { messagesEnum } from "../../constants";
 import { useHistory, useLocation } from "react-router-dom";
 import { errorsEnum } from "../../errors";
 import { useSelector } from "react-redux";

@@ -2,7 +2,7 @@ import { SET_LANGUAGE } from "../action-types";
 
 const initialState = {
   language: 'en'
-}
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

@@ -40,7 +40,6 @@ export const HeaderBlock = () => {
       const stringified = queryString.stringify(parsed);
 
       history.push(`/products?${stringified}`);
-      // history.push(`/products?${transformQuery(searchParams, { name: namePhrase })}`) // ignore Lower/UpperCase in 'back'
       setNamePhrase('');
     }
   };

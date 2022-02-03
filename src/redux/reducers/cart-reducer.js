@@ -1,4 +1,9 @@
-import { TRANSFER_DATA_TO_CART_FROM_DB, ADD_PRODUCT_TO_CART, EMPTY_CART, REMOVE_PRODUCT_FROM_CART } from '../action-types';
+import {
+  TRANSFER_DATA_TO_CART_FROM_DB,
+  ADD_PRODUCT_TO_CART,
+  EMPTY_CART,
+  REMOVE_PRODUCT_FROM_CART
+} from '../action-types';
 
 const initFromLs = localStorage.getItem('CART');
 const initialState = initFromLs ? JSON.parse(initFromLs) :{
@@ -16,7 +21,10 @@ const reducer = (state = initialState, action) => {
 
       return !activeProductObj
         ? { ...state, productsInCart: [...state.productsInCart, { _id: payload, count: 1 }] }
-        : { ...state, productsInCart: [...otherProductsArr, { ...activeProductObj, count: activeProductObj.count + count }]}
+        :{
+          ...state,
+          productsInCart: [...otherProductsArr, { ...activeProductObj, count: activeProductObj.count + count }]
+        }
     };
 
     case REMOVE_PRODUCT_FROM_CART: {
@@ -24,15 +32,20 @@ const reducer = (state = initialState, action) => {
       const activeProductObj = state.productsInCart.find(obj => obj._id === id);
       const otherProductsArr = state.productsInCart.filter(obj => obj._id !== id);
 
-      return { ...state, productsInCart: [...otherProductsArr, { ...activeProductObj, count: activeProductObj.count - count }]}
+      return {
+        ...state,
+        productsInCart: [...otherProductsArr, { ...activeProductObj, count: activeProductObj.count - count }]
+      }
     };
 
-    case EMPTY_CART: return {
-      ...state,
-      productsInCart: []
-    };
+    case EMPTY_CART:
+      return {
+        ...state,
+        productsInCart: []
+      };
 
-    case TRANSFER_DATA_TO_CART_FROM_DB: return { ...state, productsInCart: payload }
+    case TRANSFER_DATA_TO_CART_FROM_DB:
+      return { ...state, productsInCart: payload }
 
     default:
       return state;

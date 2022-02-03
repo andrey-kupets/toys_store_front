@@ -1,6 +1,6 @@
 .products_list_wrapper {
     /*height: 84vh;*/
-    /*when added PaginationWrapper --- have to shift width and add it to */
+    /*when added PaginationWrapper --- must shift width and add it to */
     /*width: 80%;*/
     display: flex;
     flex-wrap: wrap;

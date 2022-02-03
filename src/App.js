@@ -15,7 +15,7 @@ import {
 import { checkAuth } from "./funtion-helpers";
 import { userService } from "./services";
 import { useDispatch, useSelector } from "react-redux";
-import { RegisterActivate } from "./views/register-activate/RegisterActivate";
+import { RegisterActivate } from "./views";
 
 function App() {
   const { language } = useSelector(({ language }) => language);
@@ -29,16 +29,14 @@ function App() {
   }, []);
 
   return (
-    <div className="main-wrapper">
+    <div>
       <BaseLayout>
         <Switch>
           <Route path="/" exact>
             <Redirect to="/products"/>
           </Route>
 
-          {/*<Route path={["/", "/products"]} exact>*/}
           <Route path={"/products"} exact>
-            {/*<Redirect to="/products?page=1"/>*/}
             <MainBlock/>
           </Route>
 

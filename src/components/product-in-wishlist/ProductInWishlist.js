@@ -5,7 +5,7 @@ export const ProductInWishlist = ({ img, name, price }) => {
     return (
       <div className={styles.product_card_wrapper}>
         <div>
-          <img className={styles.product_card_image} src={img}/>
+          <img className={styles.product_card_image} src={img} alt={`${name} toy`}/>
         </div>
         <div className={styles.product_card_info}>
           <div className={styles.product_card_name}>

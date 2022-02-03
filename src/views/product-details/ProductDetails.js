@@ -78,7 +78,6 @@ export const ProductDetails = () => {
   return (
     <div className={styles.product_details_wrapper}>
       {loading || loading === null && !product ? <Loading/> :(<>
-        {/*{loading || false ? Loading() :(<>*/}
         <div className={styles.product_properties}>
           <h2>{product.name}</h2>
           <span>Цена: <b>{product.price}</b> грн.</span><br/>

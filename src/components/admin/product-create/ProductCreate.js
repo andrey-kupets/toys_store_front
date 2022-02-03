@@ -43,7 +43,7 @@ export const ProductCreate = ({ status }) => {
       ...productData,
       [name]: value
     });
-  }
+  };
 
   const onSubmitHandler = async () => {
     const access_token = JSON.parse(localStorage.getItem('access_token'));
@@ -71,11 +71,9 @@ export const ProductCreate = ({ status }) => {
 
       setError(null);
       // toastifyHelper.notify(resData[language]);
-      toastifyHelper.notify(messagesEnum.PRODUCT_CREATED[language]); // or through msg.enum if back return object but not msg
+      toastifyHelper.notify(messagesEnum.PRODUCT_CREATED[language]); // or through msg.enum if back return an object but not msg
 
     } catch ({ response: { data } }) {
-      // } catch (e) {
-      //   console.log(e)
       setError(errorsEnum[data.customCode][language]);
 
       toastifyHelper.notifyError(errorsEnum[data.customCode][language]);

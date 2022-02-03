@@ -25,8 +25,6 @@ export const MainBlock = ({ children }) => {
 
   return (
     <div className={styles.main_block}>
-      {/*div for checking overflow scrolling*/}
-      {/*<div style={{height: 1600, background: 'blue'}}>yy</div>*/}
       <LeftSideBar/>
       {/*{children}*/}
       {(loading || loading === null)
@@ -48,17 +46,3 @@ export const MainBlock = ({ children }) => {
     </div>
   );
 };
-
-// window.location
-// const { search } = location;
-// console.log('location', location);
-// console.log('search', search);
-//
-// const searchParams = search.replace('?', '');
-// console.log(searchParams);
-
-
-// for query value URLSearchParams
-// const searchParams = useLocation().search;
-// const queryValue = new URLSearchParams(searchParams).get('price')
-// console.log(queryValue);

@@ -11,7 +11,6 @@ import { userRoles } from "../../constants";
 
 export const HeaderBlock = () => {
   const history = useHistory();
-  // const searchParams = useLocation().search.replace('?', '');
   const location = useLocation();
   const dispatch = useDispatch();
   const [namePhrase, setNamePhrase] = useState('');
@@ -47,7 +46,7 @@ export const HeaderBlock = () => {
   const { ADMIN, SUPER_ADMIN } = userRoles;
 
   return (
-    <form encType="multipart/form-data" className={styles.header_wrapper}>
+    <div className={styles.header_wrapper}>
       <Logo/>
       <div><Link to='/'>Главная</Link></div>
       {(!!user.role && user.role === (ADMIN || SUPER_ADMIN)) && <div><Link to='/admin'>Админ</Link></div>}
@@ -74,6 +73,6 @@ export const HeaderBlock = () => {
         <WishlistBtn click={onWishlistViewClick} title={'Отложенные'} count={productIdsInWishlist?.length}/>
         <CartBtn click={onCartViewClick} title={'Корзина'} count={totals}/>
       </div>
-    </form>
+    </div>
   );
 };

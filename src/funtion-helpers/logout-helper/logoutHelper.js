@@ -16,7 +16,7 @@ export const logout = async (language, productModal, dispatch, history) => {
     localStorage.removeItem('USER');
 
     history.push('/');
-  } catch (e) {
+  } catch ({ response: { status } }) {
     if (status === 401) {
       try {
         const refresh_token = JSON.parse(localStorage.getItem('refresh_token'));
